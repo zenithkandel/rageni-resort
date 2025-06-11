@@ -32,16 +32,18 @@ body {
   width: 100vw;
   max-width: 100%;
   position: absolute;
+  /* background: #000; */
+  overflow: hidden;
 }
 
-.hero .blob{
-  background: var(--object-fill);
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.hero .blob {
+    background: var(--object-fill);
+    height: 90vh;
+    width: 118vw;
+    position: absolute;
+    top: 56vh;
+    left: 32vw;
+    transform: rotate(-45deg);
 }
 
 nav {

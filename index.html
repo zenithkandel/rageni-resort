@@ -31,10 +31,37 @@
     </div>
     <div class="svg-text">
       <div class="title">EXPLORE <br> THE WORLD</div>
-      <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at laborum aut, earum nostrum animi molestiae quasi.</div>
+      <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at
+        laborum aut, earum nostrum animi molestiae quasi.</div>
     </div>
     <div class="blob"></div>
   </div>
+  <section>
+    <h1>Section 1</h1>
+  </section>
+  <section>
+    <h1>Section 2</h1>
+  </section>
+  <section>
+    <h1>Section 3</h1>
+  </section>
+  <section>
+    <h1>Section 4</h1>
+  </section>
 </body>
+<script>
+  // console.log(window.innerHeight, window.innerWidth);
+  const blob = document.querySelector('.blob');
+  function loadRect() {
+    blob_width = (((window.screen.height) ** 2 + (window.screen.width) ** 2) ** 0.5)
+    blob.style.width = blob_width + 'px';
+    blob.style.height = blob_width / 2 + 'px';
+    blob.style.rotate = -Math.atan(window.innerHeight / window.innerWidth) * 180 / Math.PI + 'deg';
+  }
+  loadRect();
+  window.onresize = () => {
+    loadRect();
+  }
+</script>
 
 </html>

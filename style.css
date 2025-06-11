@@ -14,7 +14,7 @@
   transition: 0.3s all ease-in-out;
 }
 
-:root{
+:root {
   --primary-color: #768065;
   --secondary-color: #acb2a3;
   --text-color: #333;
@@ -31,23 +31,22 @@ body {
   height: 100vh;
   width: 100vw;
   max-width: 100%;
-  position: absolute;
-  /* background: #000; */
   overflow: hidden;
+  position: relative;
 }
 
 .hero .blob {
-    background: var(--object-fill);
-    height: 90vh;
-    width: 118vw;
-    position: absolute;
-    top: 56vh;
-    left: 32vw;
-    transform: rotate(-45deg);
+  background: var(--object-fill);
+  position: absolute;
+  top: 100%;
+  /* height: 70.710678vw;
+  width: 141.421356%; */
+  transform-origin: top left;
+  /* z-index: 9999999; */
 }
 
 nav {
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -117,4 +116,17 @@ nav .logo img {
 
 .hamburger {
   cursor: pointer;
+}
+
+section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Poppins, sans-serif;
+  font-size: 32px;
+  max-width: 100%;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }

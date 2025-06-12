@@ -29,13 +29,14 @@
     <div class="hero-content">
       RAGENI AGRO RESORT
     </div>
-    <div class="svg-text">
+    
+    <div class="blob blob-down">
+      <div class="svg-text">
       <div class="title">EXPLORE THE WORLD</div>
       <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at
         laborum aut, earum nostrum animi molestiae quasi.</div>
     </div>
-    <div class="blob blob-up"></div>
-    <div class="blob blob-down"></div>
+    </div>
   </div>
   <section>
     <h1>Section 1</h1>
@@ -52,7 +53,6 @@
 </body>
 <script>
   // // console.log(window.innerHeight, window.innerWidth);
-  // const blob = document.querySelector('.blob');
   // function loadRect() {
   //   blob_width = (((window.screen.height) ** 2 + (window.screen.width) ** 2) ** 0.5)
   //   blob.style.width = blob_width + 'px';
@@ -63,6 +63,36 @@
   // window.onresize = () => {
   //   loadRect();
   // }
+
+  const blob = document.querySelector('.blob');
+  let scrollTop = document.documentElement.scrollTop;
+  let windowHeight = window.innerHeight;
+  let percent = Math.round(100 * scrollTop / windowHeight);
+  console.log(percent);
+  if (percent >= 10) {
+    blob.style.bottom = percent - 10 + '%';
+    blob.style.opacity = 100 - percent + '%';
+
+  }
+  else {
+    blob.style.bottom = 0 + '%';
+    blob.style.opacity = 100 + '%';
+  }
+  document.onscroll = () => {
+    scrollTop = document.documentElement.scrollTop;
+   windowHeight = window.innerHeight;
+    percent = Math.round(100 * scrollTop / windowHeight);
+
+    if (percent >= 10) {
+      blob.style.height = 50-percent*2 + 'vh';
+      blob.style.opacity = 100 - percent*3 + '%';
+
+    }
+    else {
+            blob.style.height = 50 + 'vh';
+      blob.style.opacity = 100 + '%';
+    }
+  };
 </script>
 
 </html>

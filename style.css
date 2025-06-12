@@ -41,22 +41,26 @@ body {
   left: 50%;
   transform: translate(-50%, 0%);
   width: 100vw;
+  overflow: hidden;
   height: 50vh;
+  transition:.2s;
   
   transform-origin: top left;
   /* z-index: 9999999; */
 }
 
 .hero .blob-up {
+  display: none;
   background: var(--object-fill);
 
   top: 0;
   /* border-radius: 0 0 50% 50%; */
 }
 .hero .blob-down {
-  bottom: 0;
+  position: fixed;
+  bottom:0;
   background: var(--object-shadow);
-
+  box-shadow: 0 0 20px var(--object-shadow);
   /* border-radius: 50% 50% 0 0; */
 }
 
@@ -105,7 +109,7 @@ nav .logo img {
 .svg-text {
   font-family: Poppins, sans-serif;
   position: relative;
-  top: 60%;
+  top: 50%;
   left: 50%;
   /* display: none; */
   transform: translate(-50%, -50%);
@@ -113,6 +117,7 @@ nav .logo img {
   z-index: 10;
   text-align: center;
   width: 100%;
+  overflow: hidden;
   /* border: 2px solid red; */
 }
 

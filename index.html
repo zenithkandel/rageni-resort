@@ -17,18 +17,18 @@
 </head>
 
 <body>
-  <nav class="nav">
-    <div class="logo">
-      <a href="index.html"><img src="rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
-    </div>
-    <div class="brand">RAGENI</div>
 
-    <div class="hamburger"><i class="fa fa-bars"></i></div>
-  </nav>
   <main>
     <section class="sections" dir="ltr">
       <div class="hero section">
+        <nav class="nav">
+          <div class="logo">
+            <a href="index.html"><img src="rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
+          </div>
+          <div class="brand">RAGENI</div>
 
+          <div class="hamburger"><i class="fa fa-bars"></i></div>
+        </nav>
         <div class="blob blob-up">
           <div class="hero-content">
             RAGENI AGRO RESORT
@@ -96,13 +96,16 @@
       blobDown.style.height = 50 - percent * 1 + 'vh';
       blobDown.style.opacity = 100 - percent * 2.4 + '%';
     }
-    else if (percent >= 60) {
-      document.querySelector('nav').style.height = 100 - percent + 'px';
+    if (percent >= 60) {
+      document.querySelector('.nav').style.height = 100 - percent + 'px';
+      document.querySelector('.nav').style.opacity = 100 - percent * 2.4 + '%';
     }
-    else if (percent <= 60) {
-      document.querySelector('nav').style.height = 70 + 'px';
+    if (percent <= 60) {
+      document.querySelector('.nav').style.height = 70 + 'px';
+      document.querySelector('.nav').style.opacity = 100+ '%';
+
     }
-    else {
+    if (percent < 10) {
       blobDown.style.height = 50 + 'vh';
 
       blobDown.style.opacity = 100 + '%';

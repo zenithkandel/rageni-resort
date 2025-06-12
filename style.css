@@ -37,35 +37,35 @@ body {
 
 .hero .blob {
   position: absolute;
- 
+
   left: 50%;
   transform: translate(-50%, 0%);
   width: 100vw;
   overflow: hidden;
   height: 50vh;
-  transition:.2s;
-  
+  transition: 0.2s;
+
   transform-origin: top left;
   /* z-index: 9999999; */
 }
 
 .hero .blob-up {
-  display: none;
-  background: var(--object-fill);
+  /* display: none; */
+  /* background: var(--object-fill); */
 
   top: 0;
   /* border-radius: 0 0 50% 50%; */
 }
 .hero .blob-down {
   position: fixed;
-  bottom:0;
+  bottom: 0;
   background: var(--object-shadow);
   box-shadow: 0 0 20px var(--object-shadow);
   /* border-radius: 50% 50% 0 0; */
 }
 
 nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -93,9 +93,9 @@ nav .logo img {
 
 .hero-content {
   position: relative;
-  top: 40%;
+  top: 55%;
   left: 50%;
-  transform: translate(-50%, -130%);
+  transform: translate(-50%, 0%);
   text-align: center;
   color: #333;
   font-family: Poppins, sans-serif;
@@ -137,16 +137,33 @@ nav .logo img {
 .hamburger {
   cursor: pointer;
 }
+.sections {
+  scroll-snap-type: both proximity;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+}
 
-section {
+.green {
+  background-color: lightgreen;
+}
+.pink {
+  background-color: lightpink;
+}
+.blue {
+  background-color: lightblue;
+}
+.yellow {
+  background-color: yellow;
+}
+.grey {
+  background-color: lightgray;
+}
+
+.sections > .section {
   height: 100vh;
   width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Poppins, sans-serif;
-  font-size: 32px;
-  max-width: 100%;
-  color: var(--text-color);
-  background-color: var(--background-color);
+  text-align: center;
+  padding-top: 75px;
+  scroll-snap-align: center;
 }

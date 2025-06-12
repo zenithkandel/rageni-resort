@@ -17,39 +17,46 @@
 </head>
 
 <body>
-  <div class="hero">
-    <nav class="nav">
-      <div class="logo">
-        <a href="index.html"><img src="rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
-      </div>
-      <div class="brand">RAGENI</div>
+  <nav class="nav">
+    <div class="logo">
+      <a href="index.html"><img src="rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
+    </div>
+    <div class="brand">RAGENI</div>
 
-      <div class="hamburger"><i class="fa fa-bars"></i></div>
-    </nav>
-    <div class="hero-content">
-      RAGENI AGRO RESORT
-    </div>
-    
-    <div class="blob blob-down">
-      <div class="svg-text">
-      <div class="title">EXPLORE THE WORLD</div>
-      <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at
-        laborum aut, earum nostrum animi molestiae quasi.</div>
-    </div>
-    </div>
-  </div>
-  <section>
-    <h1>Section 1</h1>
-  </section>
-  <section>
-    <h1>Section 2</h1>
-  </section>
-  <section>
-    <h1>Section 3</h1>
-  </section>
-  <section>
-    <h1>Section 4</h1>
-  </section>
+    <div class="hamburger"><i class="fa fa-bars"></i></div>
+  </nav>
+  <main>
+    <section class="sections" dir="ltr">
+      <div class="hero section">
+
+        <div class="blob blob-up">
+          <div class="hero-content">
+            RAGENI AGRO RESORT
+          </div>
+
+        </div>
+        <div class="blob blob-down">
+          <div class="svg-text">
+            <div class="title">EXPLORE THE WORLD</div>
+            <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at
+              laborum aut, earum nostrum animi molestiae quasi.</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h1>Section 1</h1>
+      </div>
+      <div class="section">
+        <h1>Section 2</h1>
+      </div>
+      <div class="section">
+        <h1>Section 3</h1>
+      </div>
+      <div class="section">
+        <h1>Section 4</h1>
+      </div>
+    </section>
+  </main>
 </body>
 <script>
   // // console.log(window.innerHeight, window.innerWidth);
@@ -64,33 +71,41 @@
   //   loadRect();
   // }
 
-  const blob = document.querySelector('.blob');
+  const blobDown = document.querySelector('.blob-down');
+  const blobUp = document.querySelector('.blob-up');
   let scrollTop = document.documentElement.scrollTop;
   let windowHeight = window.innerHeight;
   let percent = Math.round(100 * scrollTop / windowHeight);
   console.log(percent);
   if (percent >= 10) {
-    blob.style.bottom = percent - 10 + '%';
-    blob.style.opacity = 100 - percent + '%';
-
+    blobDown.style.height = 50 - percent * 1 + 'vh';
+    blobDown.style.opacity = 100 - percent * 2.4 + '%';
   }
   else {
-    blob.style.bottom = 0 + '%';
-    blob.style.opacity = 100 + '%';
+    blobDown.style.height = 50 + 'vh';
+
+    blobDown.style.opacity = 100 + '%';
   }
-  document.onscroll = () => {
-    scrollTop = document.documentElement.scrollTop;
-   windowHeight = window.innerHeight;
+  document.querySelector(".sections").onscroll = () => {
+    console.log("scrolling");
+    scrollTop = document.querySelector(".sections").scrollTop;
+    windowHeight = window.innerHeight;
     percent = Math.round(100 * scrollTop / windowHeight);
 
     if (percent >= 10) {
-      blob.style.height = 50-percent*2 + 'vh';
-      blob.style.opacity = 100 - percent*3 + '%';
-
+      blobDown.style.height = 50 - percent * 1 + 'vh';
+      blobDown.style.opacity = 100 - percent * 2.4 + '%';
+    }
+    else if (percent >= 60) {
+      document.querySelector('nav').style.height = 100 - percent + 'px';
+    }
+    else if (percent <= 60) {
+      document.querySelector('nav').style.height = 70 + 'px';
     }
     else {
-            blob.style.height = 50 + 'vh';
-      blob.style.opacity = 100 + '%';
+      blobDown.style.height = 50 + 'vh';
+
+      blobDown.style.opacity = 100 + '%';
     }
   };
 </script>

@@ -14,6 +14,28 @@
   transition: 0.3s all ease-in-out;
 }
 
+.sections > .section {
+  height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  text-align: center;
+  padding-top: 75px;
+  scroll-snap-align: center;
+  font-family: Poppins, sans-serif;
+}
+
+.sections > .hero {
+  scroll-snap-align: top;
+}
+
+.sections {
+  scroll-snap-type: both proximity;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  overflow-y: scroll;
+}
+
 :root {
   --primary-color: #768065;
   --secondary-color: #acb2a3;
@@ -136,40 +158,4 @@ nav .logo img {
 
 .hamburger {
   cursor: pointer;
-}
-.sections {
-  scroll-snap-type: both proximity;
-  width: 100vw;
-  height: 100vh;
-  overflow-y: scroll;
-}
-
-.green {
-  background-color: lightgreen;
-}
-.pink {
-  background-color: lightpink;
-}
-.blue {
-  background-color: lightblue;
-}
-.yellow {
-  background-color: yellow;
-}
-.grey {
-  background-color: lightgray;
-}
-
-.sections > .section {
-  height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-  text-align: center;
-  padding-top: 75px;
-  scroll-snap-align: center;
-  font-family: Poppins, sans-serif;
-}
-
-.sections > .hero {
-  scroll-snap-align: top;
 }

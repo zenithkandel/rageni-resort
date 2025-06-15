@@ -16,66 +16,51 @@
   <title>Rageni Agro Resort Pvt.Ltd</title>
 </head>
 
-<body class="sections">
+<body>
+  <div class="sections">
+    <div class="hero section">
+      <nav class="nav">
+        <div class="logo">
+          <a href="index.html"><img src="rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
+        </div>
+        <div class="brand">RAGENI</div>
 
-  <div class="hero section">
-    <nav class="nav">
-      <div class="logo">
-        <a href="index.html"><img src="rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
+        <div class="hamburger"><i class="fa fa-bars"></i></div>
+      </nav>
+      <div class="blob blob-up">
+        <div class="hero-content">
+          RAGENI AGRO RESORT
+        </div>
+
       </div>
-      <div class="brand">RAGENI</div>
-
-      <div class="hamburger"><i class="fa fa-bars"></i></div>
-    </nav>
-    <div class="blob blob-up">
-      <div class="hero-content">
-        RAGENI AGRO RESORT
+      <div class="blob blob-down">
+        <div class="svg-text">
+          <div class="title">EXPLORE THE WORLD</div>
+          <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at
+            laborum aut, earum nostrum animi molestiae quasi.</div>
+        </div>
       </div>
-
     </div>
-    <div class="blob blob-down">
-      <div class="svg-text">
-        <div class="title">EXPLORE THE WORLD</div>
-        <div class="sub-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex? Repellat id at
-          laborum aut, earum nostrum animi molestiae quasi.</div>
-      </div>
+    <div class="section">
+      <h1>Section 1</h1>
+    </div>
+    <div class="section">
+      <h1>Section 2</h1>
+    </div>
+    <div class="section">
+      <h1>Section 3</h1>
+    </div>
+    <div class="section">
+      <h1>Section 4</h1>
     </div>
   </div>
-  <div class="section">
-    <h1>Section 1</h1>
-  </div>
-  <div class="section">
-    <h1>Section 2</h1>
-  </div>
-  <div class="section">
-    <h1>Section 3</h1>
-  </div>
-  <div class="section">
-    <h1>Section 4</h1>
-  </div>
-
 </body>
 <script>
-  // // console.log(window.innerHeight, window.innerWidth);
-  // function loadRect() {
-  //   blob_width = (((window.screen.height) ** 2 + (window.screen.width) ** 2) ** 0.5)
-  //   blob.style.width = blob_width + 'px';
-  //   blob.style.height = blob_width / 2 + 'px';
-  //   blob.style.rotate = -Math.atan(window.innerHeight / window.innerWidth) * 180 / Math.PI + 'deg';
-  // }
-  // loadRect();
-  // window.onresize = () => {
-  //   loadRect();
-  // }
 
   const blobDown = document.querySelector('.blob-down');
   const blobUp = document.querySelector('.blob-up');
-  let scrollTop = document.documentElement.scrollTop;
-  let windowHeight = window.innerHeight;
-  let percent = Math.round(100 * scrollTop / windowHeight);
-  
-
   function loadScroll() {
+    // scrollTop = document.documentElement.scrollTop;
     scrollTop = document.querySelector(".sections").scrollTop;
     windowHeight = window.innerHeight;
     percent = Math.round(100 * scrollTop / windowHeight);
@@ -85,10 +70,13 @@
       blobDown.style.opacity = 100 - percent * 2.4 + '%';
     }
     if (percent >= 15) {
+      // document.querySelector('.hero').style.height = 0+ 'vh';
       document.querySelector('.nav').style.height = 100 - percent + 'px';
       document.querySelector('.nav').style.opacity = 100 - percent * 2.4 + '%';
     }
     if (percent <= 15) {
+      // document.querySelector('.hero').style.height = 100 + 'vh';
+
       document.querySelector('.nav').style.height = 70 + 'px';
       document.querySelector('.nav').style.opacity = 100 + '%';
 
@@ -99,7 +87,7 @@
       blobDown.style.opacity = 100 + '%';
     }
   }
-  document.onscroll = loadScroll();
+  document.querySelector(".sections").onscroll = loadScroll;
   window.onresize = loadScroll;
   loadScroll();
 </script>

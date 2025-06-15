@@ -16,24 +16,28 @@
 
 .sections > .section {
   height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-  text-align: center;
-  padding-top: 75px;
-  scroll-snap-align: center;
-  font-family: Poppins, sans-serif;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
 }
 
 .sections > .hero {
   scroll-snap-align: top;
 }
 
-.sections {
-  scroll-snap-type: both proximity;
-  width: 100vw;
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sections{
   height: 100vh;
-  max-width: 100%;
   overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
 }
 
 :root {

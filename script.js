@@ -57,3 +57,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial state
   toggleBackToTop();
 });
+
+// Hamburger Menu Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  // Hamburger menu toggle
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+
+  hamburger.addEventListener("click", function () {
+    navMenu.classList.toggle("active");
+  });
+
+  // Optional: Close menu when a link is clicked (for better UX)
+  navMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+    });
+  });
+});

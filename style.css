@@ -33,7 +33,8 @@
 }
 
 .footer{
-  height: 50%;
+  margin-top: 230px;
+  height: 40%;
   background: var(--primary-color);
 }
 .section > .section-image {
@@ -195,9 +196,10 @@ nav .logo img {
 }
 
 h1 {
-  font-size: 24px;
-  font-weight: 400;
+  /* font-size: 24px; */
+  /* font-weight: 400; */
   text-align: center;
+  margin: 12px;
 }
 
 img {
@@ -258,10 +260,16 @@ img {
   overflow: hidden;
 }
 
+.card:hover {
+  box-shadow: 0 40px 60px -4px rgba(0, 0, 0, 0.35);
+  scale: 1.02;
+  cursor: pointer;
+}
+
 .card_content {
 
   padding: 1rem;
-  background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%);
+  background: linear-gradient(to bottom left,var(--object-fill) 40%,var(--object-shadow) 100%);
 }
 
 .card_title {

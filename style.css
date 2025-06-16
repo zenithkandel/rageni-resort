@@ -440,6 +440,9 @@ img {
   .section-content {
     padding: 0 10px;
   }
+  .sections {
+    scroll-snap-type: none !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -490,33 +493,6 @@ img {
   }
   .section-content {
     padding: 0 4px;
-  }
-  .cards_item {
-    padding: 0.5rem;
-  }
-  .card_content {
-    padding: 0.7rem;
-  }
-  .card_title {
-    font-size: 1rem;
-  }
-  .card_text {
-    font-size: 0.85rem;
-  }
-  .footer-container {
-    flex-direction: column;
-    gap: 10px;
-    padding: 0 4px;
-  }
-  .footer-about,
-  .footer-contact,
-  .footer-map {
-    min-width: 0;
-    margin-bottom: 8px;
-  }
-  .footer-bottom {
-    font-size: 12px;
-    padding: 10px 0 0 0;
   }
 }
 

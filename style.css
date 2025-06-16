@@ -419,82 +419,139 @@ img {
 /* Responsive font sizes and layout adjustments */
 @media (max-width: 900px) {
   .brand {
-    font-size: 32px;
-    letter-spacing: -8px;
+    font-size: 30px;
+    letter-spacing: -7px;
   }
   .hero-content {
-    font-size: 36px;
+    font-size: 32px;
+    padding: 0 16px;
   }
   .svg-text .title {
-    font-size: 32px;
+    font-size: 26px;
   }
   .svg-text .sub-title {
-    font-size: 11px;
+    font-size: 13px;
+    padding: 0 10px;
+  }
+  .section > .section-image {
+    height: 60%;
+    translate: 0;
+  }
+  .section-content {
+    padding: 0 10px;
   }
 }
 
 @media (max-width: 600px) {
   nav {
-    padding: 0 10px;
-    height: 56px;
+    padding: 0 8px;
+    height: 60px;
+  }
+  .logo img {
+    height: 26px;
   }
   .brand {
+    font-size: 20px;
+    letter-spacing: -3px;
+  }
+  .hamburger {
     font-size: 22px;
-    letter-spacing: -5px;
   }
   .hero-content {
-    font-size: 22px;
-    padding: 0 8px;
-    top: 48%;
+    font-size: 20px;
+    padding: 0 10px;
+    top: 46%;
+    font-weight: 600;
+    line-height: 1.2;
   }
   .svg-text .title {
-    font-size: 18px;
+    font-size: 16px;
+    padding: 0 6px;
   }
   .svg-text .sub-title {
-    font-size: 9px;
+    font-size: 10px;
     padding: 0 6px;
   }
   .mobile-menu {
-    top: 56px;
-    right: 8px;
-    width: 90vw;
+    top: 60px;
+    right: 4px;
+    width: 92vw;
     min-width: 0;
     border-radius: 10px;
-    padding: 10px 0;
+    padding: 8px 0;
   }
   .mobile-menu a {
-    font-size: 16px;
-    padding: 12px 18px;
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+  .section > .section-image {
+    height: 45%;
+    margin-bottom: 10px;
+  }
+  .section-content {
+    padding: 0 4px;
+  }
+  .cards_item {
+    padding: 0.5rem;
+  }
+  .card_content {
+    padding: 0.7rem;
+  }
+  .card_title {
+    font-size: 1rem;
+  }
+  .card_text {
+    font-size: 0.85rem;
   }
   .footer-container {
     flex-direction: column;
-    gap: 16px;
-    padding: 0 8px;
+    gap: 10px;
+    padding: 0 4px;
   }
   .footer-about,
   .footer-contact,
   .footer-map {
     min-width: 0;
+    margin-bottom: 8px;
   }
   .footer-bottom {
-    font-size: 13px;
-    padding: 12px 0 0 0;
+    font-size: 12px;
+    padding: 10px 0 0 0;
   }
 }
 
 @media (max-width: 400px) {
   .brand {
-    font-size: 16px;
-    letter-spacing: -3px;
+    font-size: 15px;
+    letter-spacing: -2px;
   }
   .hero-content {
-    font-size: 14px;
-    padding: 0 4px;
+    font-size: 13px;
+    padding: 0 2px;
+    top: 44%;
   }
   .svg-text .title {
-    font-size: 12px;
+    font-size: 10px;
+    padding: 0 2px;
   }
   .svg-text .sub-title {
     font-size: 7px;
+    padding: 0 2px;
+  }
+  .mobile-menu {
+    width: 98vw;
+    right: 1vw;
+    padding: 6px 0;
+  }
+  .mobile-menu a {
+    font-size: 13px;
+    padding: 10px 10px;
+  }
+}
+
+/* Add a little more padding to sections for mobile */
+@media (max-width: 600px) {
+  .sections > .section {
+    padding: 14px 2vw;
   }
 }

@@ -57,3 +57,29 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initial state
   toggleBackToTop();
 });
+
+// Hamburger menu functionality
+document.addEventListener("DOMContentLoaded", function () {
+  // Hamburger menu logic
+  const hamburger = document.querySelector(".hamburger");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  hamburger.addEventListener("click", function (e) {
+    e.stopPropagation();
+    mobileMenu.classList.toggle("active");
+  });
+
+  // Hide menu when clicking outside
+  document.addEventListener("click", function (e) {
+    if (mobileMenu.classList.contains("active") && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      mobileMenu.classList.remove("active");
+    }
+  });
+
+  // Optional: Hide menu when a link is clicked
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    });
+  });
+});

@@ -353,3 +353,65 @@ img {
     align-items: stretch;
   }
 }
+
+/* Hamburger Mobile Menu Styles */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 220px;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  z-index: 2001;
+  padding: 18px 0;
+  list-style: none;
+  text-align: left;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: slideDown 0.25s cubic-bezier(.4, 0, .2, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu li {
+  padding: 0;
+}
+
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 14px 28px;
+  transition: background 0.18s, color 0.18s;
+  border-left: 4px solid transparent;
+}
+
+.mobile-menu a i {
+  font-size: 20px;
+  color: #768065;
+  min-width: 22px;
+}
+
+.mobile-menu a:hover {
+  background: #f5f7f3;
+  color: #768065;
+  border-left: 4px solid #768065;
+}
+
+/* Show menu when active (JS toggles display) */
+.mobile-menu.active {
+  display: block;
+}

@@ -23,13 +23,15 @@
   padding: 22px;
 }
 
-.section > .section-title::after {
-  background: url(download.png);
-  height: 100px;
-  width: 300px;
-  content: "";
-  border: 3px solid #768065;
-  
+.section > .section-image {
+  height: 80%;
+  /* border: 3px solid #768065; */
+  text-align: center;
+  /* rotate: 90deg; */
+  translate: -25%;
+  /* border: 2px solid red; */
+  transform-origin: center;
+  /* translate: -50% -40%; */
   display: block;
 }
 

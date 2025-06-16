@@ -415,3 +415,86 @@ img {
 .mobile-menu.active {
   display: block;
 }
+
+/* Responsive font sizes and layout adjustments */
+@media (max-width: 900px) {
+  .brand {
+    font-size: 32px;
+    letter-spacing: -8px;
+  }
+  .hero-content {
+    font-size: 36px;
+  }
+  .svg-text .title {
+    font-size: 32px;
+  }
+  .svg-text .sub-title {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 0 10px;
+    height: 56px;
+  }
+  .brand {
+    font-size: 22px;
+    letter-spacing: -5px;
+  }
+  .hero-content {
+    font-size: 22px;
+    padding: 0 8px;
+    top: 48%;
+  }
+  .svg-text .title {
+    font-size: 18px;
+  }
+  .svg-text .sub-title {
+    font-size: 9px;
+    padding: 0 6px;
+  }
+  .mobile-menu {
+    top: 56px;
+    right: 8px;
+    width: 90vw;
+    min-width: 0;
+    border-radius: 10px;
+    padding: 10px 0;
+  }
+  .mobile-menu a {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 8px;
+  }
+  .footer-about,
+  .footer-contact,
+  .footer-map {
+    min-width: 0;
+  }
+  .footer-bottom {
+    font-size: 13px;
+    padding: 12px 0 0 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .brand {
+    font-size: 16px;
+    letter-spacing: -3px;
+  }
+  .hero-content {
+    font-size: 14px;
+    padding: 0 4px;
+  }
+  .svg-text .title {
+    font-size: 12px;
+  }
+  .svg-text .sub-title {
+    font-size: 7px;
+  }
+}

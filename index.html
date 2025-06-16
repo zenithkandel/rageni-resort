@@ -104,49 +104,12 @@
       <h1>Footer</h1>
     </div>
   </div>
+
+  <!-- Back to Top Button -->
+<button id="backToTop" title="Back to Top" style="display:none;position:fixed;bottom:40px;right:40px;z-index:2000;padding:12px 18px;border:none;border-radius:50%;background:#768065;color:#fff;font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+  <i class="fa fa-angle-up"></i>
+</button>
+
 </body>
-<script>
-
-  const blobDown = document.querySelector('.blob-down');
-  const blobUp = document.querySelector('.blob-up');
-  function loadScroll() {
-    // scrollTop = document.documentElement.scrollTop;
-    scrollTop = document.querySelector(".sections").scrollTop;
-    windowHeight = window.innerHeight;
-    percent = Math.round(100 * scrollTop / windowHeight);
-    if (percent >= 1) {
-
-      blobDown.style.position = 'fixed';
-    }
-    else {
-      blobDown.style.position = 'absolute';
-    }
-    if (percent >= 10) {
-      blobDown.style.height = 50 - percent * 1 + 'vh';
-      blobDown.style.opacity = 100 - percent * 2.4 + '%';
-    }
-    if (percent >= 15) {
-      // document.querySelector('.hero').style.height = 0+ 'vh';
-      document.querySelector('.nav').style.height = 100 - percent + 'px';
-      document.querySelector('.nav').style.opacity = 100 - percent * 2.4 + '%';
-    }
-    if (percent <= 15) {
-      // document.querySelector('.hero').style.height = 100 + 'vh';
-
-      document.querySelector('.nav').style.height = 70 + 'px';
-      document.querySelector('.nav').style.opacity = 100 + '%';
-
-    }
-    if (percent < 10) {
-      blobDown.style.height = 50 + 'vh';
-
-      blobDown.style.opacity = 100 + '%';
-    }
-  }
-  document.querySelector(".sections").onscroll = loadScroll;
-  window.onresize = loadScroll;
-  loadScroll();
-  // document.querySelector(".sections").scrollTop =600
-</script>
-
+<script src="script.js"></script>
 </html>

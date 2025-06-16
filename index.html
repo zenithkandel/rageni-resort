@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="section">
-      <h1>Section 1</h1>
+      <h1 class="section-title">About</h1>
     </div>
     <div class="section">
       <h1>Section 2</h1>
@@ -64,7 +64,13 @@
     scrollTop = document.querySelector(".sections").scrollTop;
     windowHeight = window.innerHeight;
     percent = Math.round(100 * scrollTop / windowHeight);
+    if (percent >= 1) {
 
+      blobDown.style.position = 'fixed';
+    }
+    else {
+      blobDown.style.position = 'absolute';
+    }
     if (percent >= 10) {
       blobDown.style.height = 50 - percent * 1 + 'vh';
       blobDown.style.opacity = 100 - percent * 2.4 + '%';
@@ -90,6 +96,7 @@
   document.querySelector(".sections").onscroll = loadScroll;
   window.onresize = loadScroll;
   loadScroll();
+  document.querySelector(".sections").scrollTop =600
 </script>
 
 </html>

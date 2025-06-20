@@ -283,7 +283,9 @@ body {
 .icon {
   font-size: 80px;
   color: #333333;
-  margin-bottom: 15px;
+  /* margin: 45px; */
+  padding: 45px;
+  margin-bottom: 25px;
 }
 
 .description {

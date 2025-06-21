@@ -327,10 +327,11 @@ nav .logo img {
 }
 .footer-link {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .footer-link:hover {
   color: #a3d977;
+  text-decoration: underline;
 }
 .footer-icon {
   margin-right: 4px;

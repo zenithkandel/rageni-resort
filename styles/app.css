@@ -148,12 +148,15 @@ nav .logo img {
   transform-origin: top left;
 }
 .hero .blob-up {
+  background: rgb(195, 195, 195);
   top: 0;
 }
 .hero .blob-down {
   position: absolute;
   bottom: 0;
-  background: var(--object-fill);
+  background: url("../images/home/the_silver_palace.png");
+  background-size: fit;
+  background-position: center;
   box-shadow: 0 0 20px var(--object-shadow);
 }
 

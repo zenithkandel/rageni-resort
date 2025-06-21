@@ -154,7 +154,7 @@ nav .logo img {
   position: absolute;
   bottom: 0;
   background: var(--object-shadow);
-  box-shadow: 0 0 20px var(--object-shadow);
+  box-shadow: 0 0 20px var(--object-fill);
 }
 
 .hero-content {

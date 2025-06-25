@@ -181,40 +181,6 @@ nav .logo img {
   overflow: hidden;
 }
 
-.book_button {
-  background-color: var(--primary-color);
-  color: #eee;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: bold;
-  text-decoration: none;
-  font-family: poppins;
-  font-weight: 300;
-  border: none;
-  margin: 12px;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-}
-
-.book_button:hover {
-  background-color: #5a624e;
-  color: #fff;
-  scale: 1.05;
-}
-
-.svg-text .title {
-  color: var(--secondary-color);
-  font-weight: bolder;
-  font-size: 45px;
-}
-.svg-text .sub-title {
-  color: var(--primary-color);
-  font-size: 12px;
-  font-weight: 600;
-  font-family: "Anek Odia", sans-serif;
-}
 
 /* Section Styles */
 .section {
@@ -247,12 +213,12 @@ nav .logo img {
 }
 
 /* Cards */
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: #f5f5f5;
-}
+} */
 
 .card-parent {
   display: flex;
@@ -314,6 +280,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
@@ -326,6 +293,7 @@ body {
   background: #222;
   color: #fff;
   padding: 40px 0 0 0;
+  z-index: 25;
 }
 .footer-container {
   max-width: 1200px;

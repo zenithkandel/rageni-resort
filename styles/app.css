@@ -236,6 +236,10 @@ nav .logo img {
   min-height: 100vh;
   padding: 22px;
 }
+
+.sections > .footer{
+  min-height: 0;
+}
 .sections > .hero {
   scroll-snap-align: top;
 }
@@ -356,10 +360,11 @@ body {
 }
 .footer-link {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .footer-link:hover {
   color: #a3d977;
+  text-decoration: underline;
 }
 .footer-icon {
   margin-right: 4px;

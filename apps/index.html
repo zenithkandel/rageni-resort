@@ -102,11 +102,44 @@
 
 
         </div>
-
-
+        
+        
       </div>
     </div>
-
+    
+    <div class="section" id="book">
+         <h1>Scheduled Events</h1>
+         <div class="section-content">
+           <!-- Include FontAwesome -->
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+           <div id="eventCalendarWrapper">
+             <div class="calendar">
+               <div class="calendar-header">
+                 <button class="nav-btn" onclick="changeMonth(-1)"><i class="fa fa-angle-left"></i></button>
+                 <h2 id="monthYear"></h2>
+                 <button class="nav-btn" onclick="changeMonth(1)"><i class="fa fa-angle-right"></i></button>
+               </div>
+               <div class="calendar-grid" id="calendarGrid"></div>
+             </div>
+   
+             <!-- Modal -->
+             <div class="modal" id="eventModal">
+               <div class="modal-content">
+                 <span class="close-btn" onclick="closeModal()"><i class="fa fa-times"></i></span>
+                 <h3 id="eventTitle"></h3>
+                 <p><strong>Date:</strong> <span id="eventDate"></span></p>
+                 <p><strong>Time:</strong> <span id="eventTime"></span></p>
+                 <p><strong>Venue:</strong> <span id="eventVenue"></span></p>
+                 <p id="eventDesc"></p>
+               </div>
+             </div>
+   
+   
+           </div>
+   
+   
+         </div>
+       </div>
     <div class="section footer" id="contact">
       <div class="footer-container">
         <div class="footer-about">

@@ -135,42 +135,34 @@ nav .logo img {
   width: 100vw;
   max-width: 100%;
   overflow: hidden;
-  position: relative;
+  padding: 0;
+  margin: 0;
 }
-.hero .blob {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  width: 100vw;
-  overflow: hidden;
-  height: 50vh;
-  transition: 0.2s;
-  transform-origin: top left;
-}
-.hero .blob-up {
-  background: rgb(195, 195, 195);
-  top: 0;
-}
-.hero .blob-down {
-  position: absolute;
-  bottom: 0;
+.hero-bg {
+  height: 100%;
+  width: 100%;
   background: url("../images/home/the_silver_palace.png");
-  background-size: fit;
+  background-size: cover;
   background-position: center;
-  box-shadow: 0 0 20px var(--object-shadow);
+  z-index: 12;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .hero-content {
   position: relative;
-  top: 55%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, -50%);
   text-align: center;
-  color: var(--text-color);
+  color: #eee;
   font-family: "Poppins", sans-serif;
   z-index: 10;
-  font-size: 52px;
+  font-size: 32px;
   font-weight: 600;
+  z-index: 20;
   width: 100%;
 }
 
@@ -224,24 +216,20 @@ nav .logo img {
 }
 
 /* Section Styles */
-.sections {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-}
-.sections > .section {
+.section {
   scroll-snap-align: start;
   text-align: center;
   min-height: 100vh;
   padding: 22px;
+  z-index: 25;
+  background: var(--background-color);
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
 }
 
-.sections > .footer{
+.footer {
   min-height: 0;
-}
-.sections > .hero {
-  scroll-snap-align: top;
 }
 .section > .section-image {
   height: 80%;
@@ -302,7 +290,7 @@ body {
   margin-bottom: 20px;
   line-height: 1.5;
 }
-.price{
+.price {
   color: #777777;
   font-family: poppins;
   font-size: 12px;
@@ -330,7 +318,6 @@ body {
 .btn:hover {
   background-color: #000000;
 }
-
 
 /* Footer */
 .section.footer {
@@ -671,7 +658,7 @@ body {
   display: none;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
 

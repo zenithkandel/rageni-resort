@@ -648,3 +648,20 @@ nav .logo img {
   cursor: pointer;
   font-weight: bold;
 }
+
+
+/* book section */
+#bookWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+}
+
+#bookWrapper .formDiv {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}

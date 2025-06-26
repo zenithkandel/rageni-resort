@@ -658,10 +658,29 @@ nav .logo img {
 }
 
 #bookWrapper .formDiv {
-  width: 100%;
+  width: 60%;
   max-width: 900px;
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
+}
+
+
+.formDiv form{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formDiv form input, .formDiv form textarea ,.formDiv form button, .formDiv .form-note{
+  font-size: 18px;
+  padding: 9px;
+  text-align: center;
+  font-family: poppins, sans-serif;
+  border-radius: 7px;
+  border: none;
+  border: 1px solid #333;
+  border-right: 2px solid #111;
+  border-left: 2px solid #111;
 }

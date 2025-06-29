@@ -1,171 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-thin.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-regular.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-light.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css"
+    />
+    <title>THE SILVER PALACE</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../styles/app.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-thin.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-regular.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone-light.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-thin.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css">
-  <title>THE SILVER PALACE</title>
-</head>
-
-<body>
-  <div class="hero section">
-    <nav class="nav">
-      <div class="logo">
-        <a href="index.html"><img src="../images/rageni.png" alt="Rageni Agro Resort Pvt.Ltd"></a>
-      </div>
-      <div class="brand">THE SILVER PALACE</div>
-
-      <div class="hamburger"><i class="fa fa-bars"></i></div>
-      <!-- Add this mobile menu -->
-      <ul class="mobile-menu">
-        <li><a href="#"><i class="fa fa-house"></i> Home</a></li>
-        <li><a href="#services"><i class="fa fa-concierge-bell"></i> Services</a></li>
-        <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
-      </ul>
-    </nav>
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <h1>THE SILVER PALACE</h1>
-      <p>Where moments become memories, and celebrations find their perfect home.</p>
-      <a href="#services" class="btn">Explore Services</a>
-    </div>
-  </div>
-  <div class="section" id="services">
-    <h1>Our Services</h1>
-    <div class="section-content">
-      <!-- Include FontAwesome -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-      <div class="card-parent">
-        <div class="card">
-          <i class="fa-duotone fa-party-horn icon"></i>
-          <h3 class="card-title">Host Parties</h3>
-          <p class="price">Starting from Rs.12,000</p>
-          <p class="description">Host parties for marriage, bratabanda and other events.</p>
-          <a href="#book"><button class="btn"><i class="fa-duotone fa-calendar"></i>&nbsp;&nbsp;Book Now</button></a>
+  <body>
+    <div class="hero section">
+      <nav class="nav">
+        <div class="logo">
+          <a href="index.html"
+            ><img src="../images/rageni.png" alt="Rageni Agro Resort Pvt.Ltd"
+          /></a>
         </div>
+        <div class="brand">THE SILVER PALACE</div>
 
-        <div class="card">
-          <i class="fa-duotone fa-briefcase icon"></i>
-          <h3 class="card-title">Host Seminars</h3>
-          <p class="price">Starting from Rs.15,000</p>
-          <p class="description">Conferences and seminars for formal activites.</p>
-          <a href="#book"><button class="btn"><i class="fa-duotone fa-calendar"></i>&nbsp;&nbsp;Book Now</button></a>
-        </div>
-
-        <div class="card">
-          <i class="fa-duotone fa-sliders icon"></i>
-          <h3 class="card-title">Custom Events</h3>
-          <p class="price">Starting from Rs.25,000</p>
-          <p class="description">Get the venue for as per your necessity.</p>
-          <a href="#book"><button class="btn"><i class="fa-duotone fa-calendar"></i>&nbsp;&nbsp;Book Now</button></a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="section" id="services">
-    <h1>Scheduled Events</h1>
-    <div class="section-content">
-      <!-- Include FontAwesome -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-      <div id="eventCalendarWrapper">
-        <div class="calendar">
-          <div class="calendar-header">
-            <button class="nav-btn" onclick="changeMonth(-1)"><i class="fa fa-angle-left"></i></button>
-            <h2 id="monthYear"></h2>
-            <button class="nav-btn" onclick="changeMonth(1)"><i class="fa fa-angle-right"></i></button>
-          </div>
-          <div class="calendar-grid" id="calendarGrid"></div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal" id="eventModal">
-          <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()"><i class="fa fa-times"></i></span>
-            <h3 id="eventTitle"></h3>
-            <p><strong>Date:</strong> <span id="eventDate"></span></p>
-            <p><strong>Time:</strong> <span id="eventTime"></span></p>
-            <p><strong>Venue:</strong> <span id="eventVenue"></span></p>
-            <p id="eventDesc"></p>
-          </div>
-        </div>
-
-
-      </div>
-
-
-    </div>
-  </div>
-
-  <div class="section" id="book">
-    <h1>Book Now!</h1>
-    <div class="section-content">
-      <div id="bookWrapper">
-        <div class="formDiv">
-          <form action="bookRequest.php">
-            <input type="text" placeholder="Full Name">
-            <input type="text" placeholder="Email Address">
-            <input type="text" placeholder="Phone Number">
-            <input type="text" placeholder="Event Name">
-            <input type="date" placeholder="Event Date">
-            <input type="time" placeholder="Event Time">
-            <textarea placeholder="Additional Information"></textarea>
-            <button type="submit" class="btn"><i class="fa-duotone fa-paper-plane"></i>&nbsp;&nbsp;Submit</button>
-            <p class="form-note">We will get back to you within 24 hours.</p>
-          </form>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-  <div class="section footer" id="contact">
-    <div class="footer-container">
-      <div class="footer-about">
-        <h3>Rageni Agro Resort</h3>
-        <p>Experience luxury and tranquility at Rageni Resort, your perfect getaway destination.</p>
-      </div>
-      <div class="footer-contact">
-        <h4>Contact Us</h4>
+        <div class="hamburger"><i class="fa fa-bars"></i></div>
+        <!-- Add this mobile menu -->
+        <ul class="mobile-menu">
+          <li>
+            <a href="#"><i class="fa fa-house"></i> Home</a>
+          </li>
+          <li>
+            <a href="#services"
+              ><i class="fa fa-concierge-bell"></i> Services</a
+            >
+          </li>
+          <li>
+            <a href="#contact"><i class="fa fa-envelope"></i> Contact</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1>THE SILVER PALACE</h1>
         <p>
-          <span class="footer-icon"><i class="fa fa-location-dot"></i></span> Shreee Nagar Tol,<br>
-          Baglung, Nepal <br>
-          <span class="footer-icon"><i class="fa fa-phone"></i></span> <a href="tel:+9779856068800"
-            class="footer-link">+977 9856068800</a><br>
-          <span class="footer-icon"><i class="fa fa-envelope"></i></span> <a href="mailto:info@rageniresort.com.np"
-            class="footer-link">info@rageniresort.com.np</a>
+          Where moments become memories, and celebrations find their perfect
+          home.
         </p>
-      </div>
-      <div class="footer-map">
-        <h4>Find Us</h4>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3513.735634535883!2d83.6000599863538!3d28.276031933509497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995e34b21f91e25%3A0xcf6e3d80d22bd7b8!2sTHE%20SILVER%20PALACE!5e0!3m2!1sen!2snp!4v1750818419072!5m2!1sen!2snp"
-          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a href="#services" class="btn">Explore Services</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2025 Rageni Resort. All rights reserved.
+    <div class="section" id="services">
+      <h1>Our Services</h1>
+      <div class="section-content">
+        <!-- Include FontAwesome -->
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+
+        <div class="card-parent">
+          <div class="card">
+            <i class="fa-duotone fa-party-horn icon"></i>
+            <h3 class="card-title">Host Parties</h3>
+            <p class="price">Starting from Rs.12,000</p>
+            <p class="description">
+              Host parties for marriage, bratabanda and other events.
+            </p>
+            <a href="#book"
+              ><button class="btn">
+                <i class="fa-duotone fa-calendar"></i>&nbsp;&nbsp;Book Now
+              </button></a
+            >
+          </div>
+
+          <div class="card">
+            <i class="fa-duotone fa-briefcase icon"></i>
+            <h3 class="card-title">Host Seminars</h3>
+            <p class="price">Starting from Rs.15,000</p>
+            <p class="description">
+              Conferences and seminars for formal activites.
+            </p>
+            <a href="#book"
+              ><button class="btn">
+                <i class="fa-duotone fa-calendar"></i>&nbsp;&nbsp;Book Now
+              </button></a
+            >
+          </div>
+
+          <div class="card">
+            <i class="fa-duotone fa-sliders icon"></i>
+            <h3 class="card-title">Custom Events</h3>
+            <p class="price">Starting from Rs.25,000</p>
+            <p class="description">Get the venue for as per your necessity.</p>
+            <a href="#book"
+              ><button class="btn">
+                <i class="fa-duotone fa-calendar"></i>&nbsp;&nbsp;Book Now
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="section" id="services">
+      <h1>Scheduled Events</h1>
+      <div class="section-content">
+        <!-- Include FontAwesome -->
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+        <div id="eventCalendarWrapper">
+          <div class="calendar">
+            <div class="calendar-header">
+              <button class="nav-btn" onclick="changeMonth(-1)">
+                <i class="fa fa-angle-left"></i>
+              </button>
+              <h2 id="monthYear"></h2>
+              <button class="nav-btn" onclick="changeMonth(1)">
+                <i class="fa fa-angle-right"></i>
+              </button>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </div>
 
+          <!-- Modal -->
+          <div class="modal" id="eventModal">
+            <div class="modal-content">
+              <span class="close-btn" onclick="closeModal()"
+                ><i class="fa fa-times"></i
+              ></span>
+              <h3 id="eventTitle"></h3>
+              <p><strong>Date:</strong> <span id="eventDate"></span></p>
+              <p><strong>Time:</strong> <span id="eventTime"></span></p>
+              <p><strong>Venue:</strong> <span id="eventVenue"></span></p>
+              <p id="eventDesc"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop" title="Back to Top">
-    <i class="fa fa-angle-up"></i>
-  </button>
+    <div class="section" id="book">
+      <h1>Book Now!</h1>
+      <div class="section-content">
+        <div id="bookWrapper">
+          <div class="formDiv">
+            <form action="bookRequest.php">
+              <input type="text" placeholder="Full Name" />
+              <input type="text" placeholder="Email Address" />
+              <input type="text" placeholder="Phone Number" />
+              <input type="text" placeholder="Event Name" />
+              <input type="date" placeholder="Event Date" />
+              <input type="time" placeholder="Event Time" />
+              <textarea placeholder="Additional Information"></textarea>
+              <button type="submit" class="btn">
+                <i class="fa-duotone fa-paper-plane"></i>&nbsp;&nbsp;Submit
+              </button>
+              <p class="form-note">We will get back to you within 24 hours.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section footer" id="contact">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Rageni Agro Resort</h3>
+          <p>
+            Experience luxury and tranquility at Rageni Resort, your perfect
+            getaway destination.
+          </p>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <p>
+            <span class="footer-icon"><i class="fa fa-location-dot"></i></span>
+            Shreee Nagar Tol,<br />
+            Baglung, Nepal <br />
+            <span class="footer-icon"><i class="fa fa-phone"></i></span>
+            <a href="tel:+9779856068800" class="footer-link">+977 9856068800</a
+            ><br />
+            <span class="footer-icon"><i class="fa fa-envelope"></i></span>
+            <a href="mailto:info@rageniresort.com.np" class="footer-link"
+              >info@rageniresort.com.np</a
+            >
+          </p>
+        </div>
+        <div class="footer-map">
+          <h4>Find Us</h4>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3513.735634535883!2d83.6000599863538!3d28.276031933509497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995e34b21f91e25%3A0xcf6e3d80d22bd7b8!2sTHE%20SILVER%20PALACE!5e0!3m2!1sen!2snp!4v1750818419072!5m2!1sen!2snp"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 Rageni Resort. All rights reserved.
+      </div>
+    </div>
 
-</body>
-<script src="../scripts/app.js"></script>
-
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top">
+      <i class="fa fa-angle-up"></i>
+    </button>
+  </body>
+  <script src="../scripts/app.js"></script>
 </html>

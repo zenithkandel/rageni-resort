@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const blobUp = document.querySelector(".blob-up");
   function loadScroll() {
     // scrollTop = document.documentElement.scrollTop;
-    scrollTop = document.querySelector(".sections").scrollTop;
+    scrollTop = document.body.scrollTop;
     windowHeight = window.innerHeight;
     percent = Math.round((100 * scrollTop) / windowHeight);
     if (percent >= 1) {
@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
       blobDown.style.opacity = 100 + "%";
     }
   }
-  document.querySelector(".sections").onscroll = loadScroll;
+  window.onscroll = loadScroll;
   window.onresize = loadScroll;
   loadScroll();
   // document.querySelector(".sections").scrollTop =600
   const backToTopBtn = document.getElementById("backToTop");
-  const scrollContainer = document.querySelector(".sections");
+  const scrollContainer = document.body;
 
   function toggleBackToTop() {
     if (scrollContainer.scrollTop > 200) {

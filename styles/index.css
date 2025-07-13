@@ -14,6 +14,7 @@ html {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
+
 }
 
 *,
@@ -39,7 +40,11 @@ html {
 /* Body and main containers */
 body {
   background: var(--background-color);
-  height: 100%;
+  /* height: 100%; */
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
 }
 
 /* Navigation */
@@ -210,20 +215,15 @@ nav .logo img {
 }
 
 /* Section Styles */
-.sections {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y proximity;
-  scroll-behavior: smooth;
-}
 
-.sections>.section {
+
+.section {
   scroll-snap-align: start;
   text-align: center;
   padding: 22px;
 }
 
-.sections>.hero {
+.hero {
   scroll-snap-align: top;
 }
 
@@ -424,7 +424,7 @@ nav .logo img {
     align-items: stretch;
   }
 
-  .sections {
+  body {
     scroll-snap-type: none !important;
   }
 }
@@ -479,7 +479,7 @@ nav .logo img {
     margin-bottom: 8px;
   }
 
-  .sections>.section {
+  body>.section {
     padding: 24px 4vw;
   }
 
@@ -592,9 +592,9 @@ nav .logo img {
   }
 }
 
-/* Add a little more padding to sections for mobile */
+/* Add a little more padding to body for mobile */
 @media (max-width: 600px) {
-  .sections>.section {
+  body>.section {
     padding: 14px 2vw;
   }
 }

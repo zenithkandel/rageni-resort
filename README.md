@@ -2,6 +2,7 @@
 
 ---
 
+
 ## ✨ Welcome to Rageni Resort!
 
 Experience luxury, tranquility, and the beauty of nature at **Rageni Agro Resort Pvt. Ltd** — your perfect getaway destination in Baglung, Nepal.  

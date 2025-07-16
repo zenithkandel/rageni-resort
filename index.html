@@ -8,7 +8,14 @@
       name="description"
       content="Experience luxury at Rageni Agro Resort - Your premium eco-friendly destination with modern amenities and natural beauty."
     />
-    <link rel="stylesheet" href="styles/index.css" />
+
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Header -->
@@ -18,9 +25,7 @@
         <ul class="nav-menu" id="nav-menu">
           <li><a href="#home" class="nav-link active">Home</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#features" class="nav-link">Features</a></li>
           <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#gallery" class="nav-link">Gallery</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <div class="hamburger" id="hamburger">
@@ -92,68 +97,6 @@
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features section" id="features">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Why Choose Rageni</h2>
-        <p class="section-subtitle animate-on-scroll">
-          Experience the perfect blend of luxury, sustainability, and adventure
-        </p>
-        <div class="features-grid">
-          <div class="feature-card animate-on-scroll">
-            <div class="feature-icon">🌿</div>
-            <h3>Eco-Friendly</h3>
-            <p>
-              Our resort operates on sustainable principles, using renewable
-              energy, organic farming, and eco-friendly practices to minimize
-              environmental impact.
-            </p>
-          </div>
-          <div class="feature-card animate-on-scroll">
-            <div class="feature-icon">🏨</div>
-            <h3>Luxury Accommodation</h3>
-            <p>
-              Enjoy premium comfort in our well-appointed rooms and suites, each
-              designed to provide the ultimate in relaxation and convenience.
-            </p>
-          </div>
-          <div class="feature-card animate-on-scroll">
-            <div class="feature-icon">🌾</div>
-            <h3>Organic Farm Experience</h3>
-            <p>
-              Participate in our organic farming activities, learn about
-              sustainable agriculture, and enjoy fresh produce straight from our
-              gardens.
-            </p>
-          </div>
-          <div class="feature-card animate-on-scroll">
-            <div class="feature-icon">🍽️</div>
-            <h3>Farm-to-Table Dining</h3>
-            <p>
-              Savor delicious meals prepared with fresh, organic ingredients
-              sourced directly from our on-site farm and local partners.
-            </p>
-          </div>
-          <div class="feature-card animate-on-scroll">
-            <div class="feature-icon">🧘</div>
-            <h3>Wellness & Spa</h3>
-            <p>
-              Rejuvenate your mind and body with our comprehensive wellness
-              programs, including yoga, meditation, and natural spa treatments.
-            </p>
-          </div>
-          <div class="feature-card animate-on-scroll">
-            <div class="feature-icon">🚴</div>
-            <h3>Adventure Activities</h3>
-            <p>
-              Explore the surrounding nature through hiking, cycling, bird
-              watching, and other outdoor activities suitable for all ages.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Services Section -->
     <section class="services section" id="services">
       <div class="container">
@@ -205,60 +148,6 @@
               </p>
               <a href="#contact" class="btn">Book Transfer</a>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery section" id="gallery">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Gallery</h2>
-        <p class="section-subtitle animate-on-scroll">
-          Capture the beauty of Rageni Resort
-        </p>
-        <div class="gallery-grid">
-          <div class="gallery-item animate-on-scroll">
-            <img
-              src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'><rect fill='%23e8f5e8' width='300' height='250'/><g fill='%23c8e6c9'><path d='M0,125 Q75,25 150,125 T300,125 V250 H0 Z'/></g><g fill='%23a5d6a7'><circle cx='60' cy='60' r='20'/><circle cx='240' cy='50' r='15'/><circle cx='150' cy='70' r='25'/></g><g fill='%2381c784'><rect x='100' y='150' width='100' height='60' rx='5'/></g></svg>"
-              alt="Resort Exterior"
-            />
-            <div class="gallery-overlay">Resort Exterior</div>
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img
-              src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'><rect fill='%23f0f8f0' width='300' height='250'/><g fill='%23c8e6c9'><rect x='50' y='50' width='200' height='150' rx='10'/><rect x='60' y='60' width='40' height='60' rx='5'/><rect x='120' y='60' width='40' height='60' rx='5'/><rect x='180' y='60' width='40' height='60' rx='5'/></g></svg>"
-              alt="Luxury Rooms"
-            />
-            <div class="gallery-overlay">Luxury Rooms</div>
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img
-              src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'><rect fill='%23e8f5e8' width='300' height='250'/><g fill='%23c8e6c9'><circle cx='150' cy='125' r='80'/><circle cx='150' cy='125' r='60' fill='%23a5d6a7'/><circle cx='150' cy='125' r='40' fill='%2381c784'/></g></svg>"
-              alt="Dining Area"
-            />
-            <div class="gallery-overlay">Dining Area</div>
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img
-              src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'><rect fill='%23f0f8f0' width='300' height='250'/><g fill='%23c8e6c9'><path d='M0,200 Q150,100 300,200 V250 H0 Z'/></g><g fill='%23a5d6a7'><circle cx='75' cy='150' r='10'/><circle cx='225' cy='140' r='8'/><circle cx='150' cy='160' r='12'/></g></svg>"
-              alt="Organic Farm"
-            />
-            <div class="gallery-overlay">Organic Farm</div>
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img
-              src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'><rect fill='%23e8f5e8' width='300' height='250'/><g fill='%23c8e6c9'><rect x='50' y='100' width='200' height='100' rx='50'/><rect x='75' y='125' width='150' height='50' rx='25' fill='%23a5d6a7'/></g></svg>"
-              alt="Swimming Pool"
-            />
-            <div class="gallery-overlay">Swimming Pool</div>
-          </div>
-          <div class="gallery-item animate-on-scroll">
-            <img
-              src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'><rect fill='%23f0f8f0' width='300' height='250'/><g fill='%23c8e6c9'><path d='M0,125 Q75,25 150,125 T300,125 V250 H0 Z'/></g><g fill='%23a5d6a7'><circle cx='60' cy='60' r='20'/><circle cx='240' cy='50' r='15'/></g><g fill='%2381c784'><rect x='120' y='180' width='60' height='40' rx='20'/></g></svg>"
-              alt="Spa & Wellness"
-            />
-            <div class="gallery-overlay">Spa & Wellness</div>
           </div>
         </div>
       </div>
@@ -369,9 +258,7 @@
             <ul>
               <li><a href="#home">Home</a></li>
               <li><a href="#about">About Us</a></li>
-              <li><a href="#features">Features</a></li>
               <li><a href="#services">Services</a></li>
-              <li><a href="#gallery">Gallery</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>

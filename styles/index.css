@@ -589,29 +589,17 @@
       }
 
       .service-image {
-        height: 200px;
-        background: linear-gradient(45deg,
-            var(--primary-color),
-            var(--secondary-color));
         position: relative;
-        overflow: hidden;
+    /* border-radius: var(--border-radius); */
+    overflow: hidden;
+    /* box-shadow: var(--shadow); */
+    /* transition: var(--transition); */
+    height: 200px;
       }
 
-      .service-image::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: var(--white);
+      .service-imgae img {
+        object-fit: cover;
+        /* transition: var(--transition); */
       }
 
       .service-content {

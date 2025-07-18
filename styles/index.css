@@ -1,4 +1,5 @@
-/* CSS Reset & Base Styles */
+
+      /* CSS Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -353,13 +354,23 @@ body {
 .hamburger span {
   width: 25px;
   height: 3px;
-  background: var(--white);
+  background: #000;
   margin: 3px 0;
   transition: var(--transition);
 }
 
+/* Hamburger icon colors */
+.hamburger span {
+  background: var(--white);
+  transition: var(--transition);
+}
+
 .header.scrolled .hamburger span {
-  background: var(--primary-color);
+  background: var(--text-dark);
+}
+
+.nav-menu.active + .hamburger span {
+  background: var(--text-dark);
 }
 
 .hamburger.active span:nth-child(1) {
@@ -414,25 +425,27 @@ body {
 }
 
 .hero-title {
-  font-family: var(--font-heading);
-  font-size: 5rem;
-  font-weight: 800;
-  margin-bottom: 20px;
+  font-family: var(--font-subheading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   animation: slideInDown 1s ease-out;
-  letter-spacing: -0.03em;
-  line-height: 0.9;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .hero-subtitle {
-  font-family: var(--font-subheading);
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 500;
   margin-bottom: 15px;
   opacity: 0.9;
   animation: fadeInUp 1s ease-out 0.3s both;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-style: italic;
 }
 
 .hero-description {
@@ -843,6 +856,24 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    padding: 0 15px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding: 0 15px;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    padding: 0 15px;
+  }
+
   .nav-menu {
     position: fixed;
     top: 0;
@@ -851,9 +882,11 @@ body {
     height: 100vh;
     background: var(--white);
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 80px;
     transition: var(--transition);
     z-index: 1000;
+    gap: 15px;
   }
 
   .nav-menu.active {
@@ -862,6 +895,8 @@ body {
 
   .nav-menu.active .nav-link {
     color: var(--text-dark);
+    padding: 10px 20px;
+    display: block;
   }
 
   .hamburger {
@@ -907,7 +942,25 @@ body {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    padding: 0 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    padding: 0 10px;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  .hero-buttons {
+    gap: 15px;
   }
 
   .section-title {

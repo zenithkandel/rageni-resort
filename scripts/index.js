@@ -172,12 +172,11 @@ function typeWriter(element, text, speed = 100) {
 window.addEventListener('load', () => {
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (heroSubtitle) {
-        const originalText = heroSubtitle.textContent;
-        setTimeout(() => {
-            typeWriter(heroSubtitle, originalText, 150);
-        }, 1000);
+        const originalText = "Baglung: Nepal's Hidden Gem for Tourism";
+        heroSubtitle.textContent = originalText;
     }
 });
+
 
 // Add loading animation
 window.addEventListener('load', () => {

@@ -1232,8 +1232,8 @@
 /* --- Silver Palace Services & Features Section --- */
 .silver-palace-features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* Slightly reduced gap */
     margin-top: 60px;
 }
 
@@ -1241,53 +1241,51 @@
     background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    padding: 30px;
+    padding: 25px; /* Reduced padding */
     text-align: center;
     transition: var(--transition);
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%; /* Ensure cards are same height in a row */
+    height: 100%;
+    max-width: 350px; /* **New: Constrain max width for smaller cards** */
+    margin: 0 auto; /* **New: Center cards within their grid column** */
 }
 
 .feature-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-8px) scale(1.01); /* Slightly smaller hover effect */
     box-shadow: var(--shadow-hover);
 }
 
 .feature-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(45deg, var(--dark-blue), var(--silver-accent)); /* Themed gradient */
+    width: 70px; /* Reduced size */
+    height: 70px; /* Reduced size */
+    background: linear-gradient(45deg, var(--dark-blue), var(--silver-accent));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem; /* Reduced icon size */
     color: var(--white);
-    margin-bottom: 20px;
+    margin-bottom: 18px; /* Adjusted margin */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: var(--transition);
 }
 
-.feature-card:hover .feature-icon {
-    transform: rotateY(15deg) scale(1.05);
-}
-
 .feature-card h3 {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Reduced font size */
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Adjusted margin */
     letter-spacing: -0.01em;
 }
 
 .feature-card p {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.95rem; /* Slightly smaller text */
     color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 /* --- Gallery Section --- */

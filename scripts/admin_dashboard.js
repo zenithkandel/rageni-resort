@@ -100,11 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadAllData() {
-        messagesData = await loadJSON('../messages.json');
-        bookingOrdersData = await loadJSON('../booking_orders.json');
-        liquorOrdersData = await loadJSON('../liquor_orders.json');
-        calendarEventsData = await loadJSON('../events_list.json');
-        galleryImagesData = await loadJSON('../images.json');
+        messagesData = await loadJSON('../data/messages.json');
+        bookingOrdersData = await loadJSON('../data/booking_orders.json');
+        liquorOrdersData = await loadJSON('../data/liquor_orders.json');
+        calendarEventsData = await loadJSON('../data/events_list.json');
+        galleryImagesData = await loadJSON('../data/images.json');
 
         renderMessages();
         renderBookings();

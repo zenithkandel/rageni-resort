@@ -2527,6 +2527,8 @@ if (lightbox) {
     });
 }
 
+// ... (Your existing JavaScript code above this section) ...
+
 // --- NEW FEATURE: EVENT CALENDAR WITH JSON ---
 const calendarGrid = document.getElementById('calendar-grid');
 const currentMonthYear = document.getElementById('currentMonthYear');
@@ -2543,15 +2545,19 @@ let eventsData = []; // To store loaded events
 async function fetchEvents() {
     try {
         const response = await fetch('events_list.json');
+        if (!response.ok) { // Check if the response was successful (e.g., 200 OK)
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         eventsData = await response.json();
-        renderCalendar(currentMonth, currentYear); // Render after fetching
+        renderCalendar(currentMonth, currentYear); // Render with events
     } catch (error) {
         console.error('Error fetching events:', error);
-        calendarGrid.innerHTML = '<p style="text-align: center; color: var(--text-light);">Failed to load events. Please try again later.</p>';
+        // Fallback: Render calendar without events if JSON fetching fails
+        renderCalendarFallback(currentMonth, currentYear, 'Failed to load event data.');
     }
 }
 
-// Function to render the calendar
+// Function to render the calendar (main logic remains the same)
 function renderCalendar(month, year) {
     calendarGrid.innerHTML = ''; // Clear previous days
     const date = new Date(year, month, 1);
@@ -2590,9 +2596,9 @@ function renderCalendar(month, year) {
             dayDiv.classList.add('today');
         }
 
-        // Add events for this day
+        // Add events for this day ONLY IF eventsData is available
         const dayEvents = eventsData.find(e => e.date === fullDate);
-        if (dayEvents && dayEvents.events.length > 0) {
+        if (dayEvents && dayEvents.events && dayEvents.events.length > 0) {
             const eventListDiv = document.createElement('div');
             eventListDiv.classList.add('event-list');
             dayEvents.events.slice(0, 4).forEach(event => { // Show up to 4 events
@@ -2645,6 +2651,83 @@ function renderCalendar(month, year) {
     }
 }
 
+// NEW: Fallback function to render calendar without events
+function renderCalendarFallback(month, year, errorMessage = 'Events not available.') {
+    // This function largely duplicates renderCalendar but ensures no event data is expected
+    calendarGrid.innerHTML = '';
+    const date = new Date(year, month, 1);
+    const firstDayIndex = date.getDay();
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    const prevLastDay = new Date(year, month, 0).getDate();
+
+    currentMonthYear.textContent = new Date(year, month).toLocaleString('en-US', {
+        month: 'long',
+        year: 'numeric'
+    });
+
+    for (let i = firstDayIndex; i > 0; i--) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('calendar-day', 'inactive');
+        dayDiv.textContent = prevLastDay - i + 1;
+        calendarGrid.appendChild(dayDiv);
+    }
+
+    for (let i = 1; i <= lastDay; i++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('calendar-day');
+        const dayNumberSpan = document.createElement('span');
+        dayNumberSpan.classList.add('day-number');
+        dayNumberSpan.textContent = i;
+        dayDiv.appendChild(dayNumberSpan);
+
+        const fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+        dayDiv.dataset.date = fullDate;
+
+        const today = new Date();
+        if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+            dayDiv.classList.add('today');
+        }
+
+        // No event logic here for fallback
+
+        dayDiv.addEventListener('click', () => {
+            if (dayDiv.classList.contains('inactive')) {
+                return;
+            }
+            const currentSelected = document.querySelector('.calendar-day.selected');
+            if (currentSelected) {
+                currentSelected.classList.remove('selected');
+            }
+            dayDiv.classList.add('selected');
+            bookingFormDateInput.value = dayDiv.dataset.date;
+            bookNowSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+        calendarGrid.appendChild(dayDiv);
+    }
+
+    const totalDays = firstDayIndex + lastDay;
+    const remainingCells = 42 - totalDays;
+
+    for (let i = 1; i <= remainingCells; i++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('calendar-day', 'inactive');
+        dayDiv.textContent = i;
+        calendarGrid.appendChild(dayDiv);
+    }
+
+    // Display a message if no events are loaded
+    const messageElement = document.createElement('p');
+    messageElement.style.textAlign = 'center';
+    messageElement.style.color = 'var(--text-light)';
+    messageElement.style.marginTop = '20px';
+    messageElement.textContent = errorMessage;
+    calendarGrid.insertAdjacentElement('afterend', messageElement); // Add below the grid
+}
+
+
 // Calendar navigation
 prevMonthBtn.addEventListener('click', () => {
     currentMonth--;
@@ -2652,7 +2735,11 @@ prevMonthBtn.addEventListener('click', () => {
         currentMonth = 11;
         currentYear--;
     }
-    renderCalendar(currentMonth, currentYear);
+    if (eventsData.length > 0) { // If events were loaded, use full render
+        renderCalendar(currentMonth, currentYear);
+    } else { // Otherwise, use fallback
+        renderCalendarFallback(currentMonth, currentYear, 'Events not available.');
+    }
 });
 
 nextMonthBtn.addEventListener('click', () => {
@@ -2661,9 +2748,15 @@ nextMonthBtn.addEventListener('click', () => {
         currentMonth = 0;
         currentYear++;
     }
-    renderCalendar(currentMonth, currentYear);
+    if (eventsData.length > 0) { // If events were loaded, use full render
+        renderCalendar(currentMonth, currentYear);
+    } else { // Otherwise, use fallback
+        renderCalendarFallback(currentMonth, currentYear, 'Events not available.');
+    }
 });
 
+
+// ... (Your existing JavaScript code below this section) ...
 
 // --- NEW FEATURE: BOOKING FORM HANDLING WITH MODAL ---
 const bookingForm = document.getElementById('booking-form');

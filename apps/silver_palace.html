@@ -2493,6 +2493,21 @@
       </div>
     </div>
 
+    <div class="event-modal" id="eventDetailsModal">
+      <div class="event-modal-content">
+        <span class="event-modal-close-btn">&times;</span>
+        <div class="event-modal-body">
+          <h3 id="eventModalDate"></h3>
+          <div id="eventModalDetails">
+            <!-- Event details will be loaded here by JavaScript -->
+          </div>
+          <p style="margin-top: 20px">
+            Want to book this day? Click "Book Now" below!
+          </p>
+          <a href="#book-now" class="btn event-modal-book-btn">Book Now</a>
+        </div>
+      </div>
+    </div>
     <script>
       // Navigation functionality (No changes here)
       const hamburger = document.getElementById("hamburger");
@@ -2849,13 +2864,24 @@
         });
       }
 
-      // --- NEW FEATURE: EVENT CALENDAR WITH JSON (No major changes, already robust) ---
+      // ... (Your existing JavaScript code above this section) ...
+
+      // --- NEW FEATURE: EVENT CALENDAR WITH JSON ---
       const calendarGrid = document.getElementById("calendar-grid");
       const currentMonthYear = document.getElementById("currentMonthYear");
       const prevMonthBtn = document.getElementById("prevMonth");
       const nextMonthBtn = document.getElementById("nextMonth");
       const bookingFormDateInput = document.getElementById("eventDate");
       const bookNowSection = document.getElementById("book-now");
+
+      // NEW: Event Details Modal elements
+      const eventDetailsModal = document.getElementById("eventDetailsModal");
+      const eventModalCloseBtn = document.querySelector(
+        ".event-modal-close-btn"
+      );
+      const eventModalDate = document.getElementById("eventModalDate");
+      const eventModalDetails = document.getElementById("eventModalDetails");
+      const eventModalBookBtn = document.querySelector(".event-modal-book-btn");
 
       let currentMonth = new Date().getMonth();
       let currentYear = new Date().getFullYear();
@@ -2935,25 +2961,57 @@
               eventListDiv.appendChild(eventItem);
             });
             dayDiv.appendChild(eventListDiv);
-          }
 
-          dayDiv.addEventListener("click", () => {
-            if (dayDiv.classList.contains("inactive")) {
-              return;
-            }
-            const currentSelected = document.querySelector(
-              ".calendar-day.selected"
-            );
-            if (currentSelected) {
-              currentSelected.classList.remove("selected");
-            }
-            dayDiv.classList.add("selected");
-            bookingFormDateInput.value = dayDiv.dataset.date;
-            bookNowSection.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+            // NEW: Add event listener to open event details modal
+            dayDiv.addEventListener("click", (e) => {
+              // Prevent default booking scroll if events are present
+              e.preventDefault();
+              // Check if it's an inactive day (from previous/next month)
+              if (dayDiv.classList.contains("inactive")) {
+                return;
+              }
+
+              // Populate and show event details modal
+              eventModalDate.textContent = new Date(
+                fullDate
+              ).toLocaleDateString("en-US", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+              eventModalDetails.innerHTML = ""; // Clear previous details
+
+              dayEvents.events.forEach((event) => {
+                const detailItem = document.createElement("p");
+                detailItem.classList.add("event-detail-item");
+                detailItem.innerHTML = `<i class="fa-regular fa-clock"></i> ${event.time} - ${event.name}`;
+                eventModalDetails.appendChild(detailItem);
+              });
+
+              eventDetailsModal.classList.add("active");
+              document.body.style.overflow = "hidden"; // Prevent scrolling
             });
-          });
+          } else {
+            // Existing logic for clicking on empty days (no events)
+            dayDiv.addEventListener("click", () => {
+              if (dayDiv.classList.contains("inactive")) {
+                return;
+              }
+              const currentSelected = document.querySelector(
+                ".calendar-day.selected"
+              );
+              if (currentSelected) {
+                currentSelected.classList.remove("selected");
+              }
+              dayDiv.classList.add("selected");
+              bookingFormDateInput.value = dayDiv.dataset.date;
+              bookNowSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            });
+          }
           calendarGrid.appendChild(dayDiv);
         }
 
@@ -2967,7 +3025,6 @@
           calendarGrid.appendChild(dayDiv);
         }
 
-        // Remove any previous error message if rendering successfully
         const oldMessage = calendarGrid.nextElementSibling;
         if (
           oldMessage &&
@@ -3026,6 +3083,7 @@
             dayDiv.classList.add("today");
           }
 
+          // For fallback, all days will scroll to booking
           dayDiv.addEventListener("click", () => {
             if (dayDiv.classList.contains("inactive")) {
               return;
@@ -3056,14 +3114,13 @@
           calendarGrid.appendChild(dayDiv);
         }
 
-        // Add/Update the error message below the calendar grid
         let messageElement = calendarGrid.nextElementSibling;
         if (
           !messageElement ||
           !messageElement.classList.contains("calendar-error-message")
         ) {
           messageElement = document.createElement("p");
-          messageElement.classList.add("calendar-error-message"); // Add a class for specific targeting
+          messageElement.classList.add("calendar-error-message");
           messageElement.style.textAlign = "center";
           messageElement.style.color = "var(--text-light)";
           messageElement.style.marginTop = "20px";
@@ -3078,7 +3135,6 @@
           currentMonth = 11;
           currentYear--;
         }
-        // Check if eventsData is not empty AND it was successfully loaded (not just an empty array from failed fetch)
         if (eventsData && eventsData.length > 0) {
           renderCalendar(currentMonth, currentYear);
         } else {
@@ -3107,7 +3163,48 @@
         }
       });
 
-      // Booking form and modal (No changes here)
+      // NEW: Close Event Details Modal
+      if (eventModalCloseBtn) {
+        eventModalCloseBtn.addEventListener("click", () => {
+          eventDetailsModal.classList.add("closing"); // Add closing class
+          document.body.style.overflow = ""; // Restore scrolling immediately
+          setTimeout(() => {
+            eventDetailsModal.classList.remove("active", "closing"); // Remove active after animation
+          }, 300); // Match fadeOut animation duration
+        });
+      }
+
+      if (eventDetailsModal) {
+        eventDetailsModal.addEventListener("click", (e) => {
+          if (e.target === eventDetailsModal) {
+            eventDetailsModal.classList.add("closing"); // Add closing class
+            document.body.style.overflow = ""; // Restore scrolling immediately
+            setTimeout(() => {
+              eventDetailsModal.classList.remove("active", "closing"); // Remove active after animation
+            }, 300); // Match fadeOut animation duration
+          }
+        });
+      }
+
+      // Handle "Book Now" button inside event details modal
+      if (eventModalBookBtn) {
+        eventModalBookBtn.addEventListener("click", (e) => {
+          e.preventDefault(); // Prevent default link behavior
+          eventDetailsModal.classList.add("closing"); // Add closing class
+          document.body.style.overflow = ""; // Restore scrolling immediately
+          setTimeout(() => {
+            eventDetailsModal.classList.remove("active", "closing"); // Remove active after animation
+            // Now scroll to the booking section
+            bookNowSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+            // The date should already be set by the calendar day click
+          }, 300); // Match fadeOut animation duration
+        });
+      }
+
+      // --- NEW FEATURE: BOOKING FORM HANDLING WITH MODAL ---
       const bookingForm = document.getElementById("booking-form");
       const successModal = document.getElementById("successModal");
       const modalCloseBtn = document.querySelector(".modal-close-btn");
@@ -3148,31 +3245,44 @@
         successModal.classList.add("active");
         document.body.style.overflow = "hidden";
 
+        // NEW: Add fade-out animation for success modal
         setTimeout(() => {
-          successModal.classList.remove("active");
-          document.body.style.overflow = "";
-        }, 3000);
+          successModal.classList.add("closing"); // Add closing class to trigger fade-out
+          // After fade-out animation, remove 'active' and 'closing' classes
+          setTimeout(() => {
+            successModal.classList.remove("active", "closing");
+            document.body.style.overflow = ""; // Restore body scrolling
+          }, 300); // Match fadeOut animation duration
+        }, 3000); // Auto-close after 3 seconds
 
         bookingForm.reset();
       });
 
+      // Close modal on click of 'x' button (for success modal)
       if (modalCloseBtn) {
         modalCloseBtn.addEventListener("click", () => {
-          successModal.classList.remove("active");
-          document.body.style.overflow = "";
+          successModal.classList.add("closing"); // Add closing class
+          document.body.style.overflow = ""; // Restore scrolling immediately
+          setTimeout(() => {
+            successModal.classList.remove("active", "closing"); // Remove active after animation
+          }, 300); // Match fadeOut animation duration
         });
       }
 
+      // Close modal when clicking outside the content (for success modal)
       if (successModal) {
         successModal.addEventListener("click", (e) => {
           if (e.target === successModal) {
-            successModal.classList.remove("active");
-            document.body.style.overflow = "";
+            successModal.classList.add("closing"); // Add closing class
+            document.body.style.overflow = ""; // Restore scrolling immediately
+            setTimeout(() => {
+              successModal.classList.remove("active", "closing"); // Remove active after animation
+            }, 300); // Match fadeOut animation duration
           }
         });
       }
 
-      // Initialize all features on page load
+      // Initialize all features on page load (No changes here)
       document.addEventListener("DOMContentLoaded", () => {
         loadGalleryImages();
         fetchEvents();

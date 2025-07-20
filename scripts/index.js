@@ -1,4 +1,4 @@
-// Navigation functionality
+    // Navigation functionality
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -172,11 +172,12 @@ function typeWriter(element, text, speed = 100) {
 window.addEventListener('load', () => {
     const heroSubtitle = document.querySelector('.hero-subtitle');
     if (heroSubtitle) {
-        const originalText = "Baglung: Nepal's Hidden Gem for Tourism";
-        heroSubtitle.textContent = originalText;
+        const originalText = heroSubtitle.textContent;
+        setTimeout(() => {
+            typeWriter(heroSubtitle, originalText, 150);
+        }, 1000);
     }
 });
-
 
 // Add loading animation
 window.addEventListener('load', () => {

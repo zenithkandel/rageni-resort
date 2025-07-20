@@ -189,17 +189,34 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
-// Enhanced scroll animations with stagger effect
 function addStaggerAnimation() {
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
+  const animateElements = document.querySelectorAll('.animate-on-scroll');
 
-    animateElements.forEach((element, index) => {
-        element.style.transitionDelay = `${index * 0.1}s`;
-    });
+  animateElements.forEach((element, index) => {
+    // Add staggered delay when element becomes visible
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          element.classList.add('in-view');
+          element.style.transitionDelay = `${index * 0.1}s`;
+
+          // Optional: remove observer after animation
+          observer.unobserve(entry.target);
+
+          // Optional: reset delay after animation so hover is normal
+          setTimeout(() => {
+            element.style.transitionDelay = '0s';
+          }, 400 + index * 100); // match the animation duration + delay
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(element);
+  });
 }
 
-// Initialize stagger animations
 addStaggerAnimation();
+
 
 // Performance optimization: Throttle scroll events
 function throttle(func, limit) {

@@ -581,6 +581,7 @@
         overflow: hidden;
         box-shadow: var(--shadow);
         transition: var(--transition);
+        transition-delay: 0;
       }
 
       .service-card:hover {

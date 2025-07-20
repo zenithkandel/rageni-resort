@@ -1,0 +1,10 @@
+[
+  {"date": "2025-07-20", "events": [{"time": "10:00 AM - 01:00 PM", "name": "Corporate Training"}, {"time": "06:00 PM - 10:00 PM", "name": "Birthday Party"}]},
+  {"date": "2025-07-22", "events": [{"time": "09:00 AM - 05:00 PM", "name": "Annual General Meeting"}]},
+  {"date": "2025-07-25", "events": [{"time": "07:00 PM - 11:00 PM", "name": "Wedding Reception"}]},
+  {"date": "2025-07-28", "events": [{"time": "02:00 PM - 05:00 PM", "name": "Cultural Dance Workshop"}, {"time": "06:00 PM - 09:00 PM", "name": "Engagement Ceremony"}]},
+  {"date": "2025-08-01", "events": [{"time": "11:00 AM - 01:00 PM", "name": "Product Launch"}, {"time": "07:30 PM - 11:30 PM", "name": "Gala Dinner"}]},
+  {"date": "2025-08-05", "events": [{"time": "03:00 PM - 06:00 PM", "name": "Baby Shower"}]},
+  {"date": "2025-08-10", "events": [{"time": "10:00 AM - 12:00 PM", "name": "Press Conference"}, {"time": "06:00 PM - 10:00 PM", "name": "Family Get-together"}]},
+  {"date": "2025-08-15", "events": [{"time": "01:00 PM - 04:00 PM", "name": "Community Event"}, {"time": "07:00 PM - 11:00 PM", "name": "Farewell Party"}]}
+]

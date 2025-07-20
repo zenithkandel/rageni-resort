@@ -129,8 +129,7 @@
             </div>
             <h3>Meetings & Workshops</h3>
             <p>
-              Professional settings equipped for focused discussions and
-              collaborative sessions.
+              Professional settings equipped for focused discussions and collaborative sessions.
             </p>
           </div>
           <div class="feature-card animate-on-scroll">
@@ -148,8 +147,7 @@
             </div>
             <h3>Advanced Music System</h3>
             <p>
-              High-fidelity sound for dynamic speeches, lively music, and
-              perfect ambiance.
+              High-fidelity sound for dynamic speeches, lively music, and perfect ambiance.
             </p>
           </div>
           <div class="feature-card animate-on-scroll">
@@ -158,8 +156,7 @@
             </div>
             <h3>Great Ambiance & Vibe</h3>
             <p>
-              Luxurious decor and a positive atmosphere create unforgettable
-              moments.
+              Luxurious decor and a positive atmosphere create unforgettable moments.
             </p>
           </div>
           <div class="feature-card animate-on-scroll">
@@ -168,186 +165,135 @@
             </div>
             <h3>Hygienic & Delicious Food</h3>
             <p>
-              Catering with fresh, high-quality ingredients for a delightful
-              culinary experience.
+              Catering with fresh, high-quality ingredients for a delightful culinary experience.
             </p>
           </div>
           <div class="feature-card animate-on-scroll">
             <div class="feature-icon">
               <i class="fa-sharp fa-regular fa-camera-retro"></i>
             </div>
-            <h3>Professional Photography Services</h3>
+            <h3>Photography & Videography</h3>
             <p>
-              Capture every precious moment with our in-house photography
-              options.
+              Capture every moment with our professional photo and video services.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="gallery">
+    <section class="section gallery-section" id="gallery">
       <div class="container">
-        <h2 class="section-title animate-on-scroll">Gallery</h2>
+        <h2 class="section-title animate-on-scroll">Our Gallery</h2>
         <p class="section-subtitle animate-on-scroll">
-          A glimpse into our stunning venues and memorable events
+          A glimpse into the beautiful moments and elegant spaces at The Silver Palace.
         </p>
-        <div class="gallery-grid" id="gallery-grid"></div>
-      </div>
-      <div class="lightbox" id="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img src="" alt="" class="lightbox-img" />
+        <div class="gallery-grid" id="gallery-grid">
+          </div>
       </div>
     </section>
+
+    <div class="lightbox" id="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img src="" alt="" class="lightbox-img">
+      <span class="lightbox-nav lightbox-prev"><i class="fa-solid fa-chevron-left"></i></span>
+      <span class="lightbox-nav lightbox-next"><i class="fa-solid fa-chevron-right"></i></span>
+    </div>
 
     <section class="section" id="event-schedule">
       <div class="container">
         <h2 class="section-title animate-on-scroll">Event Schedule</h2>
         <p class="section-subtitle animate-on-scroll">
-          Check availability and plan your next event with us
+          Stay updated with our upcoming events and available dates.
         </p>
-        <div class="calendar-container animate-on-scroll">
-          <div class="calendar-header">
-            <button id="prevMonth" class="btn-icon">
-              <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <h3 id="currentMonthYear"></h3>
-            <button id="nextMonth" class="btn-icon">
-              <i class="fa-solid fa-chevron-right"></i>
-            </button>
-          </div>
-          <div class="calendar-days-of-week">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-          </div>
-          <div class="calendar-grid" id="calendar-grid"></div>
+        <div class="calendar-navigation animate-on-scroll">
+          <button id="prevMonth" class="btn btn-outline">&laquo; Prev</button>
+          <h3 id="currentMonthYear"></h3>
+          <button id="nextMonth" class="btn btn-outline">Next &raquo;</button>
         </div>
+        <div class="calendar-grid" id="calendar-grid">
+          </div>
       </div>
     </section>
 
-    <section class="contact section" id="book-now">
+    <div class="event-details-modal modal" id="eventDetailsModal">
+      <div class="modal-content animate-on-scroll">
+        <span class="event-modal-close-btn">&times;</span>
+        <h3 id="eventModalDate"></h3>
+        <div id="eventModalDetails">
+          </div>
+        <button class="btn event-modal-book-btn">Book This Date</button>
+      </div>
+    </div>
+
+
+    <section class="section" id="book-now">
       <div class="container">
-        <h2 class="section-title animate-on-scroll">Book Your Event Now</h2>
+        <h2 class="section-title animate-on-scroll">Book Your Event</h2>
         <p class="section-subtitle animate-on-scroll">
-          Let us help you plan your perfect occasion
+          Fill out the form below to inquire about booking your next event at The Silver Palace.
         </p>
-        <div class="contact-content">
-          <div class="contact-info animate-left">
-            <h3>Get In Touch</h3>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fa-light fa-location-dot"></i>
-              </div>
-              <div>
-                <h4>Address</h4>
-                <p>
-                  The Silver Palace (Rageni Agro Resort Pvt. Ltd.)<br />
-                  Upallachaur, Baglung Bazar<br />
-                  Baglung, Gandaki
-                </p>
-              </div>
+        <form id="booking-form" class="animate-on-scroll">
+          <div class="form-group">
+            <label for="eventName">Event Type</label>
+            <input type="text" id="eventName" name="eventName" placeholder="e.g., Wedding, Seminar, Birthday" required>
+          </div>
+          <div class="form-group">
+            <label for="eventDate">Preferred Date</label>
+            <input type="date" id="eventDate" name="eventDate" required>
+          </div>
+          <div class="form-group time-group">
+            <div>
+              <label for="eventTimeFrom">Time From</label>
+              <input type="time" id="eventTimeFrom" name="eventTimeFrom" required>
             </div>
-            <div class="contact-item">
-              <div class="contact-icon"><i class="fa-light fa-phone"></i></div>
-              <div>
-                <h4>Phone</h4>
-                <p>
-                  +977 9857622800<br />
-                  +977 9857637455
-                </p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <i class="fa-light fa-envelope"></i>
-              </div>
-              <div>
-                <h4>Email</h4>
-                <p>
-                  info@silverpalace.com.np<br />
-                  book@silverpalace.com.np
-                </p>
-              </div>
+            <div>
+              <label for="eventTimeTo">Time To</label>
+              <input type="time" id="eventTimeTo" name="eventTimeTo" required>
             </div>
           </div>
-          <div class="contact-form animate-right">
-            <form id="booking-form">
-              <div class="form-group">
-                <label for="eventName">Event Name</label>
-                <input type="text" id="eventName" name="eventName" required />
-              </div>
-              <div class="form-group">
-                <label for="eventDate">Event Date</label>
-                <input type="date" id="eventDate" name="eventDate" required />
-              </div>
-              <div class="form-group form-group-time">
-                <label for="eventTimeFrom">Event Time (From)</label>
-                <input
-                  type="time"
-                  id="eventTimeFrom"
-                  name="eventTimeFrom"
-                  required
-                />
-              </div>
-              <div class="form-group form-group-time">
-                <label for="eventTimeTo">Event Time (To)</label>
-                <input
-                  type="time"
-                  id="eventTimeTo"
-                  name="eventTimeTo"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required></textarea>
-              </div>
-              <button type="submit" class="btn">Submit Booking</button>
-            </form>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+977-XXXXXXXXXX" pattern="[0-9]{10}" required>
           </div>
-        </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Additional Message (Optional)</label>
+            <textarea id="message" name="message" rows="5" placeholder="Any specific requirements or questions?"></textarea>
+          </div>
+          <button type="submit" class="btn">Submit Booking Request</button>
+        </form>
       </div>
     </section>
+
+    <div class="success-modal modal" id="successModal">
+      <div class="modal-content animate-on-scroll">
+        <span class="modal-close-btn">&times;</span>
+        <h2><i class="fa-solid fa-check-circle"></i> Booking Confirmed!</h2>
+        <p>Thank you for your inquiry. We have received your booking request and will get back to you shortly.</p>
+        <button class="btn" onclick="document.getElementById('successModal').classList.remove('active')">Close</button>
+      </div>
+    </div>
 
     <footer class="footer">
       <div class="container">
-        <div class="footer-content">
-          <div class="footer-section">
+        <div class="footer-grid">
+          <div class="footer-about animate-on-scroll">
             <h3>The Silver Palace</h3>
             <p>
-              Your premier destination for weddings, seminars, cultural events,
-              and meetings in Baglung. Experience grandeur, impeccable service,
-              and a perfect ambiance.
+              Baglung's premier destination for weddings, seminars, and all grand celebrations.
+              Experience unparalleled luxury and service.
             </p>
             <div class="social-links">
-              <a href="#" class="social-link"
-                ><i class="fa-brands fa-facebook-f"></i
-              ></a>
-              <a href="#" class="social-link"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a href="#" class="social-link"
-                ><i class="fa-brands fa-x-twitter"></i
-              ></a>
-              <a href="#" class="social-link"
-                ><i class="fa-light fa-envelope"></i
-              ></a>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             </div>
           </div>
-          <div class="footer-section">
+          <div class="footer-links animate-on-scroll">
             <h3>Quick Links</h3>
             <ul>
               <li><a href="#home">Home</a></li>
@@ -357,72 +303,31 @@
               <li><a href="#book-now">Book Now</a></li>
             </ul>
           </div>
-          <div class="footer-section">
-            <h3>Events & Services</h3>
-            <ul>
-              <li><a href="#">Weddings</a></li>
-              <li><a href="#">Seminars</a></li>
-              <li><a href="#">Cultural Events</a></li>
-              <li><a href="#">Meetings</a></li>
-              <li><a href="#">Private Parties</a></li>
-            </ul>
+          <div class="footer-contact animate-on-scroll">
+            <h3>Contact Us</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Baglung, Gandaki Province, Nepal</p>
+            <p><i class="fas fa-phone"></i> +977 987-654-3210</p>
+            <p><i class="fas fa-envelope"></i> info@silverpalace.com</p>
           </div>
-          <div class="footer-section">
-            <h3>Contact Info</h3>
-            <p>
-              <i class="fa-light fa-location-dot"></i>&nbsp; Upallachaur,
-              Baglung Bazar
-            </p>
-            <p><i class="fa-light fa-phone"></i>&nbsp; +977 9857622800</p>
-            <p>
-              <i class="fa-light fa-envelope"></i>&nbsp;
-              info@silverpalace.com.np
-            </p>
-            <p><i class="fa-light fa-clock"></i>&nbsp; 24/7 Reception</p>
+          <div class="footer-newsletter animate-on-scroll">
+            <h3>Newsletter</h3>
+            <p>Stay updated with our latest offers and events.</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your Email" aria-label="Your Email">
+              <button type="submit">Subscribe</button>
+            </form>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>
-            &copy; 2025 The Silver Palace (Rageni Agro Resort Pvt. Ltd.). All
-            rights reserved. | Privacy Policy | Terms of Service
-          </p>
+          <p>&copy; 2024 The Silver Palace. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
-    <button class="scroll-top" id="scroll-top">
-      <i class="fa-solid fa-angle-up"></i>
+    <button id="scroll-top" class="scroll-top-btn" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
     </button>
 
-    <div class="modal" id="successModal">
-      <div class="modal-content">
-        <span class="modal-close-btn">&times;</span>
-        <div class="modal-body">
-          <i class="fa-solid fa-circle-check"></i>
-          <h2>Form Submitted Successfully!</h2>
-          <p>
-            We have received your booking request and will contact you within 12
-            hours.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="event-modal" id="eventDetailsModal">
-      <div class="event-modal-content">
-        <span class="event-modal-close-btn">&times;</span>
-        <div class="event-modal-body">
-          <h3 id="eventModalDate"></h3>
-          <div id="eventModalDetails">
-            <!-- Event details will be loaded here by JavaScript -->
-          </div>
-          <p style="margin-top: 20px">
-            Want to book this day? Click "Book Now" below!
-          </p>
-          <a href="#book-now" class="btn event-modal-book-btn">Book Now</a>
-        </div>
-      </div>
-    </div>
     <script src="silver_palace.js"></script>
   </body>
 </html>

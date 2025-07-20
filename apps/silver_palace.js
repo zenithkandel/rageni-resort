@@ -315,7 +315,7 @@ if (gallerySection) {
 
 async function loadGalleryImages() {
     try {
-        const response = await fetch("images.json");
+        const response = await fetch("../data/images.json");
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -447,7 +447,7 @@ let eventsData = [];
 
 async function fetchEvents() {
     try {
-        const response = await fetch("events_list.json");
+        const response = await fetch("../data/events_list.json");
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

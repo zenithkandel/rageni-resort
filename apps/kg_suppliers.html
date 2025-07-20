@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KG Suppliers - Your Premium Liquor Partner</title>
+    <meta
+      name="description"
+      content="KG Suppliers, a branch of Rageni Agro Resort Pvt. Ltd., is your premium liquor partner. Place your orders for quality beverages."
+    />
+
+    <!-- Link to KG Suppliers specific CSS -->
+    <link rel="stylesheet" href="kg_suppliers.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white">
+    <!-- Header -->
+    <header class="header" id="header">
+      <nav class="navbar container">
+        <a href="#" class="logo">
+          <img
+            height="70px"
+            src="../images/rageni_w.png"
+            alt="Rageni Agro Resort Logo White"
+            class="logo-white"
+          />
+          <img
+            height="70px"
+            src="../images/rageni.png"
+            alt="Rageni Agro Resort Logo Black"
+            class="logo-black"
+            style="display: none"
+          />
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#order" class="nav-link">Order</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">KG Suppliers</h1>
+        <p class="hero-subtitle">Your Premium Liquor Partner</p>
+        <p class="hero-description">
+          Providing a curated selection of quality liquors for all your needs.
+          Experience reliable service and exceptional products.
+        </p>
+        <div class="hero-buttons">
+          <a href="#order" class="btn">Place an Order</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Section (formerly Contact) -->
+    <section class="order section" id="order">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Place Your Order</h2>
+        <p class="section-subtitle animate-on-scroll">
+          Fill out the form below with your liquor requirements.
+        </p>
+        <div class="order-content">
+          <div class="order-form animate-right">
+            <form id="order-form">
+              <div class="form-group">
+                <label for="liquorName">Liquor Name / Type</label>
+                <input
+                  type="text"
+                  id="liquorName"
+                  name="liquorName"
+                  placeholder="e.g., Whiskey, Wine, Beer"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  min="1"
+                  placeholder="e.g., 6 bottles, 1 case"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+977-9857622800"
+                  pattern="[0-9]{10}"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="additionalInfo">Additional Information (Optional)</label>
+                <textarea
+                  id="additionalInfo"
+                  name="additionalInfo"
+                  rows="5"
+                  placeholder="Any specific brands, delivery instructions, or questions?"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn">Submit Order</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section (simplified) -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Get In Touch</h2>
+        <p class="section-subtitle animate-on-scroll">
+          For direct inquiries or support, reach out to us.
+        </p>
+        <div class="contact-content-simple">
+          <div class="contact-item animate-on-scroll">
+            <div class="contact-icon">
+              <i class="fa-light fa-phone"></i>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p>
+                <a href="tel:+9779857622800" class="text-gray-700 hover:text-green-600 transition-colors">9857622800</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item animate-on-scroll">
+            <div class="contact-icon">
+              <i class="fa-light fa-envelope"></i>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>
+                <a href="mailto:info@kgsuppliers.com" class="text-gray-700 hover:text-green-600 transition-colors">info@kgsuppliers.com</a>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item animate-on-scroll">
+            <div class="contact-icon">
+              <i class="fa-light fa-location-dot"></i>
+            </div>
+            <div>
+              <h4>Address</h4>
+              <p>
+                Baglung, Gandaki Province, Nepal
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>KG Suppliers</h3>
+            <p>
+              Your trusted partner for premium liquor supply. A branch of Rageni Agro Resort Pvt. Ltd.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a href="#" class="social-link" aria-label="Instagram"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+              <a href="#" class="social-link" aria-label="X Twitter"
+                ><i class="fa-brands fa-x-twitter"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#order">Order</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Parent Company</h3>
+            <ul>
+              <li><a href="../index.html">Rageni Agro Resort Pvt. Ltd.</a></li>
+              <li><a href="silver_palace.html">The Silver Palace</a></li>
+              <!-- Add other related units if desired -->
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Contact Info</h3>
+            <p>
+              <i class="fa-light fa-phone"></i>&nbsp; +977 9857622800
+            </p>
+            <p>
+              <i class="fa-light fa-envelope"></i>&nbsp; info@kgsuppliers.com
+            </p>
+            <p><i class="fa-light fa-clock"></i>&nbsp; Available 24/7</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 KG Suppliers (A unit of Rageni Agro Resort Pvt. Ltd.). All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top">
+      <i class="fa-solid fa-angle-up"></i>
+    </button>
+
+    <script src="kg_suppliers.js"></script>
+  </body>
+</html>

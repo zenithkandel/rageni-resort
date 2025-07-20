@@ -283,6 +283,13 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.querySelector(".lightbox-img");
 const lightboxClose = document.querySelector(".lightbox-close");
 
+// NEW: Gallery Navigation Elements
+const lightboxPrev = document.querySelector(".lightbox-prev"); // Assuming you'll add this button in HTML
+const lightboxNext = document.querySelector(".lightbox-next"); // Assuming you'll add this button in HTML
+
+let galleryImages = []; // Store the fetched images
+let currentImageIndex = -1; // Track the currently viewed image index
+
 // Hide gallery section by default in CSS, or add a class here
 // For robustness, add a class in CSS like .gallery-hidden { display: none; }
 // and then remove it if images load.
@@ -296,21 +303,19 @@ async function loadGalleryImages() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const images = await response.json();
+        galleryImages = await response.json(); // Assign fetched images to galleryImages array
 
-        if (images.length === 0) {
+        if (galleryImages.length === 0) {
             console.warn("images.json is empty or contains no images.");
-            // galleryGrid.innerHTML = '<p style="text-align: center; color: var(--text-light);">No gallery images available.</p>';
-            if (gallerySection) gallerySection.style.display = "none"; // Keep hidden if empty
-            return; // Exit if no images
+            if (gallerySection) gallerySection.style.display = "none";
+            return;
         }
 
-        // Only show the gallery section if images are successfully loaded
         if (gallerySection) {
-            gallerySection.style.display = "block"; // Show the section
+            gallerySection.style.display = "block";
         }
 
-        images.forEach((image) => {
+        galleryImages.forEach((image, index) => { // Added index to forEach
             const galleryItem = document.createElement("div");
             galleryItem.classList.add("gallery-item");
 
@@ -323,20 +328,38 @@ async function loadGalleryImages() {
             galleryGrid.appendChild(galleryItem);
 
             galleryItem.addEventListener("click", () => {
-                lightboxImg.src = image.src;
-                lightboxImg.alt = image.alt;
+                currentImageIndex = index; // Set current index when an image is clicked
+                showImageInLightbox(currentImageIndex);
                 lightbox.classList.add("active");
                 document.body.style.overflow = "hidden";
             });
         });
     } catch (error) {
         console.error("Error loading gallery images:", error);
-        // galleryGrid.innerHTML = '<p style="text-align: center; color: var(--text-light);">Failed to load gallery images. Please try again later.</p>';
-        if (gallerySection) gallerySection.style.display = "none"; // Keep hidden on error
+        if (gallerySection) gallerySection.style.display = "none";
     }
 }
 
-// Close lightbox (No changes here)
+// NEW Function: Display image in lightbox
+function showImageInLightbox(index) {
+    if (galleryImages.length === 0) return;
+
+    // Ensure index wraps around
+    if (index < 0) {
+        currentImageIndex = galleryImages.length - 1;
+    } else if (index >= galleryImages.length) {
+        currentImageIndex = 0;
+    } else {
+        currentImageIndex = index;
+    }
+
+    const imageToShow = galleryImages[currentImageIndex];
+    lightboxImg.src = imageToShow.src;
+    lightboxImg.alt = imageToShow.alt;
+}
+
+
+// Close lightbox (No changes here to existing logic, just added new event listeners)
 if (lightboxClose) {
     lightboxClose.addEventListener("click", () => {
         lightbox.classList.remove("active");
@@ -352,6 +375,36 @@ if (lightbox) {
         }
     });
 }
+
+// NEW: Lightbox navigation event listeners
+if (lightboxPrev) {
+    lightboxPrev.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent closing lightbox if clicking on arrow
+        showImageInLightbox(currentImageIndex - 1);
+    });
+}
+
+if (lightboxNext) {
+    lightboxNext.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent closing lightbox if clicking on arrow
+        showImageInLightbox(currentImageIndex + 1);
+    });
+}
+
+// Optional: Keyboard navigation for lightbox
+document.addEventListener('keydown', (e) => {
+    if (lightbox.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') {
+            showImageInLightbox(currentImageIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+            showImageInLightbox(currentImageIndex + 1);
+        } else if (e.key === 'Escape') {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+    }
+});
+
 
 // ... (Your existing JavaScript code above this section) ...
 

@@ -1575,3 +1575,25 @@ body {
         font-size: 28px;
     }
 }
+/* Styles for the "Show More Numbers" button */
+.btn-text-link {
+    background: none;
+    border: none;
+    color: #afbbeb; /* A distinct blue */
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    text-decoration: underline;
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.btn-text-link:hover {
+    color: #7b96c8; /* A darker shade of blue on hover */
+}
+
+#additionalPhoneNumbers p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

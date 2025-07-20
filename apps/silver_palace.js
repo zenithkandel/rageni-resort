@@ -1,3 +1,19 @@
+const togglePhoneNumbersBtn = document.getElementById('togglePhoneNumbers');
+const additionalPhoneNumbers = document.getElementById('additionalPhoneNumbers');
+const toggleIcon = togglePhoneNumbersBtn.querySelector('i');
+
+if (togglePhoneNumbersBtn && additionalPhoneNumbers && toggleIcon) {
+    togglePhoneNumbersBtn.addEventListener('click', function () {
+        if (additionalPhoneNumbers.style.display === 'none') {
+            additionalPhoneNumbers.style.display = 'block';
+            togglePhoneNumbersBtn.innerHTML = 'Show Less Numbers <i class="fas fa-chevron-up"></i>';
+        } else {
+            additionalPhoneNumbers.style.display = 'none';
+            togglePhoneNumbersBtn.innerHTML = 'Show More Numbers <i class="fas fa-chevron-down"></i>';
+        }
+    });
+}
+
 // Navigation functionality (No changes here)
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
@@ -823,6 +839,8 @@ if (successModal) {
         }
     });
 }
+
+
 
 // Initialize all features on page load (No changes here)
 document.addEventListener("DOMContentLoaded", () => {

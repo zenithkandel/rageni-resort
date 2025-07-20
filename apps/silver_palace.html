@@ -193,12 +193,13 @@
           A glimpse into the beautiful moments and elegant spaces at The Silver
           Palace.
         </p>
-        <div class="gallery-grid" id="gallery-grid"></div>
+        <div class="gallery-grid" id="gallery-grid">
+          </div>
       </div>
     </section>
 
     <div class="lightbox" id="lightbox">
-      <span class="lightbox-close">&times;</span>
+      <span class="lightbox-close">×</span>
       <img src="" alt="" class="lightbox-img" />
       <span class="lightbox-nav lightbox-prev"
         ><i class="fa-solid fa-chevron-left"></i
@@ -215,19 +216,21 @@
           Stay updated with our upcoming events and available dates.
         </p>
         <div class="calendar-navigation animate-on-scroll">
-          <button id="prevMonth" class="btn btn-outline">&laquo; Prev</button>
+          <button id="prevMonth" class="btn btn-outline">« Prev</button>
           <h3 id="currentMonthYear"></h3>
-          <button id="nextMonth" class="btn btn-outline">Next &raquo;</button>
+          <button id="nextMonth" class="btn btn-outline">Next »</button>
         </div>
-        <div class="calendar-grid" id="calendar-grid"></div>
+        <div class="calendar-grid" id="calendar-grid">
+          </div>
       </div>
     </section>
 
     <div class="event-details-modal modal" id="eventDetailsModal">
       <div class="modal-content animate-on-scroll">
-        <span class="event-modal-close-btn">&times;</span>
+        <span class="event-modal-close-btn">×</span>
         <h3 id="eventModalDate"></h3>
-        <div id="eventModalDetails"></div>
+        <div id="eventModalDetails">
+          </div>
         <button class="btn event-modal-book-btn">Book This Date</button>
       </div>
     </div>
@@ -266,7 +269,12 @@
             </div>
             <div>
               <label for="eventTimeTo">Time To</label>
-              <input type="time" id="eventTimeTo" name="eventTimeTo" required />
+              <input
+                type="time"
+                id="eventTimeTo"
+                name="eventTimeTo"
+                required
+              />
             </div>
           </div>
           <div class="form-group">
@@ -306,7 +314,7 @@
 
     <div class="success-modal modal" id="successModal">
       <div class="modal-content animate-on-scroll">
-        <span class="modal-close-btn">&times;</span>
+        <span class="modal-close-btn">×</span>
         <h2><i class="fa-solid fa-check-circle"></i> Booking Confirmed!</h2>
         <p>
           Thank you for your inquiry. We have received your booking request and
@@ -331,19 +339,9 @@
               grand celebrations. Experience unparalleled luxury and service.
             </p>
             <div class="social-links">
-              <a
-                href="https://www.facebook.com/profile.php?id=100066467561990"
-                target="_blank"
-                aria-label="Facebook"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a
-                href="https://www.tiktok.com/@the.silver.palace"
-                target="_blank"
-                aria-label="TikTok"
-                ><i class="fab fa-tiktok"></i
-              ></a>
-            </div>
+              <a href="https://www.facebook.com/profile.php?id=100066467561990" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.tiktok.com/@the.silver.palace" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              </div>
           </div>
           <div class="footer-links animate-on-scroll">
             <h3>Quick Links</h3>
@@ -357,36 +355,30 @@
           </div>
           <div class="footer-contact animate-on-scroll">
             <h3>Contact Us</h3>
-            <p>
-              <i class="fas fa-map-marker-alt"></i> The Silver Palace, Baglung
-              Municipality-4, Upallachour, Near Army Camp and Ward office
-            </p>
-            <p><i class="fas fa-phone"></i> 068-520</p>
-            <p><i class="fas fa-phone"></i> 9857637455 (Mina)</p>
-            <p><i class="fas fa-phone"></i> 9857622800 (Naresh)</p>
-            <p><i class="fas fa-phone"></i> 9857091091 (Dipendra)</p>
-            <p><i class="fas fa-phone"></i> 9847637455 (Angel)</p>
-            <p><i class="fas fa-phone"></i> 9846753131 (Adam)</p>
+            <p><i class="fas fa-map-marker-alt"></i> The Silver Palace, Baglung Municipality-4, Upallachour, Near Army Camp and Ward office</p>
+            
+            <p><i class="fas fa-phone"></i> General: 068-520</p>
+            <button id="togglePhoneNumbers" class="btn-text-link">Show More Numbers <i class="fas fa-chevron-down"></i></button>
+            <div id="additionalPhoneNumbers" style="display: none;">
+                <p><i class="fas fa-phone"></i> Mina: 9857637455</p>
+                <p><i class="fas fa-phone"></i> Naresh: 9857622800</p>
+                <p><i class="fas fa-phone"></i> Dipendra: 9857091091</p>
+                <p><i class="fas fa-phone"></i> Angel: 9847637455</p>
+                <p><i class="fas fa-phone"></i> Adam: 9846753131</p>
+            </div>
+            
             <p><i class="fas fa-envelope"></i> rageniagroresort@gmail.com</p>
             <p><i class="fas fa-envelope"></i> thesilverpalace3@gmail.com</p>
           </div>
           <div class="footer-newsletter animate-on-scroll">
             <h3>Location Map</h3>
             <div class="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3513.7354805964574!2d83.59747971121301!3d28.276036600079255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995e34b21f91e25%3A0xcf6e3d80d22bd7b8!2sTHE%20SILVER%20PALACE!5e0!3m2!1sen!2snp!4v1753027868758!5m2!1sen!2snp"
-                width="600"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3513.7354805964574!2d83.59747971121301!3d28.276036600079255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995e34b21f91e25%3A0xcf6e3d80d22bd7b8!2sTHE%20SILVER%20PALACE!5e0!3m2!1sen!2snp!4v1753027868758!5m2!1sen!2snp" width="300" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2024 The Silver Palace. All rights reserved.</p>
+          <p>© 2024 The Silver Palace. All rights reserved.</p>
         </div>
       </div>
     </footer>

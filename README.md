@@ -1,4 +1,4 @@
-# ✨ Rageni Agro Resort Pvt. Ltd. - Digital Ecosystem ✨
+# Rageni Agro Resort Pvt. Ltd. - Digital Ecosystem
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)

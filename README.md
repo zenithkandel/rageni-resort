@@ -139,8 +139,8 @@ The digital ecosystem comprises:
 1.  **Clone/Download:**
 
     ```bash
-    git clone [Your Repository URL Here - if applicable]
-    cd rageni-agro-resort-project
+    git clone https://github.com/zenith-001/rageni-resort
+    cd rageni-resort
 
     ```
 

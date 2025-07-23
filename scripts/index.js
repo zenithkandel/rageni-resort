@@ -1,4 +1,4 @@
-    // Navigation functionality
+// Navigation functionality
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -124,7 +124,7 @@ scrollTopBtn.addEventListener('click', () => {
 const contactForm = document.getElementById('contact-form');
 
 contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     // Simple form validation and submission
     const formData = new FormData(contactForm);
@@ -133,10 +133,12 @@ contactForm.addEventListener('submit', (e) => {
     for (let [key, value] of formData.entries()) {
         formObject[key] = value;
     }
-
+    setTimeout(() => {
+        showModal();
+        // alert('Thank you for your message! We will get back to you soon.');
+        contactForm.reset();
+    }, 1500);
     // Simulate form submission
-    alert('Thank you for your message! We will get back to you soon.');
-    contactForm.reset();
 });
 
 // Add hover effects to service cards
@@ -190,29 +192,29 @@ window.addEventListener('load', () => {
 });
 
 function addStaggerAnimation() {
-  const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
 
-  animateElements.forEach((element, index) => {
-    // Add staggered delay when element becomes visible
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          element.classList.add('in-view');
-          element.style.transitionDelay = `${index * 0.1}s`;
+    animateElements.forEach((element, index) => {
+        // Add staggered delay when element becomes visible
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    element.classList.add('in-view');
+                    element.style.transitionDelay = `${index * 0.1}s`;
 
-          // Optional: remove observer after animation
-          observer.unobserve(entry.target);
+                    // Optional: remove observer after animation
+                    observer.unobserve(entry.target);
 
-          // Optional: reset delay after animation so hover is normal
-          setTimeout(() => {
-            element.style.transitionDelay = '0s';
-          }, 400 + index * 100); // match the animation duration + delay
-        }
-      });
-    }, { threshold: 0.1 });
+                    // Optional: reset delay after animation so hover is normal
+                    setTimeout(() => {
+                        element.style.transitionDelay = '0s';
+                    }, 400 + index * 100); // match the animation duration + delay
+                }
+            });
+        }, { threshold: 0.1 });
 
-    observer.observe(element);
-  });
+        observer.observe(element);
+    });
 }
 
 addStaggerAnimation();
@@ -252,4 +254,63 @@ const performanceObserver = new IntersectionObserver((entries) => {
 // Observe animated elements for performance
 document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right').forEach(el => {
     performanceObserver.observe(el);
+});
+
+const successModal = document.getElementById('successModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const okButton = document.getElementById('okButton'); // For demonstration
+let autoHideTimeout; // To store the timeout ID
+
+// Initialize confetti
+const confettiSettings = { target: 'confetti-canvas', max: 80, size: 1.2, props: ['circle', 'square', 'triangle', 'line'], colors: [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]], clock: 25, start_from_cover: false };
+const confetti = new ConfettiGenerator(confettiSettings);
+
+// Function to show the modal
+function showModal() {
+    successModal.classList.remove('hidden');
+    successModal.classList.add('flex'); // Use flex to center content
+    // Trigger fade-in animations
+    successModal.querySelector('.backdrop-blur-sm').classList.add('animate-fade-in');
+    successModal.querySelector('.relative').classList.add('animate-fade-in');
+
+    // Start confetti
+    confetti.render();
+
+    // Set timeout to auto-hide the modal after 5 seconds
+    autoHideTimeout = setTimeout(hideModal, 5000);
+}
+
+// Function to hide the modal
+function hideModal() {
+    // Clear any existing auto-hide timeout
+    clearTimeout(autoHideTimeout);
+
+    // Trigger fade-out animations
+    successModal.querySelector('.backdrop-blur-sm').classList.remove('animate-fade-in');
+    successModal.querySelector('.relative').classList.remove('animate-fade-in');
+    successModal.querySelector('.backdrop-blur-sm').classList.add('animate-fade-out');
+    successModal.querySelector('.relative').classList.add('animate-fade-out');
+
+    // Stop confetti
+    confetti.clear();
+
+    // Hide the modal after the animation completes
+    setTimeout(() => {
+        successModal.classList.add('hidden');
+        successModal.classList.remove('flex');
+        // Remove fade-out classes for next time
+        successModal.querySelector('.backdrop-blur-sm').classList.remove('animate-fade-out');
+        successModal.querySelector('.relative').classList.remove('animate-fade-out');
+    }, 500); // Match this with the CSS animation duration
+}
+
+// Event listeners
+closeModalBtn.addEventListener('click', hideModal);
+okButton.addEventListener('click', hideModal); // If you want the OK button to close it too
+
+// Close modal when clicking outside the content box
+successModal.addEventListener('click', (event) => {
+    if (event.target === successModal.querySelector('.backdrop-blur-sm')) {
+        hideModal();
+    }
 });

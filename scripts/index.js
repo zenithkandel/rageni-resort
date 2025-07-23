@@ -134,11 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {// Navigation functionality
         for (let [key, value] of formData.entries()) {
             formObject[key] = value;
         }
-        setTimeout(() => {
-            showModal();
-            // alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        }, 1500);
         // Simulate form submission
     });
 
@@ -316,7 +311,4 @@ document.addEventListener('DOMContentLoaded', () => {// Navigation functionality
                 }
             });
 
-            // For demonstration purposes: show modal when button is clicked
-            // showModalBtn.addEventListener('click', showModal);
-            showModal()
 });

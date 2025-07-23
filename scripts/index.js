@@ -124,7 +124,7 @@ scrollTopBtn.addEventListener('click', () => {
 const contactForm = document.getElementById('contact-form');
 
 contactForm.addEventListener('submit', (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     // Simple form validation and submission
     const formData = new FormData(contactForm);

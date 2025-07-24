@@ -802,7 +802,7 @@ setTimeout(() => {
                     successModal.classList.remove("active", "closing");
                     document.body.style.overflow = ""; // Restore body scrolling
                 }, 300); // Match fadeOut animation duration
-            }, 3300); // Auto-close after 3 seconds
+            }, 7300); // Auto-close after 3 seconds
 
             bookingForm.reset();
         } else {

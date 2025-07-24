@@ -105,6 +105,97 @@ a{
     }
 }
 
+/* General Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001; /* Above lightbox but below any super high z-index elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal.closing {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-hover);
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(20px);
+    animation: slideInUp 0.3s ease-out forwards;
+}
+
+.modal-content.animate-on-scroll {
+    opacity: 1; /* Override animate-on-scroll's initial opacity */
+    transform: translateY(0); /* Override animate-on-scroll's initial transform */
+}
+
+.modal-close-btn,
+.event-modal-close-btn {
+    color: var(--text-light);
+    font-size: 30px;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus,
+.event-modal-close-btn:hover,
+.event-modal-close-btn:focus {
+    color: var(--accent-color);
+}
+
+.success-modal h2,
+.event-details-modal h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.success-modal h2 .fa-check-circle {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.success-modal p,
+.event-details-modal p {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Event Details Modal Specifics */
+.event-details-modal .modal-content {
+    max-width: 600px;
+    padding: 30px;
+}
+
 /* Utility Classes (Copied from index.css) */
 .container {
     max-width: 1200px;

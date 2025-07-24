@@ -134,39 +134,57 @@ if (scrollTopBtn) {
 }
 
 
-// Order form handling (formerly Contact form)
-const orderForm = document.getElementById('order-form');
+// --- NEW FEATURE: ORDER FORM HANDLING WITH MODAL ---
+const orderForm = document.getElementById("order-form");
+const successModal = document.getElementById("successModal");
+const modalCloseBtn = document.querySelector(".modal-close-btn");
 
-if (orderForm) {
-    orderForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+orderForm.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
 
-        // Simple form validation
-        const liquorName = document.getElementById('liquorName').value;
-        const quantity = document.getElementById('quantity').value;
-        const phoneNumber = document.getElementById('phone').value;
-        const additionalInfo = document.getElementById('additionalInfo').value;
+    // Add Unix timestamp (seconds)
+    formData.append('timestamp', Math.floor(Date.now() / 1000));
 
-        if (!liquorName || !quantity || !phoneNumber) {
-            // Replaced alert with a more user-friendly message box if needed, or simply prevent submission
-            // For now, using console.error as per previous instructions to avoid alert()
-            console.error('Please fill in all required fields: Liquor Name, Quantity, and Phone Number.');
-            return;
-        }
 
-        // Simulate form submission (in a real application, send this data to a server)
-        console.log('Order Form Submitted:', {
-            liquorName,
-            quantity,
-            phoneNumber,
-            additionalInfo
+    // Optional: convert FormData to an object to log values clearly
+    const formObject = Object.fromEntries(formData.entries());
+    console.log('Form data submitted:', formObject);
+
+    try {
+        const response = await fetch('../scripts/handlers/liquor_upload.php', {
+            method: 'POST',
+            body: formData
         });
 
-        // Provide user feedback (e.g., a simple message below the form or a modal)
-        alert('Thank you for your order! We will contact you soon.'); // Using alert for immediate feedback as no modal specified
-        orderForm.reset(); // Clear the form
-    });
-}
+        const result = await response.text();
+
+        if (result.trim() === 'success') {  // trim() to avoid whitespace issues
+setTimeout(() => {
+    successModal.classList.add("active");
+}, 300); // Show modal after a short delay for better UX
+            document.body.style.overflow = "hidden";
+
+            // NEW: Add fade-out animation for success modal
+            setTimeout(() => {
+                successModal.classList.add("closing"); // Add closing class to trigger fade-out
+                // After fade-out animation, remove 'active' and 'closing' classes
+                setTimeout(() => {
+                    successModal.classList.remove("active", "closing");
+                    document.body.style.overflow = ""; // Restore body scrolling
+                }, 300); // Match fadeOut animation duration
+            }, 7300); // Auto-close after 3 seconds
+
+            orderForm.reset();
+        } else {
+            throw new Error('Form submission failed: ' + result);
+        }
+    } catch (error) {
+        alert('Error submitting form: ' + error.message);
+    }
+
+});
 
 
 // Typing effect for hero subtitle (kept as is, but can be removed if static text is preferred)

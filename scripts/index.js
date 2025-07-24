@@ -130,21 +130,28 @@ document.addEventListener('DOMContentLoaded', () => {// Navigation functionality
         const form = e.target;
         const formData = new FormData(form);
 
+        // Optional: convert FormData to an object to log values clearly
+        const formObject = Object.fromEntries(formData.entries());
+        console.log('Form data submitted:', formObject);
+
         try {
-            const response = await fetch('handlers/message_upload.php', {
+            const response = await fetch('scripts/handlers/message_upload.php', {
                 method: 'POST',
                 body: formData
             });
 
-            const result = await response.status(); 
-            showModal();
+            const result = await response.text();
+
+            if (result.trim() === 'success') {  // trim() to avoid whitespace issues
+                showModal();
+            } else {
+                throw new Error('Form submission failed: ' + result);
+            }
         } catch (error) {
             alert('Error submitting form: ' + error.message);
         }
-
-        console.log(formData, formObject);
-        // Simulate form submission
     });
+
 
     // Add hover effects to service cards
     const serviceCards = document.querySelectorAll('.service-card');

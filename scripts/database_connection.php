@@ -9,9 +9,9 @@ $conn = new mysqli($host, $username, $password, $database);
 
 // Check connection
 if ($conn->connect_error) {
-    echo "<script>console.log('unable to make a connection with the database :(')</script>";
+    // echo "<script>console.log('unable to make a connection with the database :(')</script>";
     die("Connection failed: " . $conn->connect_error);
 }
 else{
-    echo "<script>console.log('successfully made a connection with the database :)')</script>";
+    // echo "<script>console.log('successfully made a connection with the database :)')</script>";
 }

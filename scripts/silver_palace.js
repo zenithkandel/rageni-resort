@@ -769,38 +769,6 @@ const modalCloseBtn = document.querySelector(".modal-close-btn");
 
 bookingForm.addEventListener("submit", async function (e) {
     e.preventDefault();
-
-    const eventName = document.getElementById("eventName").value;
-    const eventDate = document.getElementById("eventDate").value;
-    const eventTimeFrom = document.getElementById("eventTimeFrom").value;
-    const eventTimeTo = document.getElementById("eventTimeTo").value;
-    const phoneNumber = document.getElementById("phone").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-
-    if (
-        !eventName ||
-        !eventDate ||
-        !eventTimeFrom ||
-        !eventTimeTo ||
-        !phoneNumber ||
-        !email
-    ) {
-        alert("Please fill in all required fields.");
-        return;
-    }
-
-    console.log("Booking Data:", {
-        eventName,
-        eventDate,
-        eventTimeFrom,
-        eventTimeTo,
-        phoneNumber,
-        email,
-        message,
-    });
-
-
     const form = e.target;
     const formData = new FormData(form);
 
@@ -813,7 +781,7 @@ bookingForm.addEventListener("submit", async function (e) {
     console.log('Form data submitted:', formObject);
 
     try {
-        const response = await fetch('scripts/handlers/event_upload.php', {
+        const response = await fetch('../scripts/handlers/event_upload.php', {
             method: 'POST',
             body: formData
         });
@@ -821,7 +789,22 @@ bookingForm.addEventListener("submit", async function (e) {
         const result = await response.text();
 
         if (result.trim() === 'success') {  // trim() to avoid whitespace issues
-            showModal();
+setTimeout(() => {
+    successModal.classList.add("active");
+}, 300); // Show modal after a short delay for better UX
+            document.body.style.overflow = "hidden";
+
+            // NEW: Add fade-out animation for success modal
+            setTimeout(() => {
+                successModal.classList.add("closing"); // Add closing class to trigger fade-out
+                // After fade-out animation, remove 'active' and 'closing' classes
+                setTimeout(() => {
+                    successModal.classList.remove("active", "closing");
+                    document.body.style.overflow = ""; // Restore body scrolling
+                }, 300); // Match fadeOut animation duration
+            }, 3300); // Auto-close after 3 seconds
+
+            bookingForm.reset();
         } else {
             throw new Error('Form submission failed: ' + result);
         }

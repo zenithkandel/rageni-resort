@@ -767,7 +767,7 @@ const bookingForm = document.getElementById("booking-form");
 const successModal = document.getElementById("successModal");
 const modalCloseBtn = document.querySelector(".modal-close-btn");
 
-bookingForm.addEventListener("submit", (e) => {
+bookingForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const eventName = document.getElementById("eventName").value;
@@ -800,20 +800,35 @@ bookingForm.addEventListener("submit", (e) => {
         message,
     });
 
-    successModal.classList.add("active");
-    document.body.style.overflow = "hidden";
 
-    // NEW: Add fade-out animation for success modal
-    setTimeout(() => {
-        successModal.classList.add("closing"); // Add closing class to trigger fade-out
-        // After fade-out animation, remove 'active' and 'closing' classes
-        setTimeout(() => {
-            successModal.classList.remove("active", "closing");
-            document.body.style.overflow = ""; // Restore body scrolling
-        }, 300); // Match fadeOut animation duration
-    }, 3000); // Auto-close after 3 seconds
+    const form = e.target;
+    const formData = new FormData(form);
 
-    bookingForm.reset();
+    // Add Unix timestamp (seconds)
+    formData.append('timestamp', Math.floor(Date.now() / 1000));
+
+
+    // Optional: convert FormData to an object to log values clearly
+    const formObject = Object.fromEntries(formData.entries());
+    console.log('Form data submitted:', formObject);
+
+    try {
+        const response = await fetch('scripts/handlers/event_upload.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.text();
+
+        if (result.trim() === 'success') {  // trim() to avoid whitespace issues
+            showModal();
+        } else {
+            throw new Error('Form submission failed: ' + result);
+        }
+    } catch (error) {
+        alert('Error submitting form: ' + error.message);
+    }
+
 });
 
 // Close modal on click of 'x' button (for success modal)

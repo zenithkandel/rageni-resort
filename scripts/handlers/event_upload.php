@@ -3,10 +3,12 @@ include_once '../database_connection.php';
 extract($_POST);
 
 // $name,$email,$phone,$subject,$message;
-$name = mysqli_real_escape_string($conn, $name ?? '');
-$email = mysqli_real_escape_string($conn, $email ?? '');
+$eventName = mysqli_real_escape_string($conn, $eventName ?? '');
+$eventDate = mysqli_real_escape_string($conn, $eventDate ?? '');
+$eventTimeForm = mysqli_real_escape_string($conn, $eventTimeForm ?? '');
+$eventTimeTo = mysqli_real_escape_string($conn, $eventTimeTo ?? '');
 $phone = mysqli_real_escape_string($conn, $phone ?? '');
-$subject = mysqli_real_escape_string($conn, $subject ?? '');
+$email = mysqli_real_escape_string($conn, $email ?? '');
 $message = mysqli_real_escape_string($conn, $message ?? '');
 $timestamp = mysqli_real_escape_string($conn, $timestamp ?? '');
 $sql = "INSERT INTO form_message (name, email, phone, subject, message,timestamp,status) VALUES ('$name', '$email', '$phone', '$subject', '$message','$timestamp','pending')";

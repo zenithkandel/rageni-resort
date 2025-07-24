@@ -124,16 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {// Navigation functionality
     // Contact form handling
     const contactForm = document.getElementById('contact-form');
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        // Simple form validation and submission
-        const formData = new FormData(contactForm);
-        const formObject = {};
+        const form = e.target;
+        const formData = new FormData(form);
 
-        for (let [key, value] of formData.entries()) {
-            formObject[key] = value;
+        try {
+            const response = await fetch('handlers/message_upload.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.status(); 
+            showModal();
+        } catch (error) {
+            alert('Error submitting form: ' + error.message);
         }
+
+        console.log(formData, formObject);
         // Simulate form submission
     });
 
@@ -253,62 +262,62 @@ document.addEventListener('DOMContentLoaded', () => {// Navigation functionality
     });
 
     const successModal = document.getElementById('successModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const okButton = document.getElementById('okButton');
-            const showModalBtn = document.getElementById('showModalBtn'); // For demonstration
-            let autoHideTimeout; // To store the timeout ID
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const okButton = document.getElementById('okButton');
+    const showModalBtn = document.getElementById('showModalBtn'); // For demonstration
+    let autoHideTimeout; // To store the timeout ID
 
-            // Initialize confetti
-            const confettiSettings = { target: 'confetti-canvas', max: 80, size: 1.2, props: ['circle', 'square', 'triangle', 'line'], colors: [[165,104,246],[230,61,135],[0,199,228],[253,214,126]], clock: 25, start_from_cover: false };
-            const confetti = new ConfettiGenerator(confettiSettings);
+    // Initialize confetti
+    const confettiSettings = { target: 'confetti-canvas', max: 80, size: 1.2, props: ['circle', 'square', 'triangle', 'line'], colors: [[165, 104, 246], [230, 61, 135], [0, 199, 228], [253, 214, 126]], clock: 25, start_from_cover: false };
+    const confetti = new ConfettiGenerator(confettiSettings);
 
-            // Function to show the modal
-            function showModal() {
-                successModal.style.display = 'flex'; // Show the modal
-                // Trigger fade-in animations by adding classes
-                successModal.querySelector('.modal-overlay').classList.add('animate-fade-in');
-                successModal.querySelector('.modal-content').classList.add('animate-fade-in');
+    // Function to show the modal
+    function showModal() {
+        successModal.style.display = 'flex'; // Show the modal
+        // Trigger fade-in animations by adding classes
+        successModal.querySelector('.modal-overlay').classList.add('animate-fade-in');
+        successModal.querySelector('.modal-content').classList.add('animate-fade-in');
 
-                // Start confetti
-                confetti.render();
+        // Start confetti
+        confetti.render();
 
-                // Set timeout to auto-hide the modal after 5 seconds
-                autoHideTimeout = setTimeout(hideModal, 5000);
-            }
+        // Set timeout to auto-hide the modal after 5 seconds
+        autoHideTimeout = setTimeout(hideModal, 5000);
+    }
 
-            // Function to hide the modal
-            function hideModal() {
-                // Clear any existing auto-hide timeout
-                clearTimeout(autoHideTimeout);
+    // Function to hide the modal
+    function hideModal() {
+        // Clear any existing auto-hide timeout
+        clearTimeout(autoHideTimeout);
 
-                // Trigger fade-out animations by adding classes and removing fade-in
-                successModal.querySelector('.modal-overlay').classList.remove('animate-fade-in');
-                successModal.querySelector('.modal-content').classList.remove('animate-fade-in');
-                successModal.querySelector('.modal-overlay').classList.add('animate-fade-out');
-                successModal.querySelector('.modal-content').classList.add('animate-fade-out');
+        // Trigger fade-out animations by adding classes and removing fade-in
+        successModal.querySelector('.modal-overlay').classList.remove('animate-fade-in');
+        successModal.querySelector('.modal-content').classList.remove('animate-fade-in');
+        successModal.querySelector('.modal-overlay').classList.add('animate-fade-out');
+        successModal.querySelector('.modal-content').classList.add('animate-fade-out');
 
-                // Stop confetti
-                confetti.clear();
+        // Stop confetti
+        confetti.clear();
 
-                // Hide the modal after the animation completes
-                setTimeout(() => {
-                    successModal.style.display = 'none'; // Hide the modal
-                    // Remove fade-out classes for next time
-                    successModal.querySelector('.modal-overlay').classList.remove('animate-fade-out');
-                    successModal.querySelector('.modal-content').classList.remove('animate-fade-out');
-                }, 500); // Match this with the CSS animation duration
-            }
+        // Hide the modal after the animation completes
+        setTimeout(() => {
+            successModal.style.display = 'none'; // Hide the modal
+            // Remove fade-out classes for next time
+            successModal.querySelector('.modal-overlay').classList.remove('animate-fade-out');
+            successModal.querySelector('.modal-content').classList.remove('animate-fade-out');
+        }, 500); // Match this with the CSS animation duration
+    }
 
-            // Event listeners
-            closeModalBtn.addEventListener('click', hideModal);
-            okButton.addEventListener('click', hideModal); // If you want the OK button to close it too
+    // Event listeners
+    closeModalBtn.addEventListener('click', hideModal);
+    okButton.addEventListener('click', hideModal); // If you want the OK button to close it too
 
-            // Close modal when clicking outside the content box
-            successModal.addEventListener('click', (event) => {
-                // Check if the click target is the overlay itself, not a child of the content box
-                if (event.target === successModal.querySelector('.modal-overlay')) {
-                    hideModal();
-                }
-            });
+    // Close modal when clicking outside the content box
+    successModal.addEventListener('click', (event) => {
+        // Check if the click target is the overlay itself, not a child of the content box
+        if (event.target === successModal.querySelector('.modal-overlay')) {
+            hideModal();
+        }
+    });
 
 });

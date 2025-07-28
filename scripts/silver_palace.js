@@ -515,7 +515,7 @@ function renderCalendar(month, year) {
             dayEvents.events.slice(0, 4).forEach((event) => {
                 const eventItem = document.createElement("div");
                 eventItem.classList.add("event-item");
-                eventItem.textContent = event.time;
+                eventItem.textContent = event.time+ " - " + event.name;
                 eventListDiv.appendChild(eventItem);
             });
             dayDiv.appendChild(eventListDiv);
@@ -543,7 +543,8 @@ function renderCalendar(month, year) {
                 dayEvents.events.forEach((event) => {
                     const detailItem = document.createElement("p");
                     detailItem.classList.add("event-detail-item");
-                    detailItem.innerHTML = `<i class="fa-regular fa-clock"></i> ${event.time} - ${event.name}`;
+                    detailItem.innerHTML = `<i class="fa-regular fa-clock"></i> ${event.time} - ${event.name}
+                        <br><br>${event.email}`;
                     eventModalDetails.appendChild(detailItem);
                 });
 

@@ -315,7 +315,7 @@ if (gallerySection) {
 
 async function loadGalleryImages() {
     try {
-        const response = await fetch("../data/images.json");
+        const response = await fetch("../scripts/data/images.php");
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -336,8 +336,8 @@ async function loadGalleryImages() {
             galleryItem.classList.add("gallery-item");
 
             const img = document.createElement("img");
-            img.src = image.src;
-            img.alt = image.alt;
+            img.src = image.img_location;
+            img.alt = image.alt_text;
             img.loading = "lazy";
 
             galleryItem.appendChild(img);
@@ -370,8 +370,8 @@ function showImageInLightbox(index) {
     }
 
     const imageToShow = galleryImages[currentImageIndex];
-    lightboxImg.src = imageToShow.src;
-    lightboxImg.alt = imageToShow.alt;
+    lightboxImg.src = imageToShow.img_location;
+    lightboxImg.alt = imageToShow.alt_text;
 }
 
 
@@ -447,7 +447,7 @@ let eventsData = [];
 
 async function fetchEvents() {
     try {
-        const response = await fetch("../data/events_list.json");
+        const response = await fetch("../scripts/data/events_list.php");
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

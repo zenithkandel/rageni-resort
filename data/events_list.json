@@ -1,4 +1,0 @@
-[
-  { "date": "2025-07-25", "events": [ { "id": "evt-initial1", "name": "Resort Open Day", "time": "10:00", "description": "Special open day for local community.", "status": "accepted" } ] },
-  { "date": "2025-08-01", "events": [ { "id": "evt-initial2", "name": "Farmers Meetup", "time": "14:00", "description": "Meeting for local organic farmers.", "status": "accepted" } ] }
-]

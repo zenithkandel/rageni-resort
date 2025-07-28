@@ -541,11 +541,18 @@ function renderCalendar(month, year) {
                 eventModalDetails.innerHTML = ""; // Clear previous details
 
                 dayEvents.events.forEach((event) => {
-                    const detailItem = document.createElement("p");
+                    let detailItem = document.createElement("p");
                     detailItem.classList.add("event-detail-item");
-                    detailItem.innerHTML = `<i class="fa-regular fa-clock"></i> ${event.time} - ${event.name}
-                        <br><br>${event.email}`;
+                    detailItem.innerHTML = `
+                        <i class="fa-regular fa-clock"></i> ${event.time} - ${event.name}`;
                     eventModalDetails.appendChild(detailItem);
+                    detailItem = document.createElement("p");
+
+                    detailItem.innerHTML = `
+                        <i class="fa-regular fa-envelope"></i>  ${event.email}`;
+                    eventModalDetails.appendChild(detailItem);
+
+                    
                 });
 
                 eventDetailsModal.classList.add("active");

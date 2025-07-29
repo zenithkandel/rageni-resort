@@ -1,14 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginPage = document.getElementById('login-page');
-    const dashboardPage = document.getElementById('dashboard-page');
-    const loginForm = document.getElementById('login-form');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    const loginError = document.getElementById('login-error');
-    const logoutBtn = document.getElementById('logout-btn');
     const sidebarNavItems = document.querySelectorAll('.sidebar-nav .nav-item');
     const currentSectionTitle = document.getElementById('current-section-title');
     const dashboardSections = document.querySelectorAll('.dashboard-section');
+    const dashboardPage = document.getElementById('dashboard-page');
 
     // --- Data Storage (In-Memory) ---
     // IMPORTANT: Data stored here will be LOST on page refresh.
@@ -19,49 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let calendarEventsData = [];
     let galleryImagesData = [];
 
-    // --- Authentication ---
-    const ADMIN_USERNAME = 'admin';
-    const ADMIN_PASSWORD = 'password123'; // Replace with a strong password in a real app!
-
-    function checkAuth() {
-        if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
-            showDashboard();
-        } else {
-            showLoginPage();
-        }
-    }
-
-    function showLoginPage() {
-        loginPage.classList.remove('hidden');
-        dashboardPage.classList.add('hidden');
-        loginError.textContent = '';
-        loginForm.reset();
-    }
-
     function showDashboard() {
-        loginPage.classList.add('hidden');
         dashboardPage.classList.remove('hidden');
         loadAllData(); // Load data when dashboard is shown
         showSection('messages'); // Default to messages section
     }
+    showDashboard();
 
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-
-        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-            sessionStorage.setItem('isAdminLoggedIn', 'true');
-            showDashboard();
-        } else {
-            loginError.textContent = 'Invalid username or password.';
-        }
-    });
-
-    logoutBtn.addEventListener('click', () => {
-        sessionStorage.removeItem('isAdminLoggedIn');
-        showLoginPage();
-    });
 
     // --- Navigation ---
     sidebarNavItems.forEach(item => {
@@ -100,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadAllData() {
-        messagesData = await loadJSON('../data/messages.json');
-        bookingOrdersData = await loadJSON('../data/booking_orders.json');
-        liquorOrdersData = await loadJSON('../data/liquor_orders.json');
-        calendarEventsData = await loadJSON('../data/events_list.json');
-        galleryImagesData = await loadJSON('../data/images.json');
+        messagesData = await loadJSON('../scripts/data/messages.php');
+        bookingOrdersData = await loadJSON('../scripts/data/booking_orders.php');
+        liquorOrdersData = await loadJSON('../scripts/data/liquor_orders.php');
+        calendarEventsData = await loadJSON('../scripts/data/events_list.php');
+        galleryImagesData = await loadJSON('../scripts/data/images.php');
 
         renderMessages();
         renderBookings();
@@ -561,6 +519,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Initial Check ---
-    checkAuth();
 });

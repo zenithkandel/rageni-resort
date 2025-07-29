@@ -10,6 +10,7 @@
             <th>Email</th>
             <th>Message</th>
             <th>Status</th>
+            <th>Timestamp</th>
             <th>Action</th>
         </tr>
     </thead>

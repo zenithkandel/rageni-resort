@@ -104,4 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const calendarModal = document.getElementById('calendar-modal');
+    const closeButtons = document.querySelectorAll('.close-btn');
+
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal');
+            modal.style.display = 'none';
+        });
+    });
+
+    window.addEventListener('click', e => {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
+        }
+    });
 });

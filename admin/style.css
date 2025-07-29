@@ -282,11 +282,11 @@ tbody tr:hover {
 
 .modal-content {
     background-color: var(--white);
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 2rem;
     border-radius: var(--border-radius);
     width: 80%;
-    max-width: 500px;
+    max-width: 600px;
     box-shadow: var(--shadow);
     animation: slideIn 0.3s ease;
 }
@@ -297,6 +297,52 @@ tbody tr:hover {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.calendar th, .calendar td {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+}
+
+.calendar th {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.calendar td {
+    height: 120px;
+    vertical-align: top;
+    transition: var(--transition);
+}
+
+.calendar td:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.event {
+    background-color: var(--secondary-color);
+    color: var(--text-dark);
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.event:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 @keyframes fadeIn {

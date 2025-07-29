@@ -120,4 +120,20 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.style.display = 'none';
         }
     });
+
+    const galleryEditButtons = document.querySelectorAll('.action-btn.edit');
+    const galleryModal = document.getElementById('gallery-modal');
+    const galleryIdInput = document.getElementById('modal-gallery-id');
+    const galleryAltInput = document.getElementById('modal-gallery-alt');
+
+    galleryEditButtons.forEach(button => {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            const id = button.dataset.id;
+            const alt = button.dataset.alt;
+            galleryIdInput.value = id;
+            galleryAltInput.value = alt;
+            galleryModal.style.display = 'block';
+        });
+    });
 });

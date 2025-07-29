@@ -77,6 +77,32 @@ if (isset($_POST['save_event'])) {
     exit;
 }
 
+if (isset($_POST['edit_gallery'])) {
+    $id = $_POST['id'];
+    $alt_text = $_POST['alt_text'];
+    $image = $_FILES['image']['name'];
+
+    if (empty($image)) {
+        $query = "UPDATE gallery SET alt_text = '$alt_text', timestamp = '" . time() . "' WHERE id = $id";
+        mysqli_query($conn, $query);
+    } else {
+        $target = "../images/apps/silver_gallery/" . basename($image);
+        $img_location = "images/apps/silver_gallery/" . basename($image);
+
+        $query = "UPDATE gallery SET img_location = '$img_location', alt_text = '$alt_text', timestamp = '" . time() . "' WHERE id = $id";
+        mysqli_query($conn, $query);
+
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+            // success
+        } else {
+            $msg = "Failed to upload image";
+        }
+    }
+
+    header('Location: dashboard.php?page=gallery');
+    exit;
+}
+
 if (isset($_POST['edit_alt'])) {
     $id = $_POST['id'];
     $alt_text = $_POST['alt_text'];
@@ -242,6 +268,25 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
                     <input type="email" name="email" id="modal-email" required>
                 </div>
                 <button type="submit" name="save_event">Save Event</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Edit Gallery Item</h2>
+            <form action="dashboard.php?page=gallery&action=edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="modal-gallery-id">
+                <div class="input-group">
+                    <label for="modal-gallery-image">Image</label>
+                    <input type="file" name="image" id="modal-gallery-image">
+                </div>
+                <div class="input-group">
+                    <label for="modal-gallery-alt">Alt Text</label>
+                    <input type="text" name="alt_text" id="modal-gallery-alt" required>
+                </div>
+                <button type="submit" name="edit_gallery">Save Changes</button>
             </form>
         </div>
     </div>

@@ -24,7 +24,7 @@
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['subject']; ?></td>
                 <td><?php echo $row['message']; ?></td>
-                <td><?php echo date('Y-m-d H:i:s', $row['timestamp']); ?></td>
+                <td><?php echo date('Y-m-d h:i:s A', $row['timestamp']); ?></td>
                 <td><?php echo $row['status']; ?></td>
                 <td>
                     <a href="dashboard.php?page=messages&action=archive&id=<?php echo $row['id']; ?>" class="action-btn archive">Archive</a>

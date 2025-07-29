@@ -1,16 +1,16 @@
 <?php
 include_once '../database_connection.php';
 
-// Query to fetch all data from the booking_request table
-$query = "SELECT * FROM booking_request";
+// Query to fetch all data from the liquor_order table
+$query = "SELECT * FROM liquor_order";
 $result = mysqli_query($conn, $query);
 
 // Initialize an array to store the data
-$bookingData = [];
+$liquorData = [];
 
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $bookingData[] = $row;
+        $liquorData[] = $row;
     }
 }
 
@@ -18,7 +18,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 header('Content-Type: application/json');
 
 // Output the JSON data
-echo json_encode($bookingData, JSON_PRETTY_PRINT);
+echo json_encode($liquorData, JSON_PRETTY_PRINT);
 
 // Close connection
 mysqli_close($conn);

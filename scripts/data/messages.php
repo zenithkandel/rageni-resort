@@ -1,4 +1,5 @@
 <?php
+
 include_once '../database_connection.php';
 
 // Query to fetch all data from the form_message table
@@ -21,5 +22,6 @@ header('Content-Type: application/json');
 echo json_encode($messageData, JSON_PRETTY_PRINT);
 
 // Close connection
+
 mysqli_close($conn);
 ?>

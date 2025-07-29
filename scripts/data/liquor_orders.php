@@ -23,3 +23,4 @@ echo json_encode($liquorData, JSON_PRETTY_PRINT);
 // Close connection
 mysqli_close($conn);
 ?>
+

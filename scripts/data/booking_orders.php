@@ -1,25 +1,4 @@
-<?php
-include_once '../database_connection.php';
-
-// Query to fetch all data from the booking_request table
-$query = "SELECT * FROM booking_request";
-$result = mysqli_query($conn, $query);
-
-// Initialize an array to store the data
-$bookingData = [];
-
-if ($result && mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $bookingData[] = $row;
-    }
-}
-
-// Set header to JSON
-header('Content-Type: application/json');
-
-// Output the JSON data
-echo json_encode($bookingData, JSON_PRETTY_PRINT);
-
-// Close connection
-mysqli_close($conn);
-?>
+[
+  { "id": "book1", "eventName": "Wedding Reception", "eventDate": "2025-08-10", "timeFrom": "17:00", "timeTo": "23:00", "phone": "9876543210", "email": "wedding@example.com", "message": "Need space for 200 guests.", "status": "pending" },
+  { "id": "book2", "eventName": "Company Seminar", "eventDate": "2025-09-05", "timeFrom": "09:00", "timeTo": "17:00", "phone": "9812345678", "email": "company@example.com", "message": "Require projector and sound system.", "status": "pending" }
+]

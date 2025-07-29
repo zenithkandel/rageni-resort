@@ -58,11 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadAllData() {
-        messagesData = await loadJSON('../data/messages.php');
-        bookingOrdersData = await loadJSON('../data/booking_orders.php');
-        liquorOrdersData = await loadJSON('../data/liquor_orders.php');
-        calendarEventsData = await loadJSON('../data/events_list.php');
-        galleryImagesData = await loadJSON('../data/images.php');
+        messagesData = await loadJSON('../scripts/data/messages.php');
+        bookingOrdersData = await loadJSON('../scripts/data/booking_orders.php');
+        liquorOrdersData = await loadJSON('../scripts/data/liquor_orders.php');
+        calendarEventsData = await loadJSON('../scripts/data/events_list.php');
+        galleryImagesData = await loadJSON('../scripts/data/images.php');
+
         renderMessages();
         renderBookings();
         renderLiquorOrders();
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderMessages() {
         messagesList.innerHTML = '';
-        const filteredMessages = messagesData.filter(msg => showArchivedMessages ? msg.status === 'archived' : msg.status === 'pending');
+        const filteredMessages = messagesData.filter(msg => showArchivedMessages ? msg.archived : !msg.archived);
 
         if (filteredMessages.length === 0) {
             messagesList.innerHTML = `<p class="text-center text-gray-500 col-span-full">${showArchivedMessages ? 'No archived messages.' : 'No active messages.'}</p>`;
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageCard.classList.add('card');
             messageCard.innerHTML = `
                 <div class="card-header">
-                    <h4>From: ${msg.name} (${msg.email})</h4>
+                    <h4>From: ${msg.sender} (${msg.email})</h4>
                     <span class="text-sm text-gray-500">${new Date(msg.timestamp).toLocaleString()}</span>
                 </div>
                 <div class="card-body">
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="card-actions">
                     <button class="btn btn-secondary mark-read-btn" data-id="${msg.id}">
-                        <i class="fas fa-check"></i> ${msg.status === 'archived' ? 'Mark Unread' : 'Mark Read & Archive'}
+                        <i class="fas fa-check"></i> ${msg.archived ? 'Mark Unread' : 'Mark Read & Archive'}
                     </button>
                 </div>
             `;
@@ -112,29 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         messagesList.querySelectorAll('.mark-read-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const messageId = e.currentTarget.dataset.id;
-                const message = messagesData.find(msg => msg.id === messageId);
-                if (message) {
-                    const newStatus = message.status === 'archived' ? 'pending' : 'archived';
-                    try {
-                        const response = await fetch('../handlers/message_update.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: `id=${messageId}&status=${newStatus}`,
-                        });
-                        const result = await response.text();
-                        if (result.trim() === 'success') {
-                            message.status = newStatus;
-                            renderMessages();
-                        } else {
-                            alert('Failed to update message status.');
-                        }
-                    } catch (error) {
-                        alert('Error updating message status: ' + error);
-                    }
+                const messageIndex = messagesData.findIndex(msg => msg.id === messageId);
+                if (messageIndex !== -1) {
+                    messagesData[messageIndex].archived = !messagesData[messageIndex].archived;
+                    renderMessages(); // Re-render to reflect change
                 }
             });
         });
@@ -165,8 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
             bookingCard.classList.add('card');
             bookingCard.innerHTML = `
                 <div class="card-header">
-                    <h4>${booking.name} on ${booking.event_date}</h4>
-                    <span class="text-sm text-gray-500">${booking.time_from} - ${booking.time_to}</span>
+                    <h4>${booking.eventName} on ${booking.eventDate}</h4>
+                    <span class="text-sm text-gray-500">${booking.timeFrom} - ${booking.timeTo}</span>
                 </div>
                 <div class="card-body">
                     <p><strong>Contact:</strong> ${booking.phone} (${booking.email})</p>
@@ -192,57 +176,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         bookingsList.querySelectorAll('.accept-booking-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const bookingId = e.currentTarget.dataset.id;
-                const booking = bookingOrdersData.find(b => b.id === bookingId);
-                if (booking) {
-                    try {
-                        const response = await fetch('../handlers/booking_update.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: `id=${bookingId}&status=accepted`,
-                        });
-                        const result = await response.text();
-                        if (result.trim() === 'success') {
-                            booking.status = 'accepted';
-                            addBookingToCalendar(booking);
-                            renderBookings();
-                            renderCalendarManager();
-                        } else {
-                            alert('Failed to accept booking.');
-                        }
-                    } catch (error) {
-                        alert('Error accepting booking: ' + error);
-                    }
+                const bookingIndex = bookingOrdersData.findIndex(b => b.id === bookingId);
+                if (bookingIndex !== -1) {
+                    bookingOrdersData[bookingIndex].status = 'accepted';
+                    // Add to calendar events
+                    addBookingToCalendar(bookingOrdersData[bookingIndex]);
+                    renderBookings();
+                    renderCalendarManager(); // Update calendar view
                 }
             });
         });
 
         bookingsList.querySelectorAll('.reject-booking-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const bookingId = e.currentTarget.dataset.id;
-                const booking = bookingOrdersData.find(b => b.id === bookingId);
-                if (booking) {
-                    try {
-                        const response = await fetch('../handlers/booking_update.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: `id=${bookingId}&status=rejected`,
-                        });
-                        const result = await response.text();
-                        if (result.trim() === 'success') {
-                            booking.status = 'rejected';
-                            renderBookings();
-                        } else {
-                            alert('Failed to reject booking.');
-                        }
-                    } catch (error) {
-                        alert('Error rejecting booking: ' + error);
-                    }
+                const bookingIndex = bookingOrdersData.findIndex(b => b.id === bookingId);
+                if (bookingIndex !== -1) {
+                    bookingOrdersData[bookingIndex].status = 'rejected';
+                    renderBookings();
                 }
             });
         });
@@ -298,12 +251,12 @@ document.addEventListener('DOMContentLoaded', () => {
             orderCard.classList.add('card');
             orderCard.innerHTML = `
                 <div class="card-header">
-                    <h4>${order.name} (x${order.quantity})</h4>
+                    <h4>${order.liquorName} (x${order.quantity})</h4>
                     <span class="text-sm text-gray-500">Status: ${order.status.toUpperCase()}</span>
                 </div>
                 <div class="card-body">
                     <p><strong>Phone:</strong> ${order.phone}</p>
-                    <p><strong>Additional Info:</strong> ${order.message || 'N/A'}</p>
+                    <p><strong>Additional Info:</strong> ${order.additionalInfo || 'N/A'}</p>
                 </div>
                 <div class="card-actions">
                     ${order.status === 'pending' ? `
@@ -321,55 +274,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         liquorOrdersList.querySelectorAll('.archive-liquor-order-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const orderId = e.currentTarget.dataset.id;
-                const order = liquorOrdersData.find(o => o.id === orderId);
-                if (order) {
-                    try {
-                        const response = await fetch('../handlers/liquor_order_update.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: `id=${orderId}&status=archived`,
-                        });
-                        const result = await response.text();
-                        if (result.trim() === 'success') {
-                            order.status = 'archived';
-                            renderLiquorOrders();
-                        } else {
-                            alert('Failed to archive liquor order.');
-                        }
-                    } catch (error) {
-                        alert('Error archiving liquor order: ' + error);
-                    }
+                const orderIndex = liquorOrdersData.findIndex(order => order.id === orderId);
+                if (orderIndex !== -1) {
+                    liquorOrdersData[orderIndex].status = 'archived';
+                    renderLiquorOrders();
                 }
             });
         });
 
         liquorOrdersList.querySelectorAll('.unarchive-liquor-order-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const orderId = e.currentTarget.dataset.id;
-                const order = liquorOrdersData.find(o => o.id === orderId);
-                if (order) {
-                    try {
-                        const response = await fetch('../handlers/liquor_order_update.php', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                            },
-                            body: `id=${orderId}&status=pending`,
-                        });
-                        const result = await response.text();
-                        if (result.trim() === 'success') {
-                            order.status = 'pending';
-                            renderLiquorOrders();
-                        } else {
-                            alert('Failed to unarchive liquor order.');
-                        }
-                    } catch (error) {
-                        alert('Error unarchiving liquor order: ' + error);
-                    }
+                const orderIndex = liquorOrdersData.findIndex(order => order.id === orderId);
+                if (orderIndex !== -1) {
+                    liquorOrdersData[orderIndex].status = 'pending';
+                    renderLiquorOrders();
                 }
             });
         });
@@ -398,44 +319,42 @@ document.addEventListener('DOMContentLoaded', () => {
         calendarManagerFormContainer.classList.add('hidden');
     });
 
-    eventForm.addEventListener('submit', async (e) => {
+    eventForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const id = eventIdInput.value;
+        const id = eventIdInput.value || `evt-${Date.now()}`; // Generate new ID if not editing
         const date = eventDateInput.value;
         const name = eventNameInput.value;
         const time = eventTimeInput.value;
-        const email = eventDescriptionInput.value;
+        const description = eventDescriptionInput.value;
         const status = eventStatusSelect.value;
 
-        const formData = new FormData();
-        formData.append('event_date', date);
-        formData.append('name', name);
-        formData.append('time_from', time);
-        formData.append('email', email);
-        formData.append('status', status);
+        const newEvent = { id, name, time, description, status };
 
-        let url = '../handlers/event_add.php';
-        if (id) {
-            formData.append('id', id);
-            url = '../handlers/event_update.php';
-        }
+        let dateEntry = calendarEventsData.find(entry => entry.date === date);
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                body: formData,
-            });
-            const result = await response.text();
-            if (result.trim() === 'success') {
-                await loadAllData();
-                renderCalendarManager();
-                calendarManagerFormContainer.classList.add('hidden');
-            } else {
-                alert('Failed to save event.');
+        if (eventIdInput.value) { // Editing existing event
+            if (dateEntry) {
+                const eventIndex = dateEntry.events.findIndex(evt => evt.id === id);
+                if (eventIndex !== -1) {
+                    dateEntry.events[eventIndex] = newEvent;
+                }
             }
-        } catch (error) {
-            alert('Error saving event: ' + error);
+        } else { // Adding new event
+            if (dateEntry) {
+                dateEntry.events.push(newEvent);
+            } else {
+                calendarEventsData.push({ date, events: [newEvent] });
+            }
         }
+
+        // Sort calendar events by date and then by time within each date
+        calendarEventsData.sort((a, b) => new Date(a.date) - new Date(b.date));
+        calendarEventsData.forEach(entry => {
+            entry.events.sort((a, b) => a.time.localeCompare(b.time));
+        });
+
+        renderCalendarManager();
+        calendarManagerFormContainer.classList.add('hidden');
     });
 
     function renderCalendarManager() {
@@ -452,18 +371,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 eventCard.classList.add('card');
                 eventCard.innerHTML = `
                     <div class="card-header">
-                        <h4>${event.name} on ${dateEntry.date}</h4>
+                        <h4>${event.name} on ${event.date}</h4>
                         <span class="text-sm text-gray-500">${event.time}</span>
                     </div>
                     <div class="card-body">
-                        <p><strong>Email:</strong> ${event.email || 'N/A'}</p>
+                        <p><strong>Description:</strong> ${event.description || 'N/A'}</p>
                         <p><strong>Status:</strong> <span class="font-bold status-${event.status}">${event.status.toUpperCase()}</span></p>
                     </div>
                     <div class="card-actions">
-                        <button class="btn btn-outline edit-event-btn" data-id="${event.id}" data-date="${dateEntry.date}">
+                        <button class="btn btn-outline edit-event-btn" data-id="${event.id}" data-date="${event.date}">
                             <i class="fas fa-edit"></i> Edit
                         </button>
-                        <button class="btn btn-destructive delete-event-btn" data-id="${event.id}" data-date="${dateEntry.date}">
+                        <button class="btn btn-destructive delete-event-btn" data-id="${event.id}" data-date="${event.date}">
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
                     </div>
@@ -481,10 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const eventToEdit = dateEntry.events.find(evt => evt.id === eventId);
                     if (eventToEdit) {
                         eventIdInput.value = eventToEdit.id;
-                        eventDateInput.value = eventDate;
+                        eventDateInput.value = eventToEdit.date;
                         eventNameInput.value = eventToEdit.name;
                         eventTimeInput.value = eventToEdit.time;
-                        eventDescriptionInput.value = eventToEdit.email;
+                        eventDescriptionInput.value = eventToEdit.description;
                         eventStatusSelect.value = eventToEdit.status;
                         calendarManagerFormContainer.classList.remove('hidden');
                     }
@@ -493,34 +412,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         calendarManagerList.querySelectorAll('.delete-event-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const eventId = e.currentTarget.dataset.id;
                 const eventDate = e.currentTarget.dataset.date;
 
-                try {
-                    const response = await fetch('../handlers/event_delete.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `id=${eventId}`,
-                    });
-                    const result = await response.text();
-                    if (result.trim() === 'success') {
-                        calendarEventsData = calendarEventsData.map(dateEntry => {
-                            if (dateEntry.date === eventDate) {
-                                dateEntry.events = dateEntry.events.filter(evt => evt.id !== eventId);
-                                return dateEntry.events.length > 0 ? dateEntry : null;
-                            }
-                            return dateEntry;
-                        }).filter(Boolean);
-                        renderCalendarManager();
-                    } else {
-                        alert('Failed to delete event.');
+                calendarEventsData = calendarEventsData.map(dateEntry => {
+                    if (dateEntry.date === eventDate) {
+                        dateEntry.events = dateEntry.events.filter(evt => evt.id !== eventId);
+                        // Remove date entry if no events left for that date
+                        return dateEntry.events.length > 0 ? dateEntry : null;
                     }
-                } catch (error) {
-                    alert('Error deleting event: ' + error);
-                }
+                    return dateEntry;
+                }).filter(Boolean); // Remove null entries
+
+                renderCalendarManager();
             });
         });
     }
@@ -545,38 +450,25 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryManagerFormContainer.classList.add('hidden');
     });
 
-    imageForm.addEventListener('submit', async (e) => {
+    imageForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const id = imageIdInput.value;
+        const id = imageIdInput.value || `img-${Date.now()}`; // Generate new ID if not editing
         const src = imageSrcInput.value;
         const alt = imageAltInput.value;
 
-        const formData = new FormData();
-        formData.append('img_location', src);
-        formData.append('alt_text', alt);
+        const newImage = { id, src, alt };
 
-        let url = '../handlers/image_add.php';
-        if (id) {
-            formData.append('id', id);
-            url = '../handlers/image_update.php';
-        }
-
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                body: formData,
-            });
-            const result = await response.text();
-            if (result.trim() === 'success') {
-                await loadAllData();
-                renderGalleryManager();
-                galleryManagerFormContainer.classList.add('hidden');
-            } else {
-                alert('Failed to save image.');
+        if (imageIdInput.value) { // Editing existing image
+            const imageIndex = galleryImagesData.findIndex(img => img.id === id);
+            if (imageIndex !== -1) {
+                galleryImagesData[imageIndex] = newImage;
             }
-        } catch (error) {
-            alert('Error saving image: ' + error);
+        } else { // Adding new image
+            galleryImagesData.push(newImage);
         }
+
+        renderGalleryManager();
+        galleryManagerFormContainer.classList.add('hidden');
     });
 
     function renderGalleryManager() {
@@ -591,8 +483,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageCard = document.createElement('div');
             imageCard.classList.add('card', 'gallery-card');
             imageCard.innerHTML = `
-                <img src="${image.img_location}" alt="${image.alt_text}" onerror="this.onerror=null;this.src='https://placehold.co/300x180/E0E0E0/333333?text=Image+Not+Found';" />
-                <p>${image.alt_text}</p>
+                <img src="${image.src}" alt="${image.alt}" onerror="this.onerror=null;this.src='https://placehold.co/300x180/E0E0E0/333333?text=Image+Not+Found';" />
+                <p>${image.alt}</p>
                 <div class="card-actions">
                     <button class="btn btn-outline edit-image-btn" data-id="${image.id}">
                         <i class="fas fa-edit"></i> Edit
@@ -611,34 +503,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const imageToEdit = galleryImagesData.find(img => img.id === imageId);
                 if (imageToEdit) {
                     imageIdInput.value = imageToEdit.id;
-                    imageSrcInput.value = imageToEdit.img_location;
-                    imageAltInput.value = imageToEdit.alt_text;
+                    imageSrcInput.value = imageToEdit.src;
+                    imageAltInput.value = imageToEdit.alt;
                     galleryManagerFormContainer.classList.remove('hidden');
                 }
             });
         });
 
         galleryManagerList.querySelectorAll('.delete-image-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
+            button.addEventListener('click', (e) => {
                 const imageId = e.currentTarget.dataset.id;
-                try {
-                    const response = await fetch('../handlers/image_delete.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: `id=${imageId}`,
-                    });
-                    const result = await response.text();
-                    if (result.trim() === 'success') {
-                        galleryImagesData = galleryImagesData.filter(img => img.id !== imageId);
-                        renderGalleryManager();
-                    } else {
-                        alert('Failed to delete image.');
-                    }
-                } catch (error) {
-                    alert('Error deleting image: ' + error);
-                }
+                galleryImagesData = galleryImagesData.filter(img => img.id !== imageId);
+                renderGalleryManager();
             });
         });
     }

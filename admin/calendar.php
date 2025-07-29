@@ -131,12 +131,13 @@ $next_year = $month == 12 ? $year + 1 : $year;
 
 <script>
     function editEvent(id, date, name, from, to, phone, email) {
-        document.getElementById('event-id').value = id;
-        document.getElementById('event-date').value = date;
-        document.getElementById('event-name').value = name;
-        document.getElementById('time-from').value = from;
-        document.getElementById('time-to').value = to;
-        document.getElementById('phone').value = phone;
-        document.getElementById('email').value = email;
+        document.getElementById('modal-event-id').value = id;
+        document.getElementById('modal-event-date').value = date;
+        document.getElementById('modal-event-name').value = name;
+        document.getElementById('modal-time-from').value = from;
+        document.getElementById('modal-time-to').value = to;
+        document.getElementById('modal-phone').value = phone;
+        document.getElementById('modal-email').value = email;
+        document.getElementById('calendar-modal').style.display = 'block';
     }
 </script>

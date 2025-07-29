@@ -111,9 +111,6 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
     $id = $_GET['id'];
 
     if ($action == 'accept') {
-        $query = "UPDATE booking_request SET status = 'accepted' WHERE id = $id";
-        mysqli_query($conn, $query);
-
         $query = "SELECT * FROM booking_request WHERE id = $id";
         $result = mysqli_query($conn, $query);
         $booking = mysqli_fetch_assoc($result);
@@ -127,6 +124,9 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
         $timestamp = $booking['timestamp'];
 
         $query = "INSERT INTO event_list (name, event_date, time_from, time_to, phone, email, status, timestamp) VALUES ('$name', '$event_date', '$time_from', '$time_to', '$phone', '$email', 'accepted', '$timestamp')";
+        mysqli_query($conn, $query);
+
+        $query = "DELETE FROM booking_request WHERE id = $id";
         mysqli_query($conn, $query);
 
         header('Location: dashboard.php?page=bookings');
@@ -208,6 +208,41 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
             <p>Are you sure you want to reject, this action is irreversible and the data will be lost.</p>
             <button id="confirm-reject">Yes, Reject</button>
             <button id="cancel-reject">Cancel</button>
+        </div>
+    </div>
+
+    <div id="calendar-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Edit Event</h2>
+            <form action="dashboard.php?page=calendar" method="post">
+                <input type="hidden" name="id" id="modal-event-id">
+                <div class="input-group">
+                    <label for="modal-event-date">Date</label>
+                    <input type="date" name="event_date" id="modal-event-date" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-event-name">Event Name</label>
+                    <input type="text" name="name" id="modal-event-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-time-from">From</label>
+                    <input type="time" name="time_from" id="modal-time-from" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-time-to">To</label>
+                    <input type="time" name="time_to" id="modal-time-to" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-phone">Phone</label>
+                    <input type="text" name="phone" id="modal-phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="modal-email">Email</label>
+                    <input type="email" name="email" id="modal-email" required>
+                </div>
+                <button type="submit" name="save_event">Save Event</button>
+            </form>
         </div>
     </div>
 

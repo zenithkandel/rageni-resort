@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #2c5530;
-    --secondary-color: #8fbc8f;
-    --accent-color: #ff6b35;
+    --primary-color: #2c5530; /* Your existing deep green */
+    --secondary-color: #8fbc8f; /* Your existing light green */
+    --accent-color: #ff6b35; /* Your existing orange */
     --text-dark: #2c3e50;
     --text-light: #7f8c8d;
     --bg-light: #f8f9fa;
@@ -12,6 +12,10 @@
     --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
     --border-radius: 12px;
+
+    /* New colors based on your previous input */
+    --light-blue: #afbbeb;
+    --dark-blue: #7b96c8;
 }
 
 body {
@@ -22,6 +26,7 @@ body {
     color: var(--text-dark);
 }
 
+/* --- Login Container --- */
 .login-container {
     display: flex;
     justify-content: center;
@@ -43,8 +48,10 @@ body {
 .login-container h2 {
     margin-bottom: 2rem;
     font-size: 2rem;
+    color: var(--primary-color); /* Added color for clarity */
 }
 
+/* --- Input Group & Buttons (General) --- */
 .input-group {
     margin-bottom: 1.5rem;
     text-align: left;
@@ -54,38 +61,54 @@ body {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    color: var(--text-dark); /* Ensure label color is clear */
 }
 
-.input-group input {
+.input-group input,
+.input-group textarea, /* Added textarea for potential future use or general forms */
+.input-group select { /* Added select for general forms */
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     transition: var(--transition);
+    box-sizing: border-box; /* Include padding in width */
+    font-family: 'Poppins', sans-serif; /* Consistent font */
 }
 
-.input-group input:focus {
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.1);
 }
 
-button {
-    width: 100%;
-    padding: 0.85rem;
+button[type="submit"],
+.action-btn,
+.logout-btn { /* Apply general button styles to these classes */
+    width: auto; /* Buttons might not always be full width */
+    padding: 0.85rem 1.5rem; /* Adjusted padding */
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Slightly adjusted font size */
     font-weight: 600;
     transition: var(--transition);
+    display: inline-flex; /* Use flex for potential icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-button:hover {
+button[type="submit"]:hover,
+.action-btn:hover,
+.logout-btn:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
+    opacity: 0.9; /* Slight opacity change on hover */
 }
 
 .error {
@@ -95,13 +118,17 @@ button:hover {
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
 }
 
+/* --- Dashboard Layout --- */
 .dashboard-container {
     display: flex;
     height: 100vh;
 }
 
+/* --- Sidebar --- */
 .sidebar {
     width: 260px;
     background-color: var(--text-dark);
@@ -109,18 +136,21 @@ button:hover {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    transition: var(--transition);
+    transition: width 0.3s ease; /* Smooth transition for potential collapsing */
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
 .sidebar h2 {
     text-align: center;
     font-size: 1.8rem;
     margin-bottom: 2rem;
+    color: var(--white);
 }
 
 .sidebar nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar nav ul li a {
@@ -137,101 +167,104 @@ button:hover {
 
 .sidebar nav ul li a:hover,
 .sidebar nav ul li a.active {
-    background-color: #34495e;
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter hover/active */
+    transform: translateX(5px); /* Slight movement on hover/active */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .logout-btn {
     display: block;
-    width: 100%;
-    padding: 0.85rem;
+    width: calc(100% - 3rem); /* Adjust for padding if needed */
+    margin: auto auto 0 auto; /* Push to bottom */
     background-color: var(--accent-color);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    margin-top: auto;
-    transition: var(--transition);
+    font-size: 1rem;
 }
 
 .logout-btn:hover {
-    background-color: #e65c2a;
+    background-color: #e65c2a; /* Darker accent on hover */
 }
 
+/* --- Main Content Area --- */
 .main-content {
     flex-grow: 1;
     padding: 2.5rem;
     overflow-y: auto;
+    background-color: var(--bg-light);
     animation: fadeIn 0.5s ease;
 }
 
+.main-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.main-content h3 {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-blue);
+}
+
+/* --- Table Styles (General) --- */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate; /* Changed to separate for border-radius on cells */
     margin-top: 2rem;
     box-shadow: var(--shadow);
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow: hidden; /* Ensures border-radius is applied */
 }
 
 th, td {
-    padding: 1rem;
+    padding: 1.2rem 1rem; /* Slightly more padding */
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e0e0e0; /* Lighter border */
 }
 
 th {
     background-color: var(--primary-color);
     color: var(--white);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
+th:first-child { border-top-left-radius: var(--border-radius); }
+th:last-child { border-top-right-radius: var(--border-radius); }
 
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--white); /* Keep white for even rows */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--bg-light); /* Light background for odd rows */
 }
 
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: var(--light-blue); /* Hover effect with light blue */
+    color: var(--text-dark);
 }
 
+/* --- Action Buttons (General) --- */
 .action-btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    color: var(--white);
-    text-decoration: none;
-    transition: var(--transition);
-    margin-right: 0.5rem;
+    padding: 0.6rem 1.2rem; /* Adjusted padding for smaller buttons */
+    font-size: 0.9rem;
+    border-radius: 6px; /* Slightly smaller radius for consistency */
+    margin-right: 0.4rem; /* Adjusted margin */
 }
 
-.action-btn.edit {
-    background-color: #f0ad4e;
-}
+.action-btn.edit { background-color: #f0ad4e; } /* Yellow-orange */
+.action-btn.accept { background-color: #5cb85c; } /* Green */
+.action-btn.reject { background-color: #d9534f; } /* Red */
+.action-btn.archive { background-color: #777; } /* Grey */
+.action-btn.delete { background-color: #d9534f; } /* Red */
 
-.action-btn.accept {
-    background-color: #5cb85c;
-}
-
-.action-btn.reject {
-    background-color: #d9534f;
-}
-
-.action-btn.archive {
-    background-color: #777;
-}
-
-.action-btn.delete {
-    background-color: #d9534f;
-}
-
-.action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
+/* --- Gallery Styles --- */
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Slightly larger min-width */
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -242,6 +275,8 @@ tbody tr:hover {
     box-shadow: var(--shadow);
     overflow: hidden;
     transition: var(--transition);
+    display: flex; /* Flex container for content */
+    flex-direction: column;
 }
 
 .gallery-item:hover {
@@ -251,22 +286,28 @@ tbody tr:hover {
 
 .gallery-item img {
     width: 100%;
-    height: 200px;
+    height: 220px; /* Slightly taller images */
     object-fit: cover;
+    display: block; /* Remove extra space below image */
 }
 
 .gallery-item form {
     padding: 1rem;
+    flex-grow: 1; /* Allow form to take available space */
+    display: flex;
+    flex-direction: column;
 }
 
 .gallery-item input[type="text"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem; /* More space below input */
 }
 
+.gallery-item button[type="submit"] {
+    margin-top: auto; /* Push button to the bottom */
+}
+
+
+/* --- Modal Styles --- */
 .modal {
     display: none;
     position: fixed;
@@ -276,59 +317,150 @@ tbody tr:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+    backdrop-filter: blur(4px); /* Blur background */
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease forwards; /* Use forwards to keep state */
 }
 
 .modal-content {
     background-color: var(--white);
-    margin: 10% auto;
-    padding: 2rem;
+    padding: 2.5rem; /* More padding */
     border-radius: var(--border-radius);
-    width: 80%;
-    max-width: 600px;
-    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 650px; /* Slightly wider max-width */
+    box-shadow: var(--shadow-hover); /* Stronger shadow for modals */
     animation: slideIn 0.3s ease;
+    position: relative;
+    max-height: 90vh; /* Prevent modal from exceeding screen height */
+    overflow-y: auto; /* Allow scrolling if content is too long */
 }
 
 .close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    color: var(--text-light); /* Lighter color */
+    position: absolute; /* Position relative to modal-content */
+    top: 15px;
+    right: 20px;
+    font-size: 2rem; /* Larger close button */
+    font-weight: normal; /* Normal font-weight */
+    transition: var(--transition);
     cursor: pointer;
 }
 
-.calendar-navigation {
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--accent-color); /* Accent color on hover */
+    text-decoration: none;
+    transform: rotate(90deg); /* Little spin effect */
+}
+
+.modal-content h2 {
+    margin-top: 0; /* Remove top margin for modal titles */
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.modal-content p {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.modal-content button {
+    width: auto;
+    margin: 0.5rem; /* Space between buttons */
+    padding: 0.8rem 1.8rem; /* Larger padding for modal buttons */
+    font-size: 1.05rem;
+    border-radius: 10px;
+}
+
+#confirm-delete, #confirm-reject {
+    background-color: var(--accent-color);
+}
+#confirm-delete:hover, #confirm-reject:hover {
+    background-color: #e65c2a;
+}
+
+#confirm-accept {
+    background-color: var(--primary-color);
+}
+#confirm-accept:hover {
+    background-color: #244427; /* Darker primary */
+}
+
+#cancel-delete, #cancel-accept, #cancel-reject {
+    background: #ccc;
+    color: var(--text-dark);
+}
+#cancel-delete:hover, #cancel-accept:hover, #cancel-reject:hover {
+    background: #bbb;
+}
+
+/* --- Calendar Specific Styles --- */
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--secondary-color);
+    margin-bottom: 2rem;
+    padding: 15px 20px;
+    background-color: var(--dark-blue); /* Using your blue color */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    color: var(--white); /* White text for header */
 }
 
-.calendar-navigation h3 {
-    font-family: var(--font-subheading);
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    font-weight: 600;
+.calendar-header h3 {
+    margin: 0;
+    font-size: 2rem; /* Larger month title */
+    font-weight: 700;
+    color: var(--white); /* Ensure white color */
 }
 
-.calendar {
+.calendar-nav-btn {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.75rem 1.2rem;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    transition: var(--transition);
+}
+
+.calendar-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 8px; /* Slightly larger gap */
     background-color: var(--white);
     border-radius: var(--border-radius);
-    padding: 15px;
+    padding: 20px; /* More padding */
     box-shadow: var(--shadow);
+}
+
+.calendar-weekday {
+    background-color: var(--light-blue); /* Using your light blue */
+    color: var(--text-dark);
+    padding: 15px 5px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 8px; /* Rounded corners for headers */
+    text-transform: uppercase;
 }
 
 .calendar-day {
     background-color: var(--bg-light);
-    padding: 15px 5px;
-    min-height: 120px;
+    padding: 15px; /* More padding */
+    min-height: 140px; /* Taller cells */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -339,27 +471,30 @@ tbody tr:hover {
     position: relative;
     font-size: 0.9rem;
     color: var(--text-dark);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05); /* Subtle inner border */
 }
 
-.calendar-day:hover:not(.inactive) {
-    background-color: rgba(var(--secondary-color), 0.2);
+.calendar-day.empty {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none; /* No shadow for empty days */
+}
+
+
+.calendar-day:hover:not(.empty) {
+    background-color: var(--light-blue); /* Hover with light blue */
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.calendar-day.inactive {
-    color: var(--text-light);
-    background-color: #e9ecef;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
 .calendar-day.today {
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.2);
+    border: 3px solid var(--accent-color); /* Highlight today with accent */
+    box-shadow: 0 0 0 3px rgba(var(--accent-color), 0.2);
+    background-color: #fffaf0; /* Slightly off-white for today */
 }
 
-.calendar-day.selected {
+.calendar-day.selected { /* If you implement a selected day state */
     background-color: var(--primary-color);
     color: var(--white);
     box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.5);
@@ -371,51 +506,181 @@ tbody tr:hover {
 }
 
 .calendar-day .day-number {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--dark-blue);
+    font-size: 1.4rem; /* Larger day number */
+    font-weight: 700;
+    margin-bottom: 10px; /* More space below number */
+    color: var(--text-dark);
     width: 100%;
     text-align: right;
     padding-right: 5px;
 }
 
 .calendar-day.today .day-number {
-    color: var(--primary-color);
+    color: var(--accent-color); /* Accent color for today's number */
 }
 
 .calendar-day.selected .day-number {
     color: var(--white);
 }
 
-.event-list {
+.event-container {
     width: 100%;
     margin-top: 5px;
     padding-left: 5px;
+    /* Optional: If events overflow, enable scrolling */
+    max-height: calc(100% - 40px); /* Adjust based on day number height */
+    overflow-y: auto;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--secondary-color) rgba(0,0,0,0.1); /* Firefox */
 }
 
-.event {
+.event-container::-webkit-scrollbar {
+    width: 6px;
+}
+.event-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+.event-container::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.05);
+}
+
+
+.event-item { /* Changed from .event to .event-item for clarity with the PHP change */
     background-color: var(--primary-color);
     color: var(--white);
-    font-size: 0.75rem;
-    padding: 3px 5px;
-    border-radius: 4px;
-    margin-bottom: 3px;
+    font-size: 0.8rem; /* Slightly larger event font */
+    padding: 5px 8px; /* More padding */
+    border-radius: 6px; /* Slightly more rounded */
+    margin-bottom: 5px; /* More space between events */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for events */
 }
 
-.event:hover {
-    background-color: var(--secondary-color);
+.event-item:hover {
+    background-color: var(--dark-blue); /* Hover with dark blue */
+    transform: translateX(3px); /* Slight shift on hover */
 }
 
+/* --- Event Form (Separate from calendar grid for clarity) --- */
+.event-form {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-top: 2rem;
+}
+
+.event-form .input-group {
+    margin-bottom: 1.2rem;
+}
+
+/* --- Animations --- */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
 @keyframes slideIn {
-    from { transform: translateY(-50px); }
-    to { transform: translateY(0); }
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .dashboard-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        box-shadow: var(--shadow);
+    }
+
+    .sidebar h2 {
+        display: none; /* Hide title on small screens */
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .sidebar nav ul li a {
+        padding: 0.75rem 1rem;
+        margin: 0.25rem;
+        font-size: 0.9rem;
+    }
+
+    .logout-btn {
+        width: auto;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust for smaller screens */
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .calendar-day {
+        min-height: 100px; /* Reduce height on smaller screens */
+        padding: 10px;
+    }
+
+    .calendar-day .day-number {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+
+    .event-item {
+        font-size: 0.7rem;
+        padding: 3px 5px;
+        margin-bottom: 3px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 1.5rem;
+    }
+
+    .modal-content button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-container form {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Even smaller for very small screens */
+    }
+
+    .calendar-day {
+        min-height: 80px;
+    }
 }

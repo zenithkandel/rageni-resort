@@ -191,6 +191,26 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
         </div>
     </div>
 
+    <div id="accept-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Confirm Accept</h2>
+            <p>Are you sure you want to continue, this action will make this event and the email address public to the whole world.</p>
+            <button id="confirm-accept">Yes, Accept</button>
+            <button id="cancel-accept">Cancel</button>
+        </div>
+    </div>
+
+    <div id="reject-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Confirm Reject</h2>
+            <p>Are you sure you want to reject, this action is irreversible and the data will be lost.</p>
+            <button id="confirm-reject">Yes, Reject</button>
+            <button id="cancel-reject">Cancel</button>
+        </div>
+    </div>
+
     <script src="admin.js"></script>
 </body>
 </html>

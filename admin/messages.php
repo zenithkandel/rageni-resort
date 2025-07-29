@@ -27,8 +27,8 @@
                 <td><?php echo date('Y-m-d H:i:s', $row['timestamp']); ?></td>
                 <td><?php echo $row['status']; ?></td>
                 <td>
-                    <a href="dashboard.php?page=messages&action=archive&id=<?php echo $row['id']; ?>">Archive</a>
-                    <a href="dashboard.php?page=messages&action=delete&id=<?php echo $row['id']; ?>">Delete</a>
+                    <a href="dashboard.php?page=messages&action=archive&id=<?php echo $row['id']; ?>" class="action-btn archive">Archive</a>
+                    <a href="dashboard.php?page=messages&action=delete&id=<?php echo $row['id']; ?>" class="action-btn delete">Delete</a>
                 </td>
             </tr>
         <?php } ?>

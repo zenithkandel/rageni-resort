@@ -194,6 +194,41 @@ tbody tr:hover {
     background-color: #f1f1f1;
 }
 
+.action-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+    margin-right: 0.5rem;
+}
+
+.action-btn.edit {
+    background-color: #f0ad4e;
+}
+
+.action-btn.accept {
+    background-color: #5cb85c;
+}
+
+.action-btn.reject {
+    background-color: #d9534f;
+}
+
+.action-btn.archive {
+    background-color: #777;
+}
+
+.action-btn.delete {
+    background-color: #d9534f;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

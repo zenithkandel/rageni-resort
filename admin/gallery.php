@@ -10,9 +10,9 @@
             <form action="dashboard.php?page=gallery&action=edit" method="post">
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                 <input type="text" name="alt_text" value="<?php echo $row['alt_text']; ?>">
-                <button type="submit" name="edit_alt">Edit</button>
+                <button type="submit" name="edit_alt" class="action-btn edit">Edit</button>
             </form>
-            <a href="dashboard.php?page=gallery&action=delete&id=<?php echo $row['id']; ?>">Delete</a>
+            <a href="dashboard.php?page=gallery&action=delete&id=<?php echo $row['id']; ?>" class="action-btn delete">Delete</a>
         </div>
     <?php } ?>
 </div>

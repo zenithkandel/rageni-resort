@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {// Navigation functionality
                     }, 300); // Match fadeOut animation duration
                 }, 3000); // Auto-close after 3 seconds
 
-                bookingForm.reset();
+                contactForm.reset();
             } else {
                 throw new Error('Form submission failed: ' + result);
             }

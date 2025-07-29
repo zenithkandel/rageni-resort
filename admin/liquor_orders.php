@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <?php
-        $query = "SELECT * FROM liquor_order ORDER BY timestamp DESC";
+        $query = "SELECT * FROM liquor_order WHERE status != 'rejected' ORDER BY timestamp DESC";   
         $result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_assoc($result)) {
         ?>

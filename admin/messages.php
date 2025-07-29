@@ -5,6 +5,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Phone</th>
             <th>Subject</th>
             <th>Message</th>
             <th>Timestamp</th>
@@ -22,6 +23,7 @@
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['name']; ?></td>
                 <td><?php echo $row['email']; ?></td>
+                <td><?php echo $row['phone']; ?></td>
                 <td><?php echo $row['subject']; ?></td>
                 <td><?php echo $row['message']; ?></td>
                 <td><?php echo date('Y-m-d h:i:s A', $row['timestamp']); ?></td>

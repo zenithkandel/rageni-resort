@@ -336,7 +336,7 @@ async function loadGalleryImages() {
             galleryItem.classList.add("gallery-item");
 
             const img = document.createElement("img");
-            img.src = image.img_location;
+            img.src = "../"+image.img_location;
             img.alt = image.alt_text;
             img.loading = "lazy";
 
@@ -370,7 +370,7 @@ function showImageInLightbox(index) {
     }
 
     const imageToShow = galleryImages[currentImageIndex];
-    lightboxImg.src = imageToShow.img_location;
+    lightboxImg.src =  "../"+imageToShow.img_location;
     lightboxImg.alt = imageToShow.alt_text;
 }
 

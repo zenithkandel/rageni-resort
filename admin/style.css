@@ -325,17 +325,22 @@ tbody tr:hover {
 }
 
 .modal-content {
-    background-color: var(--white);
-    padding: 2.5rem; /* More padding */
+        background-color: var(--white);
+    padding: 2.5rem;
     border-radius: var(--border-radius);
     width: 90%;
-    max-width: 650px; /* Slightly wider max-width */
-    box-shadow: var(--shadow-hover); /* Stronger shadow for modals */
+    max-width: 650px;
+    box-shadow: var(--shadow-hover);
     animation: slideIn 0.3s ease;
     position: relative;
-    max-height: 90vh; /* Prevent modal from exceeding screen height */
-    overflow-y: auto; /* Allow scrolling if content is too long */
+    max-height: 90vh;
+    overflow-y: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 
 .close-btn {
     color: var(--text-light); /* Lighter color */

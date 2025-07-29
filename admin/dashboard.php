@@ -29,10 +29,17 @@ if (isset($_GET['page']) && $_GET['page'] == 'messages' && isset($_GET['action']
 if (isset($_POST['upload'])) {
     $alt_text = $_POST['alt_text'];
     $image = $_FILES['image']['name'];
-    $target = "../images/apps/silver_gallery/" . basename($image);
-    $img_location = "images/apps/silver_gallery/" . basename($image);
+    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
 
-    $sql = "INSERT INTO gallery (img_location, alt_text, timestamp) VALUES ('$img_location', '$alt_text', '" . time() . "')";
+    $sql = "INSERT INTO gallery (alt_text, timestamp) VALUES ('$alt_text', '" . time() . "')";
+    mysqli_query($conn, $sql);
+    $last_id = mysqli_insert_id($conn);
+
+    $new_image_name = $last_id . '.' . $image_ext;
+    $target = "../images/apps/silver_gallery/" . $new_image_name;
+    $img_location = "images/apps/silver_gallery/" . $new_image_name;
+
+    $sql = "UPDATE gallery SET img_location = '$img_location' WHERE id = $last_id";
     mysqli_query($conn, $sql);
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
@@ -86,8 +93,16 @@ if (isset($_POST['edit_gallery'])) {
         $query = "UPDATE gallery SET alt_text = '$alt_text', timestamp = '" . time() . "' WHERE id = $id";
         mysqli_query($conn, $query);
     } else {
-        $target = "../images/apps/silver_gallery/" . basename($image);
-        $img_location = "images/apps/silver_gallery/" . basename($image);
+        $query = "SELECT * FROM gallery WHERE id = $id";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        $old_img_location = $row['img_location'];
+        unlink('../' . $old_img_location);
+
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $new_image_name = $id . '.' . $image_ext;
+        $target = "../images/apps/silver_gallery/" . $new_image_name;
+        $img_location = "images/apps/silver_gallery/" . $new_image_name;
 
         $query = "UPDATE gallery SET img_location = '$img_location', alt_text = '$alt_text', timestamp = '" . time() . "' WHERE id = $id";
         mysqli_query($conn, $query);

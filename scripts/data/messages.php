@@ -1,4 +1,25 @@
-[
-  { "id": "msg1", "sender": "John Doe", "email": "john@example.com", "subject": "Inquiry about resort", "message": "Hello, I'd like to know more about your resort facilities.", "timestamp": "2024-07-20T10:00:00Z", "archived": false },
-  { "id": "msg2", "sender": "Jane Smith", "email": "jane@example.com", "subject": "Partnership opportunity", "message": "Interested in a collaboration for agro-tourism.", "timestamp": "2024-07-19T14:30:00Z", "archived": false }
-]
+<?php
+include_once '../database_connection.php';
+
+// Query to fetch all data from the form_message table
+$query = "SELECT * FROM form_message";
+$result = mysqli_query($conn, $query);
+
+// Initialize an array to store the data
+$messageData = [];
+
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $messageData[] = $row;
+    }
+}
+
+// Set header to JSON
+header('Content-Type: application/json');
+
+// Output the JSON data
+echo json_encode($messageData, JSON_PRETTY_PRINT);
+
+// Close connection
+mysqli_close($conn);
+?>

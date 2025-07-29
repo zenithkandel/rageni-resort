@@ -1,8 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #2c5530;
+    --secondary-color: #8fbc8f;
+    --accent-color: #ff6b35;
+    --text-dark: #2c3e50;
+    --text-light: #7f8c8d;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --border-radius: 12px;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
     margin: 0;
     padding: 0;
+    color: var(--text-dark);
 }
 
 .login-container {
@@ -10,72 +27,95 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 .login-container form {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 350px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
 }
 
 .login-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
 }
 
 .input-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .input-group input {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(44, 85, 48, 0.1);
 }
 
 button {
     width: 100%;
-    padding: 0.75rem;
-    background-color: #2c5530;
-    color: #fff;
+    padding: 0.85rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
 button:hover {
-    background-color: #1e3c22;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
 }
 
 .error {
     color: #d9534f;
-    text-align: center;
-    margin-bottom: 1rem;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
 }
 
 .dashboard-container {
     display: flex;
+    height: 100vh;
 }
 
 .sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 1rem;
-    height: 100vh;
+    width: 260px;
+    background-color: var(--text-dark);
+    color: var(--white);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
 }
 
 .sidebar h2 {
     text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
 
 .sidebar nav ul {
@@ -84,32 +124,152 @@ button:hover {
 }
 
 .sidebar nav ul li a {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     padding: 1rem;
-    color: #fff;
+    color: var(--white);
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: var(--transition);
 }
 
-.sidebar nav ul li a:hover {
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
     background-color: #34495e;
 }
 
 .logout-btn {
     display: block;
     width: 100%;
-    padding: 0.75rem;
-    background-color: #d9534f;
-    color: #fff;
+    padding: 0.85rem;
+    background-color: var(--accent-color);
+    color: var(--white);
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    margin-top: 2rem;
+    margin-top: auto;
+    transition: var(--transition);
+}
+
+.logout-btn:hover {
+    background-color: #e65c2a;
 }
 
 .main-content {
     flex-grow: 1;
+    padding: 2.5rem;
+    overflow-y: auto;
+    animation: fadeIn 0.5s ease;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.gallery-item form {
+    padding: 1rem;
+}
+
+.gallery-item input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 15% auto;
     padding: 2rem;
+    border-radius: var(--border-radius);
+    width: 80%;
+    max-width: 500px;
+    box-shadow: var(--shadow);
+    animation: slideIn 0.3s ease;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(0); }
 }

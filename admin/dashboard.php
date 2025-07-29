@@ -57,6 +57,26 @@ if (isset($_GET['page']) && $_GET['page'] == 'gallery' && isset($_GET['action'])
     exit;
 }
 
+if (isset($_POST['save_event'])) {
+    $id = $_POST['id'];
+    $event_date = $_POST['event_date'];
+    $name = $_POST['name'];
+    $time_from = $_POST['time_from'];
+    $time_to = $_POST['time_to'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+
+    if (empty($id)) {
+        $query = "INSERT INTO event_list (event_date, name, time_from, time_to, phone, email, status, timestamp) VALUES ('$event_date', '$name', '$time_from', '$time_to', '$phone', '$email', 'accepted', '" . time() . "')";
+    } else {
+        $query = "UPDATE event_list SET event_date = '$event_date', name = '$name', time_from = '$time_from', time_to = '$time_to', phone = '$phone', email = '$email' WHERE id = $id";
+    }
+
+    mysqli_query($conn, $query);
+    header('Location: dashboard.php?page=calendar');
+    exit;
+}
+
 if (isset($_POST['edit_alt'])) {
     $id = $_POST['id'];
     $alt_text = $_POST['alt_text'];
@@ -135,11 +155,11 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
             <h2>Admin Panel</h2>
             <nav>
                 <ul>
-                    <li><a href="dashboard.php?page=messages">Messages</a></li>
-                    <li><a href="dashboard.php?page=bookings">Bookings</a></li>
-                    <li><a href="dashboard.php?page=calendar">Calendar</a></li>
-                    <li><a href="dashboard.php?page=liquor_orders">Liquor Orders</a></li>
-                    <li><a href="dashboard.php?page=gallery">Gallery</a></li>
+                    <li><a href="dashboard.php?page=messages" class="<?php echo (!isset($_GET['page']) || $_GET['page'] == 'messages') ? 'active' : ''; ?>">Messages</a></li>
+                    <li><a href="dashboard.php?page=bookings" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'bookings') ? 'active' : ''; ?>">Bookings</a></li>
+                    <li><a href="dashboard.php?page=calendar" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'calendar') ? 'active' : ''; ?>">Calendar</a></li>
+                    <li><a href="dashboard.php?page=liquor_orders" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'liquor_orders') ? 'active' : ''; ?>">Liquor Orders</a></li>
+                    <li><a href="dashboard.php?page=gallery" class="<?php echo (isset($_GET['page']) && $_GET['page'] == 'gallery') ? 'active' : ''; ?>">Gallery</a></li>
                 </ul>
             </nav>
             <a href="logout.php" class="logout-btn">Logout</a>
@@ -155,10 +175,22 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
                     echo "<h2>Page not found</h2>";
                 }
             } else {
-                echo "<h2>Welcome to the Admin Dashboard</h2>";
+                include 'messages.php';
             }
             ?>
         </main>
     </div>
+
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete this item?</p>
+            <button id="confirm-delete">Yes, Delete</button>
+            <button id="cancel-delete">Cancel</button>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
 </body>
 </html>

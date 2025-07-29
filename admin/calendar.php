@@ -83,7 +83,7 @@ $next_year = $month == 12 ? $year + 1 : $year;
             echo '<td>';
             echo '<strong>' . $day_count . '</strong>';
             while ($row = mysqli_fetch_assoc($result)) {
-                echo '<div class="event">' . $row['name'] . '</div>';
+                echo '<div class="event" onclick="editEvent(\'' . $row['id'] . '\', \'' . $date . '\', \'' . $row['name'] . '\', \'' . $row['time_from'] . '\', \'' . $row['time_to'] . '\', \'' . $row['phone'] . '\', \'' . $row['email'] . '\')">' . $row['name'] . '</div>';
             }
             echo '</td>';
 
@@ -129,30 +129,14 @@ $next_year = $month == 12 ? $year + 1 : $year;
     <button type="submit" name="save_event">Save Event</button>
 </form>
 
-<?php
-if (isset($_POST['save_event'])) {
-    $id = $_POST['id'];
-    $event_date = $_POST['event_date'];
-    $name = $_POST['name'];
-    $time_from = $_POST['time_from'];
-    $time_to = $_POST['time_to'];
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-
-    if (empty($id)) {
-        $query = "INSERT INTO event_list (event_date, name, time_from, time_to, phone, email, status, timestamp) VALUES ('$event_date', '$name', '$time_from', '$time_to', '$phone', '$email', 'accepted', '" . time() . "')";
-    } else {
-        $query = "UPDATE event_list SET event_date = '$event_date', name = '$name', time_from = '$time_from', time_to = '$time_to', phone = '$phone', email = '$email' WHERE id = $id";
+<script>
+    function editEvent(id, date, name, from, to, phone, email) {
+        document.getElementById('event-id').value = id;
+        document.getElementById('event-date').value = date;
+        document.getElementById('event-name').value = name;
+        document.getElementById('time-from').value = from;
+        document.getElementById('time-to').value = to;
+        document.getElementById('phone').value = phone;
+        document.getElementById('email').value = email;
     }
-
-    mysqli_query($conn, $query);
-    echo "<meta http-equiv='refresh' content='0;url=dashboard.php?page=calendar'>";
-}
-
-if (isset($_GET['action']) && $_GET['action'] == 'delete_event') {
-    $id = $_GET['id'];
-    $query = "DELETE FROM event_list WHERE id = $id";
-    mysqli_query($conn, $query);
-    echo "<meta http-equiv='refresh' content='0;url=dashboard.php?page=calendar'>";
-}
-?>
+</script>

@@ -15,7 +15,7 @@
     </thead>
     <tbody>
         <?php
-        $query = "SELECT * FROM booking_request ORDER BY timestamp DESC";
+        $query = "SELECT * FROM booking_request WHERE status != 'rejected' ORDER BY timestamp DESC";
         $result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_assoc($result)) {
         ?>
@@ -29,8 +29,8 @@
                 <td><?php echo $row['message']; ?></td>
                 <td><?php echo $row['status']; ?></td>
                 <td>
-                    <a href="dashboard.php?page=bookings&action=accept&id=<?php echo $row['id']; ?>">Accept</a>
-                    <a href="dashboard.php?page=bookings&action=reject&id=<?php echo $row['id']; ?>">Reject</a>
+                    <a href="dashboard.php?page=bookings&action=accept&id=<?php echo $row['id']; ?>" class="action-btn accept">Accept</a>
+                    <a href="dashboard.php?page=bookings&action=reject&id=<?php echo $row['id']; ?>" class="action-btn reject">Reject</a>
                 </td>
             </tr>
         <?php } ?>

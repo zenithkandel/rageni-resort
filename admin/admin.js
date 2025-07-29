@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const deleteButtons = document.querySelectorAll('a[href*="action=delete"]');
-    const modal = document.getElementById('delete-modal');
+    const deleteModal = document.getElementById('delete-modal');
     const confirmDeleteBtn = document.getElementById('confirm-delete');
     const cancelDeleteBtn = document.getElementById('cancel-delete');
     let deleteUrl = '';
@@ -25,22 +25,82 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', e => {
             e.preventDefault();
             deleteUrl = button.href;
-            modal.style.display = 'block';
+            deleteModal.style.display = 'block';
         });
     });
 
-    if (modal) {
+    if (deleteModal) {
         confirmDeleteBtn.addEventListener('click', () => {
             window.location.href = deleteUrl;
         });
 
         cancelDeleteBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
+            deleteModal.style.display = 'none';
         });
 
         window.addEventListener('click', e => {
-            if (e.target == modal) {
-                modal.style.display = 'none';
+            if (e.target == deleteModal) {
+                deleteModal.style.display = 'none';
+            }
+        });
+    }
+
+    const acceptButtons = document.querySelectorAll('a[href*="action=accept"]');
+    const acceptModal = document.getElementById('accept-modal');
+    const confirmAcceptBtn = document.getElementById('confirm-accept');
+    const cancelAcceptBtn = document.getElementById('cancel-accept');
+    let acceptUrl = '';
+
+    acceptButtons.forEach(button => {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            acceptUrl = button.href;
+            acceptModal.style.display = 'block';
+        });
+    });
+
+    if (acceptModal) {
+        confirmAcceptBtn.addEventListener('click', () => {
+            window.location.href = acceptUrl;
+        });
+
+        cancelAcceptBtn.addEventListener('click', () => {
+            acceptModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', e => {
+            if (e.target == acceptModal) {
+                acceptModal.style.display = 'none';
+            }
+        });
+    }
+
+    const rejectButtons = document.querySelectorAll('a[href*="action=reject"]');
+    const rejectModal = document.getElementById('reject-modal');
+    const confirmRejectBtn = document.getElementById('confirm-reject');
+    const cancelRejectBtn = document.getElementById('cancel-reject');
+    let rejectUrl = '';
+
+    rejectButtons.forEach(button => {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            rejectUrl = button.href;
+            rejectModal.style.display = 'block';
+        });
+    });
+
+    if (rejectModal) {
+        confirmRejectBtn.addEventListener('click', () => {
+            window.location.href = rejectUrl;
+        });
+
+        cancelRejectBtn.addEventListener('click', () => {
+            rejectModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', e => {
+            if (e.target == rejectModal) {
+                rejectModal.style.display = 'none';
             }
         });
     }

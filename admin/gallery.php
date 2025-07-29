@@ -7,11 +7,8 @@
     ?>
         <div class="gallery-item">
             <img src="../<?php echo $row['img_location']; ?>" alt="<?php echo $row['alt_text']; ?>">
-            <form action="dashboard.php?page=gallery&action=edit" method="post">
-                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                <input type="text" name="alt_text" value="<?php echo $row['alt_text']; ?>">
-                <button type="submit" name="edit_alt" class="action-btn edit">Edit</button>
-            </form>
+            <p><?php echo date('Y-m-d h:i:s A', $row['timestamp']); ?></p>
+            <a href="#" class="action-btn edit" data-id="<?php echo $row['id']; ?>" data-alt="<?php echo $row['alt_text']; ?>">Edit</a>
             <a href="dashboard.php?page=gallery&action=delete&id=<?php echo $row['id']; ?>" class="action-btn delete">Delete</a>
         </div>
     <?php } ?>

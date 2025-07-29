@@ -24,9 +24,10 @@
                 <td><?php echo $row['quantity']; ?></td>
                 <td><?php echo $row['message']; ?></td>
                 <td><?php echo $row['status']; ?></td>
+                <td><?php echo date('Y-m-d h:i:s A', $row['timestamp']); ?></td>
                 <td>
-                    <a href="dashboard.php?page=liquor_orders&action=accept&id=<?php echo $row['id']; ?>">Accept</a>
-                    <a href="dashboard.php?page=liquor_orders&action=reject&id=<?php echo $row['id']; ?>">Reject</a>
+                    <a href="dashboard.php?page=liquor_orders&action=accept&id=<?php echo $row['id']; ?>" class="action-btn accept">Accept</a>
+                    <a href="dashboard.php?page=liquor_orders&action=reject&id=<?php echo $row['id']; ?>" class="action-btn reject">Reject</a>
                 </td>
             </tr>
         <?php } ?>

@@ -136,4 +136,24 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryModal.style.display = 'block';
         });
     });
+
+    const deleteEventBtn = document.getElementById('modal-delete-event-btn');
+    const deleteEventModal = document.getElementById('delete-event-modal');
+    const confirmDeleteEventBtn = document.getElementById('confirm-delete-event-btn');
+    const cancelDeleteEventBtn = document.getElementById('cancel-delete-event-btn');
+
+    if (deleteEventBtn) {
+        deleteEventBtn.addEventListener('click', e => {
+            e.preventDefault();
+            const eventId = document.getElementById('modal-event-id').value;
+            confirmDeleteEventBtn.href = `dashboard.php?page=calendar&action=delete_event&id=${eventId}`;
+            deleteEventModal.style.display = 'block';
+        });
+    }
+
+    if (deleteEventModal) {
+        cancelDeleteEventBtn.addEventListener('click', () => {
+            deleteEventModal.style.display = 'none';
+        });
+    }
 });

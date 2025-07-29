@@ -64,6 +64,14 @@ if (isset($_GET['page']) && $_GET['page'] == 'gallery' && isset($_GET['action'])
     exit;
 }
 
+if (isset($_GET['page']) && $_GET['page'] == 'calendar' && isset($_GET['action']) && $_GET['action'] == 'delete_event') {
+    $id = $_GET['id'];
+    $query = "DELETE FROM event_list WHERE id = $id";
+    mysqli_query($conn, $query);
+    header('Location: dashboard.php?page=calendar');
+    exit;
+}
+
 if (isset($_POST['save_event'])) {
     $id = $_POST['id'];
     $event_date = $_POST['event_date'];
@@ -283,7 +291,18 @@ if (isset($_GET['page']) && $_GET['page'] == 'bookings' && isset($_GET['action']
                     <input type="email" name="email" id="modal-email" required>
                 </div>
                 <button type="submit" name="save_event">Save Event</button>
+                <a href="#" id="modal-delete-event-btn" class="action-btn delete">Delete Event</a>
             </form>
+        </div>
+    </div>
+
+    <div id="delete-event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Confirm Delete Event</h2>
+            <p>Are you sure you want to delete this event? This action is irreversible.</p>
+            <a href="#" id="confirm-delete-event-btn" class="action-btn delete">Yes, Delete</a>
+            <button id="cancel-delete-event-btn">Cancel</button>
         </div>
     </div>
 

@@ -133,7 +133,7 @@ The digital ecosystem comprises:
 
 * **Typography:** Google Fonts for readability and hierarchy.
 
-* **Minimalism:** Focused information display.
+* **Minimalism:** Focused information display. 
 
 ## 🚀 Getting Started (Local Setup)
 

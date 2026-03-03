@@ -129,7 +129,7 @@ The digital ecosystem comprises:
 
 * **Responsiveness:** Fluid adaptation across devices.
 
-* **Animations:** Subtle scroll effects (`0.8s ease`), interactive hovers (`0.3s ease`).
+* **Animations:** Subtle scroll effects (`0.8s ease`), interactive hovers (`0.3s ease`). 
 
 * **Typography:** Google Fonts for readability and hierarchy.
 
